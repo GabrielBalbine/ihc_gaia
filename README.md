@@ -10,7 +10,7 @@ O GAIA é uma ferramenta de **apoio ao prognóstico** de Transtorno do Espectro 
 * **Gabriel Balbine de Andrades** - Matrícula: `22.222.001-4`
 
 ### 2) Título Original do TCC
-> *Aplicação de Visão Computacional como Ferramenta de Apoio ao Prognóstico de TEA]*
+> *Aplicação de Visão Computacional como Ferramenta de Apoio ao Prognóstico de TEA*
 
 ### 3) Nome do Orientador
 * Prof. Victor Varela Perrone
