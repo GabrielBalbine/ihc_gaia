@@ -10,8 +10,7 @@
 
 | Nome Completo | Matrícula |
 | :--- | :--- |
-| **[SEU NOME AQUI]** | [SUA MATRÍCULA] |
-| **[NOME DO PARCEIRO]** | [MATRÍCULA] |
+| **[Gabriel Balbine de Andrades]** | [22.222.001-4] |
 
 ---
 
@@ -22,7 +21,10 @@
 *(Ver tabela acima)*
 
 ### 1.2) Título Original do TCC
-> *[INSERIR TÍTULO OFICIAL DO TCC, ex: Aplicação de Visão Computacional como Ferramenta de Apoio ao Prognóstico de TEA]*
+> *[ANÁLISE DE PADRÕES
+COMPORTAMENTAIS NO TEA: DESAFIOS
+DIAGNÓSTICOS E NOVAS FERRAMENTAS
+TECNOLÓGICAS]*
 
 ### 1.3) Nome do Orientador
 * Prof. [NOME DO ORIENTADOR]
