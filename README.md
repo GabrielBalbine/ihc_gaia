@@ -24,6 +24,7 @@
 > *ANÁLISE DE PADRÕES
 COMPORTAMENTAIS NO TEA: DESAFIOS
 DIAGNÓSTICOS E NOVAS FERRAMENTAS
+
 TECNOLÓGICAS*
 
 ### 1.3) Nome do Orientador
@@ -72,35 +73,44 @@ O profissional ganha uma "segunda opinião" técnica baseada em métricas. A fer
 
 ---
 
-## 🔍 Entrega 2: Análise de Concorrência
-*Status: [Em andamento]*
+## 🔍 Entrega 2: Análise de Concorrência (Soluções Análogas)
+*Status: [Concluído]*
 
 ### 1) Público Alvo
-> [Descrever brevemente o perfil do público alvo mapeado]
+O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psiquiatras, Psicólogos, Neuropsicólogos) que buscam ferramentas de apoio à decisão clínica baseadas em evidências visuais quantitativas.
 
-### 2) Análise de Concorrência (Soluções Similares)
-*ATENÇÃO: Concorrente não é idêntico, e sim atuando na mesma área.*
+### 2) Análise de Concorrência
 
-#### A. Principais concorrentes (Softwares de Análise Comportamental/Triagem)
-| Nome | Link | Descrição |
-| :--- | :--- | :--- |
-| **[Nome Concorrente 1]** | [URL] | [Breve descrição] |
-| **[Nome Concorrente 2]** | [URL] | [Breve descrição] |
+#### A. Principais Concorrentes (Referências de Interação)
+| Nome | Área | Link | Descrição da Solução |
+| :--- | :--- | :--- | :--- |
+| **Aidoc** | Radiologia (IA) | [aidoc.com](https://www.aidoc.com/) | Plataforma de IA para radiologia que analisa imagens médicas (TC/Raio-X) para identificar anomalias agudas. Funciona como um sistema de triagem e priorização de lista de trabalho. |
+| **Viz.ai** | Neurovascular (AVC) | [viz.ai](https://www.viz.ai/) | Utiliza IA para detectar sinais de AVC em tomografias computadorizadas e alerta a equipe médica em tempo real via aplicativo móvel, sincronizando o fluxo de cuidado. |
+| **Lunit INSIGHT** | Oncologia | [lunit.io](https://www.lunit.io/) | Analisa imagens de Raio-X de tórax e mamografias para detectar nódulos e câncer, fornecendo uma pontuação de anormalidade e mapas de calor sobre a imagem. |
 
-*(Inserir prints das telas dos concorrentes na pasta `/docs/img` e linkar aqui)*
+<img width="800" height="470" alt="image" src="https://github.com/user-attachments/assets/08ed6794-b6e5-418e-a7c0-fc6022d15193" />
+<img width="800" height="470" alt="image" src="https://github.com/user-attachments/assets/7559989c-2b2d-4905-bb4f-e0d925bec94a" />
+<img width="800" height="470" alt="image" src="https://github.com/user-attachments/assets/9dc5c312-fb08-4303-904d-b0b57bfd5355" />
 
-#### B. Características e funcionalidades dos concorrentes
-* [Funcionalidade 1]
-* [Funcionalidade 2]
+
+#### B. Características e funcionalidades
+* **Triagem Automatizada ("Always-on AI"):** (Aidoc/Viz.ai) O sistema monitora o fluxo de imagens do hospital 24/7 e processa tudo automaticamente, sem necessidade de clique manual.
+* **Alertas Móveis:** (Viz.ai) Foco na mobilidade; envia notificações críticas para o smartphone do médico, permitindo visualização rápida da imagem processada.
+* **Mapas de Calor (Heatmaps):** (Lunit) A IA não diz apenas "tem câncer"; ela colore a região suspeita com um mapa de calor, ajudando o médico a focar sua atenção imediatamente na área correta.
+* **Score de Probabilidade:** (Todos) Fornecem uma porcentagem de certeza ou "grau de risco" para cada caso analisado.
 
 #### C. Experiência do usuário (UX) e Opiniões
-> [Resumo de reviews ou percepção de uso]
+* **Explicação Visual (Explainability):** A grande força da UX dessas ferramentas é a sobreposição visual (overlays). O médico vê a imagem original com as anotações da IA por cima (bounding boxes ou cores), o que valida a decisão da máquina.
+* **Priorização:** Em vez de analisar exames em ordem cronológica (fila comum), a interface reorganiza a lista colocando os casos críticos (detectados pela IA) no topo.
+* **Simplicidade:** Interfaces limpas, geralmente em modo escuro (Dark Mode) para destacar o contraste das imagens médicas.
 
 #### D. Preços e modelos de negócio
-* [Ex: Assinatura mensal, Licença única, Gratuito]
+* **Modelo B2B/Enterprise:** Venda para hospitais e redes de saúde. Geralmente cobrado por volume de exames analisados ou assinatura anual da plataforma.
 
-#### E. Padrões e tendências no mercado
-* [Ex: Uso de IA, Dashboards simplificados, Mobile first]
+#### E. Padrões e tendências de mercado observadas
+* **Suporte à Decisão (CDSS):** Consenso de mercado de que a IA é um "copiloto". A palavra final e o laudo são sempre humanos.
+* **Visualização Mobile:** Tendência forte de permitir que o médico veja os resultados preliminares da IA no celular (tablet/smartphone) para agilizar a triagem.
+* **Integração PACs:** As ferramentas não funcionam isoladas; elas injetam seus resultados diretamente nos visualizadores de imagem que os médicos já usam no dia a dia.
 
 ---
 
