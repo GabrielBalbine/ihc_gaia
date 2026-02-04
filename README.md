@@ -21,13 +21,13 @@
 *(Ver tabela acima)*
 
 ### 1.2) Título Original do TCC
-> *[ANÁLISE DE PADRÕES
+> *ANÁLISE DE PADRÕES
 COMPORTAMENTAIS NO TEA: DESAFIOS
 DIAGNÓSTICOS E NOVAS FERRAMENTAS
-TECNOLÓGICAS]*
+TECNOLÓGICAS*
 
 ### 1.3) Nome do Orientador
-* Prof. [Victor Perrone Varela]
+* Prof. Victor Perrone Varela
 
 ### 1.4) Previsto desenvolver Interface?
 - [x] Sim
