@@ -27,7 +27,7 @@ DIAGNÓSTICOS E NOVAS FERRAMENTAS
 TECNOLÓGICAS]*
 
 ### 1.3) Nome do Orientador
-* Prof. [NOME DO ORIENTADOR]
+* Prof. [Victor Perrone Varela]
 
 ### 1.4) Previsto desenvolver Interface?
 - [x] Sim
