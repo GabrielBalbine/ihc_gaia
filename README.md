@@ -125,7 +125,6 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 #### 1. Identidade
 * **Nome:** Helena Souza.
 * **Idade:** 42 anos.
-* **Foto:** [Inserir foto representativa].
 * **Bio:** Possui doutorado em Psicologia Clínica com foco em TEA. Trabalha em clínica particular e Hospital Universitário há 15 anos. É extremamente técnica, mas sente o peso da rotina manual.
 
 #### 2. Status
@@ -387,6 +386,7 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
