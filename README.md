@@ -123,9 +123,11 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 > **"A tecnologia deve ser uma lente de aumento para a intuição clínica."**
 
 #### 1. Identidade
+
 * **Nome:** Helena Souza.
 * **Idade:** 42 anos.
 * **Bio:** Possui doutorado em Psicologia Clínica com foco em TEA. Trabalha em clínica particular e Hospital Universitário há 15 anos. É extremamente técnica, mas sente o peso da rotina manual.
+ <img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/b1bd22c1-2191-46a3-b289-9d6685ae45d2" />
 
 #### 2. Status
 * **Papel:** Neuropsicóloga Infantil e Pesquisadora./ Persona Primária
@@ -386,6 +388,7 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
