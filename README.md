@@ -114,21 +114,73 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 
-## 👤 Entrega 3: Personas e Contexto
-*Status: [Em andamento]*
+# 👤 Entrega 3: Personas e Contexto
 
-### 1) Personas
-> [Inserir descrição ou imagem da Persona criada]
+**Status:** [Concluído]
 
-### 2) Mapa de Empatia
-> [Inserir imagem do Mapa de Empatia]
+## 1. Personas
 
-### 3) Contexto de Uso
-> [Descrição detalhada do cenário onde o sistema é usado]
+### Persona Primária: Dra. Helena Souza
+> **"A tecnologia deve ser uma lente de aumento para a intuição clínica."**
 
-### 4) Jornada do Usuário
-> [Inserir imagem ou descrição passo-a-passo da jornada atual]
+* **Idade:** 42 anos.
+* **Profissão:** Neuropsicóloga Infantil / Pesquisadora.
+* **Formação:** Doutorado em Psicologia Clínica, especialização em TEA.
+* **Local de Trabalho:** Clínica particular e Hospital Universitário.
+* **Nível de Tecnologia:** Intermediário (Usa softwares de prontuário, Office e videoconferência, mas não sabe programar).
 
+**Biografia e Comportamento**
+Helena atende cerca de 15 a 20 crianças por semana. Seu trabalho envolve sessões de observação comportamental que duram cerca de 40 a 60 minutos. Ela é extremamente detalhista e se preocupa em oferecer um diagnóstico preciso e precoce. Atualmente, ela grava algumas sessões (com autorização) para rever depois, mas raramente tem tempo de assistir ao vídeo inteiro novamente com atenção plena devido à alta demanda de pacientes.
+
+**Objetivos (O que ela quer?)**
+* Reduzir a subjetividade na análise do contato visual e expressões faciais das crianças.
+* Ter dados quantitativos (gráficos e métricas) para embasar seus laudos médicos.
+* Otimizar o tempo: focar no tratamento e na família, não em assistir horas de vídeo contando segundos no relógio.
+
+**Dores e Frustrações (O que atrapalha?)**
+* **Exaustão:** Fazer anotações manuais enquanto interage com a criança é difícil e propenso a erros.
+* **Falta de precisão:** Dizer que a criança "melhorou" ou "piorou" é vago; ela precisa saber *quanto* melhorou ou piorou.
+* **Complexidade:** Já tentou usar softwares de pesquisa, mas eram difíceis de configurar.
+
+---
+
+## 2. Mapa de Empatia
+
+| **O que ela VÊ?** | **O que ela OUVE?** |
+| :--- | :--- |
+| • Crianças com dificuldade de interação social.<br>• Pais ansiosos por respostas concretas e diagnósticos rápidos.<br>• Pilhas de anotações em papel e planilhas manuais.<br>• Colegas de outras áreas usando tecnologias avançadas de IA. | • Perguntas dos pais: "Doutora, ele melhorou o contato visual essa semana?".<br>• O barulho da criança na sala (exige foco total).<br>• Cobranças sobre a demora em fechar laudos detalhados.<br>• Palestras sobre "Medicina do Futuro", mas pouca ferramenta prática no dia a dia. |
+| **O que ela FALA e FAZ?** | **O que ela PENSA e SENTE?** |
+| • Grava as sessões com uma câmera no tripé.<br>• Assiste aos vídeos tarde da noite, pausando e anotando em caderno/Excel.<br>• Diz aos pais: "Notei uma melhora clínica", mas gostaria de mostrar números.<br>• Busca ferramentas que automatizem a contagem de tempo. | • **Preocupação:** "Será que deixei passar algum detalhe importante no vídeo?"<br>• **Cansaço:** A rotina de análise manual (frame a frame) é exaustiva.<br>• **Desejo:** Gostaria que o computador fizesse a triagem do vídeo para ela focar na interpretação.<br>• **Motivação:** Quer dar o diagnóstico mais preciso possível para mudar a vida da criança. |
+
+---
+
+## 3. Contexto de Uso
+
+O sistema **GAIA** foi projetado para ser uma ferramenta de **apoio ao prognóstico** utilizada em ambiente clínico, focado no **pós-processamento**.
+
+* **Ambiente Físico:** Consultório médico ou sala de terapia. O ambiente é controlado, silencioso e com iluminação adequada (necessária para a qualidade da gravação). O computador fica em uma mesa de apoio, utilizada pela profissional nos intervalos ou ao final do expediente.
+* **Ambiente Técnico:**
+    * **Hardware:** Computador desktop ou laptop padrão da clínica; Câmera externa ou webcam de alta resolução em tripé.
+    * **Software:** A aplicação roda localmente ou via web (intranet), garantindo a segurança dos dados do paciente.
+* **Momento de Uso:** O uso da ferramenta ocorre no **pós-atendimento**. Durante a sessão, a prioridade é a interação humana com a criança. O GAIA é utilizado quando a médica está sozinha, para processar o vídeo bruto e extrair insights.
+
+---
+
+## 4. Jornada do Usuário (Atual)
+
+*Esta jornada descreve o processo manual atual da Dra. Helena, evidenciando as dores que o GAIA irá solucionar.*
+
+1.  **Preparação:** A Dra. Helena posiciona a câmera no tripé e inicia a gravação.
+2.  **Sessão (Ação):** Ela realiza as atividades lúdicas com a criança. Tenta fazer anotações rápidas em uma prancheta, mas perde o contato visual com o paciente ao baixar a cabeça para escrever.
+3.  **Extração:** Ao fim da sessão, ela conecta a câmera ao computador e transfere o arquivo de vídeo manualmente.
+4.  **Análise Manual (O Gargalo):**
+    * Abre o vídeo em um player comum (VLC/Media Player).
+    * Assiste ao vídeo, pausa a cada interação ou desvio de olhar.
+    * Olha o tempo no player e anota em uma planilha Excel.
+    * Volta o vídeo várias vezes para confirmar se a anotação está certa.
+    * *(Este processo leva, em média, 2 a 3 vezes o tempo da duração do vídeo original).*
+5.  **Consolidação:** Ela soma os tempos manualmente no Excel para tentar criar um gráfico de "Tempo de Atenção".
+6.  **Laudo:** Ela escreve o laudo baseada nesses dados manuais e na sua percepção subjetiva, sentindo-se cansada e insegura sobre a precisão absoluta dos dados.
 ---
 
 ## ⚠️ Entrega 4: Cenários de Análise (Problema)
@@ -323,3 +375,4 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
