@@ -189,11 +189,13 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ## 4. Jornada do Usuário (Atual vs. Dor)
 
+0. **Motivação**: Helena enxerga indícios para um diagnóstico de TEA em uma das crianças OU existe a requisição de um pai/mãe que está preocupado com o filho/a.
 1.  **Sessão:** Helena grava a interação com a criança, tentando anotar pontos chave na prancheta (atenção dividida).
 2.  **Extração:** Transfere o arquivo da câmera para o PC.
 3.  **Análise Manual (Gargalo):** Abre o vídeo, assiste, pausa, anota o tempo, volta o vídeo. Repete isso por horas.
 4.  **Impacto Pessoal:** Chega em casa tarde, cansada, e ainda precisa somar os tempos para o laudo. Perde o jantar com a família.
 5.  **Laudo:** Entrega um relatório subjetivo, sentindo que poderia ser mais precisa.
+6. **Pós-Laudo**: Tem a possibilidade de rodar novamente o algoritmo e tirar suas conclusões novamente ou ir diretamente para um aprofundamento no diagnóstico.
 ---
 
 ## ⚠️ Entrega 4: Cenários de Análise (Problema)
@@ -388,6 +390,7 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
