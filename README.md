@@ -122,46 +122,43 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 ### Persona Primária: Dra. Helena Souza
 > **"A tecnologia deve ser uma lente de aumento para a intuição clínica."**
 
-#### 1. Identidade 
+#### 1. Identidade
 * **Nome:** Helena Souza.
 * **Idade:** 42 anos.
-* **Foto:** [Inserir foto de uma mulher de jaleco, expressão séria mas acolhedora].
+* **Foto:** [Inserir foto representativa].
 * **Bio:** Possui doutorado em Psicologia Clínica com foco em TEA. Trabalha em clínica particular e Hospital Universitário há 15 anos. É extremamente técnica, mas sente o peso da rotina manual.
 
 #### 2. Status
-* **Papel:** Neuropsicóloga Infantil e Pesquisadora (Persona Primária).
-* **Nível de Influência:** Decisora (ela escolhe as ferramentas que usa no consultório).
+* **Papel:** Neuropsicóloga Infantil e Pesquisadora.
+* **Nível de Influência:** Decisora (ela escolhe as ferramentas que usa).
 * **Perfil Tecnológico:** Usuária Intermediária. Domina prontuários eletrônicos e Office, mas não sabe programar.
 
 #### 3. Objetivos
 * Reduzir a subjetividade ("achismo") na avaliação do contato visual.
 * Obter métricas quantitativas precisas para embasar seus laudos.
-* **Pessoal:** Otimizar o tempo burocrático para conseguir jantar com a família e descansar nos fins de semana.
+* **Pessoal:** Otimizar o tempo burocrático para conseguir jantar com a família e descansar.
 
 #### 4. Habilidades
 * **Especialidade:** Expert em comportamento infantil e diagnóstico de TEA.
-* **Competências:** Alta capacidade analítica clínica; Leitura de gráficos médicos; Dificuldade com configurações técnicas complexas (instalação via terminal/código).
+* **Competências:** Alta capacidade analítica clínica; Leitura de gráficos; Dificuldade com configurações técnicas complexas (instalação via terminal).
 
-#### 5. Tarefas 
-* **Frequência Diária:** Realizar sessões lúdicas (40-60 min) e gravar vídeos.
-* **Frequência Diária (Crítica):** Revisar vídeos manualmente para contar comportamentos (tarefa atual lenta e propensa a erros).
-* **Frequência Semanal:** Escrever laudos de evolução e dar devolutivas aos pais.
+#### 5. Tarefas
+* **Diárias:** Realizar sessões lúdicas e gravar vídeos; Revisar vídeos manualmente (ponto crítico).
+* **Semanais:** Escrever laudos de evolução e dar devolutivas aos pais.
 
-#### 6. Relacionamentos 
-* **Família (Marido e 2 filhos):** O principal motivo de ela buscar eficiência. Hoje, ela leva trabalho (vídeos) para casa e perde momentos de lazer.
-* **Pacientes e Pais:** Seu foco de atenção e empatia.
-* **Colegas de Clínica:** Com quem discute casos complexos.
-* **Suporte de TI:** Quem ela chama quando o sistema trava (ela odeia depender deles).
+#### 6. Relacionamentos
+* **Família (Marido e 2 filhos):** Motivação pessoal para buscar agilidade no trabalho.
+* **Pacientes e Pais:** Foco de sua empatia profissional.
+* **Colegas e Suporte de TI:** Interações pontuais na clínica.
 
-#### 7. Requisitos 
+#### 7. Requisitos
 * **Interface:** Deve ser visual e intuitiva ("clicar e arrastar").
-* **Performance:** Processamento em segundo plano (não pode travar o PC enquanto ela atende outro paciente).
-* **Segurança:** Garantia total de sigilo dos vídeos dos pacientes.
+* **Performance:** Processamento em segundo plano sem travar o PC.
+* **Segurança:** Sigilo absoluto dos vídeos.
 
 #### 8. Expectativas
-* Acredita que o GAIA funcionará como um "assistente residente" que faz o trabalho braçal de contagem.
-* Espera organizar os vídeos por "Nome do Paciente" > "Data da Sessão" automaticamente.
-* Espera que o sistema confirme sua intuição clínica com dados, aumentando sua segurança profissional.
+* Espera que o GAIA funcione como um "assistente residente" que faz o trabalho braçal.
+* Espera que o sistema confirme sua intuição com dados concretos.
 
 ---
 
@@ -173,17 +170,23 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 | **O que ela FALA e FAZ?** | **O que ela PENSA e SENTE?** |
 | • Grava sessões no tripé.<br>• Assiste vídeos de madrugada pausando frame a frame.<br>• Busca ferramentas que automatizem a contagem.<br>• Tenta explicar a evolução clínica sem números concretos. | • **Preocupação:** "Será que perdi algum detalhe no vídeo?"<br>• **Frustração:** Sente-se uma "secretária de luxo" fazendo anotações manuais.<br>• **Desejo:** Quer focar no tratamento, não na burocracia.<br>• **Esperança:** Acredita que a tecnologia pode validar seu trabalho. |
 
+### Dores e Necessidades
+
+| **DORES (Pains)** | **NECESSIDADES (Gains)** |
+| :--- | :--- |
+| • **Medo do Erro:** Insegurança de basear um laudo médico apenas na memória ou anotações manuais.<br>• **Exaustão:** Cansaço mental extremo por ter que analisar vídeos longos repetidamente.<br>• **Culpa:** Sentimento de estar negligenciando a família por levar trabalho para casa.<br>• **Ineficiência:** Perder horas somando minutos em planilhas Excel. | • **Precisão:** Dados exatos ("12 minutos de contato visual") para dar segurança ao laudo.<br>• **Tempo:** Redução drástica do tempo de análise para ter qualidade de vida.<br>• **Simplicidade:** Uma ferramenta que não exija curso de TI para operar.<br>• **Validação:** Confirmar visualmente (gráficos) a evolução do paciente para mostrar aos pais. |
+
 ---
 
 ## 3. Contexto de Uso
 
 * **Cenário:** Consultório clínico privado, ambiente silencioso e iluminado.
 * **Equipamento:** Computador desktop na mesa de apoio e câmera em tripé.
-* **Momento:** Pós-atendimento (assíncrono). O uso ocorre nos intervalos ou ao final do expediente, sem a presença do paciente, permitindo foco na análise dos dados gerados.
+* **Momento:** Pós-atendimento (assíncrono). O uso ocorre nos intervalos ou ao final do expediente, sem a presença do paciente.
 
 ---
 
-## 4. Jornada do Usuário (Atual vs. Dor) 
+## 4. Jornada do Usuário (Atual vs. Dor)
 
 1.  **Sessão:** Helena grava a interação com a criança, tentando anotar pontos chave na prancheta (atenção dividida).
 2.  **Extração:** Transfere o arquivo da câmera para o PC.
@@ -384,5 +387,6 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
