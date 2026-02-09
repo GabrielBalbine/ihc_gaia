@@ -128,7 +128,7 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 * **Bio:** Possui doutorado em Psicologia Clínica com foco em TEA. Trabalha em clínica particular e Hospital Universitário há 15 anos. É extremamente técnica, mas sente o peso da rotina manual.
 
 #### 2. Status
-* **Papel:** Neuropsicóloga Infantil e Pesquisadora.
+* **Papel:** Neuropsicóloga Infantil e Pesquisadora./ Persona Primária
 * **Nível de Influência:** Decisora (ela escolhe as ferramentas que usa).
 * **Perfil Tecnológico:** Usuária Intermediária. Domina prontuários eletrônicos e Office, mas não sabe programar.
 
@@ -386,6 +386,7 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
