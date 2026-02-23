@@ -198,20 +198,85 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 6. **Pós-Laudo**: Tem a possibilidade de rodar novamente a solução e tirar suas conclusões novamente ou ir diretamente para um aprofundamento no diagnóstico.
 ---
 
-## ⚠️ Entrega 4: Cenários de Análise (Problema)
-*Status: [Em andamento]*
+### ⚠️ Entrega 4: Cenários de Análise (Problema)
 
-*Dica: Cenário de Análise é uma "história triste". Descreve apenas o problema atual, sem a solução.*
+**Status:** [Concluído]
 
-### 1) Cenário de Análise/Problema
-> [Escrever a narrativa do problema enfrentado pelo usuário hoje]
+---
 
-### 2) Questões de Refinamento
-* [Questão 1]
-* [Questão 2]
+#### Passo 1: Elementos Característicos do Cenário
+* **Ambiente/Contexto:** Em casa, à noite, após uma semana intensa de atendimentos clínicos.
+* **Atores:** Dra. Helena (neuropsicóloga infantil, exausta e sobrecarregada).
+* **Objetivos:** Identificar traços de TEA em vídeos de sessões infantis para fundamentar prognósticos.
+* **Planejamento:** Analisar horas de vídeo com atenção ininterrupta a detalhes sutis e consolidar os dados.
+* **Ações:** Assistir, pausar e retroceder vídeos num player comum, fazendo anotações em planilhas.
+* **Eventos:** O acúmulo de tempo de tela e a necessidade de atenção extrema geram um evento de fadiga.
+* **Avaliação:** Insegurança sobre a precisão da própria análise, frustração pela perda de tempo pessoal e preocupação com o atraso no retorno aos pais.
 
-### 3) Refinamento do Cenário
-> [Versão melhorada do cenário acima]
+---
+
+#### Passo 2: Narrativa Base
+A Dra. Helena, neuropsicóloga infantil com quinze anos de experiência em desenvolvimento infantil e diagnóstico de TEA, encontra-se em sua casa, tarde da noite, após finalizar uma semana intensa de atendimentos clínicos. Tendo apenas o seu notebook e um player de vídeo comum à disposição, ela precisa analisar as gravações das sessões de três pacientes diferentes para fundamentar o seu prognóstico. Para isso, ela necessita identificar possíveis traços do Transtorno do Espectro Autista (TEA), como microexpressões sutis, padrões de atenção e movimentos atípicos das crianças. Embora sua vasta experiência clínica a capacite para reconhecer esses indicadores, o cansaço acumulado e a monotonia do trabalho repetitivo comprometem justamente essa habilidade perceptiva.
+
+A necessidade de realizar essa análise é disparada pelo compromisso ético e profissional de oferecer um retorno diagnóstico dentro do prazo acordado com os pais, que aguardam ansiosamente para direcionar o tratamento de seus filhos.
+
+Helena alcança esse objetivo executando o processo de forma totalmente manual, sem conhecer ou ter acesso a ferramentas alternativas de análise assistida por computador que poderiam auxiliá-la. As principais ações consistem em assistir, pausar e retroceder as mídias repetidas vezes, utilizando o mouse e teclado intensamente, enquanto anota cada detalhe observado e consolida essas informações em planilhas convencionais. Uma decisão equivocada nesse processo, como classificar incorretamente um comportamento como típico quando na verdade é um indicador de TEA, pode resultar em um prognóstico impreciso e atrasar a intervenção terapêutica precoce.
+
+Como não há automação, a quantidade massiva de horas de vídeo exige um foco absoluto, e o principal problema que surge é uma fadiga visual e mental extrema após algumas horas de análise. Erros de observação podem ocorrer, como perder uma microexpressão ou confundir um comportamento atípico com um típico, e não há mecanismo de revisão ou checagem que permita identificar e corrigir esses equívocos. O acúmulo de horas de trabalho repetitivo sem pausas dispara um forte esgotamento e insegurança. Devido a isso, Helena termina a primeira análise avaliando negativamente a precisão do seu próprio trabalho, sem dispor de nenhum critério objetivo ou indicador que confirme se a análise foi concluída com a qualidade necessária. Resta-lhe apenas a própria percepção subjetiva, alimentada pelo medo de que detalhes cruciais tenham passado despercebidos aos seus olhos.
+
+Além da insegurança profissional, a consequência direta dessa rotina é a frustração, pois o processo rouba o tempo valioso que ela gostaria de passar com sua família. Esse gargalo não afeta apenas a profissional, mas também atrasa o direcionamento diagnóstico para os pais dos pacientes, que dependem desse resultado e aguardam ansiosamente por respostas.
+
+---
+
+#### Passo 3: Questões de Refinamento (Extraídas de Barbosa e Silva, 2010)
+
+**Ator(es)**
+1. Quem pode alcançar o objetivo descrito no cenário?
+2. Quais características da atora lhe auxiliam ou atrapalham em alcançar o objetivo?
+3. Quem depende do resultado do objetivo?
+
+**Ambiente**
+4. Em que situações o cenário ocorre (quando, onde e por quê)?
+5. Que dispositivos e outros recursos (inclusive tempo) estão disponíveis para o alcance do objetivo?
+
+**Objetivo**
+6. Por que os atores querem ou precisam alcançar esse objetivo?
+7. De que informações ou conhecimento os atores precisam para realizar esse objetivo?
+
+**Planejamento**
+8. Como os atores alcançam o objetivo atualmente?
+9. Quais são as estratégias alternativas para realizar o objetivo? Os atores as conhecem?
+10. Que decisões os atores precisam tomar a cada momento? Quais as consequências de uma decisão errada?
+
+**Ação**
+11. Que ações realizam? Como essas ações estão relacionadas?
+12. Como os atores as realizam fisicamente?
+13. Quais informações são (ou deveriam ser) criadas, consumidas, manipuladas ou destruídas pela realização da ação?
+14. Quais problemas ou dificuldades podem surgir ao realizá-la?
+15. Quais erros podem ser cometidos ao realizá-la? Como podem ser desfeitos? Quais suas consequências?
+
+**Evento**
+16. Quais eventos disparam a necessidade de alcançar o objetivo?
+17. Quais eventos são (ou deveriam ser) disparados pela conclusão desse objetivo?
+
+**Avaliação**
+18. Como os atores conseguem saber se o objetivo foi concluído e alcançado com sucesso?
+19. Qual é o resultado do alcance do objetivo?
+20. Quais consequências da atividade existem na rotina dos atores?
+
+---
+
+#### Passo 4: Cenário Final Referenciando as Perguntas (Mapeamento)
+
+A Dra. Helena, neuropsicóloga infantil **[1]** com quinze anos de experiência em desenvolvimento infantil e diagnóstico de TEA, encontra-se em sua casa, tarde da noite, após finalizar uma semana intensa de atendimentos clínicos **[4]**. Tendo apenas o seu notebook e um player de vídeo comum à disposição **[5]**, ela precisa analisar as gravações das sessões de três pacientes diferentes para fundamentar o seu prognóstico **[6]**. Para isso, ela necessita identificar possíveis traços do Transtorno do Espectro Autista (TEA), como microexpressões sutis, padrões de atenção e movimentos atípicos das crianças **[7]**. Embora sua vasta experiência clínica a capacite para reconhecer esses indicadores, o cansaço acumulado e a monotonia do trabalho repetitivo comprometem justamente essa habilidade perceptiva **[2]**.
+
+A necessidade de realizar essa análise é disparada pelo compromisso ético e profissional de oferecer um retorno diagnóstico dentro do prazo acordado com os pais, que aguardam ansiosamente para direcionar o tratamento de seus filhos **[16]**.
+
+Helena alcança esse objetivo executando o processo de forma totalmente manual **[8]**, sem conhecer ou ter acesso a ferramentas alternativas de análise assistida por computador que poderiam auxiliá-la **[9]**. As principais ações consistem em assistir, pausar e retroceder as mídias repetidas vezes **[11]**, utilizando o mouse e teclado intensamente **[12]**, enquanto anota cada detalhe observado e consolida essas informações em planilhas convencionais **[13]**. Uma decisão equivocada nesse processo, como classificar incorretamente um comportamento como típico quando na verdade é um indicador de TEA, pode resultar em um prognóstico impreciso e atrasar a intervenção terapêutica precoce **[10]**.
+
+Como não há automação, a quantidade massiva de horas de vídeo exige um foco absoluto, e o principal problema que surge é uma fadiga visual e mental extrema após algumas horas de análise **[14]**. Erros de observação podem ocorrer, como perder uma microexpressão ou confundir um comportamento atípico com um típico, e não há mecanismo de revisão ou checagem que permita identificar e corrigir esses equívocos **[15]**. O acúmulo de horas de trabalho repetitivo sem pausas dispara um forte esgotamento e insegurança **[17]**. Devido a isso, Helena termina a primeira análise avaliando negativamente a precisão do seu próprio trabalho, sem dispor de nenhum critério objetivo ou indicador que confirme se a análise foi concluída com a qualidade necessária **[18]**. Resta-lhe apenas a própria percepção subjetiva, alimentada pelo medo de que detalhes cruciais tenham passado despercebidos aos seus olhos **[19]**.
+
+Além da insegurança profissional, a consequência direta dessa rotina é a frustração, pois o processo rouba o tempo valioso que ela gostaria de passar com sua família **[20]**. Esse gargalo não afeta apenas a profissional, mas também atrasa o direcionamento diagnóstico para os pais dos pacientes, que dependem desse resultado e aguardam ansiosamente por respostas **[3]**.
 
 ---
 
@@ -390,6 +455,7 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
