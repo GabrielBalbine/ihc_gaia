@@ -210,7 +210,7 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 * **Objetivos:** Identificar traços de TEA em vídeos de sessões infantis para fundamentar prognósticos.
 * **Planejamento:** Analisar horas de vídeo com atenção ininterrupta a detalhes sutis e consolidar os dados.
 * **Ações:** Assistir, pausar e retroceder vídeos num player comum, fazendo anotações em planilhas.
-* **Eventos:** O acúmulo de tempo de tela e a necessidade de atenção extrema geram um evento de fadiga.
+* **Eventos:** O vídeo rola, o vídeo é pausado, o vídeo acaba, e parte para o próximo.
 * **Avaliação:** Insegurança sobre a precisão da própria análise, frustração pela perda de tempo pessoal e preocupação com o atraso no retorno aos pais.
 
 ---
@@ -461,6 +461,7 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
