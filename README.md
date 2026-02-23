@@ -236,19 +236,23 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 3. Quem depende do resultado do objetivo?
 
 **Ambiente**
+
 4. Em que situações o cenário ocorre (quando, onde e por quê)?
 5. Que dispositivos e outros recursos (inclusive tempo) estão disponíveis para o alcance do objetivo?
 
 **Objetivo**
+
 6. Por que os atores querem ou precisam alcançar esse objetivo?
 7. De que informações ou conhecimento os atores precisam para realizar esse objetivo?
 
 **Planejamento**
+
 8. Como os atores alcançam o objetivo atualmente?
 9. Quais são as estratégias alternativas para realizar o objetivo? Os atores as conhecem?
 10. Que decisões os atores precisam tomar a cada momento? Quais as consequências de uma decisão errada?
 
 **Ação**
+
 11. Que ações realizam? Como essas ações estão relacionadas?
 12. Como os atores as realizam fisicamente?
 13. Quais informações são (ou deveriam ser) criadas, consumidas, manipuladas ou destruídas pela realização da ação?
@@ -256,10 +260,12 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 15. Quais erros podem ser cometidos ao realizá-la? Como podem ser desfeitos? Quais suas consequências?
 
 **Evento**
+
 16. Quais eventos disparam a necessidade de alcançar o objetivo?
 17. Quais eventos são (ou deveriam ser) disparados pela conclusão desse objetivo?
 
 **Avaliação**
+
 18. Como os atores conseguem saber se o objetivo foi concluído e alcançado com sucesso?
 19. Qual é o resultado do alcance do objetivo?
 20. Quais consequências da atividade existem na rotina dos atores?
@@ -455,6 +461,7 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
