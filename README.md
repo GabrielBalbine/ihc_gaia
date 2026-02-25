@@ -289,7 +289,7 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 ## 🛠️ Entrega 5: Análise de Tarefas
 *Status: [Em andamento]*
 
-## 🛠️ Entrega 5: Análise de Tarefas — HTA (Hierarchical Task Analysis)
+### HTA (Hierarchical Task Analysis)
 *Status: [Concluído]*
 
 A seguir são apresentadas as Análises Hierárquicas de Tarefas das três tarefas mais importantes do sistema GAIA, modeladas conforme Barbosa e Silva (2010). Cada HTA é composto pelo diagrama hierárquico e pela tabela detalhada contendo Input, Feedback, Plano, Ação, Problemas e Recomendações.
@@ -514,6 +514,7 @@ A seguir são apresentadas as Análises Hierárquicas de Tarefas das três taref
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
