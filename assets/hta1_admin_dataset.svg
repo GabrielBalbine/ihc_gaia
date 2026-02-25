@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420">
+  <defs>
+    <style>
+      .node-rect { fill: #ffffff; stroke: #2c3e50; stroke-width: 2; rx: 4; ry: 4; }
+      .node-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; fill: #2c3e50; text-anchor: middle; dominant-baseline: central; }
+      .plan-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e74c3c; text-anchor: middle; dominant-baseline: central; font-weight: bold; }
+      .op-line { stroke: #2c3e50; stroke-width: 2; }
+      .conn-line { stroke: #2c3e50; stroke-width: 1.5; fill: none; }
+      .title-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; fill: #2c3e50; text-anchor: middle; font-weight: bold; }
+      .legend-rect { fill: #ffffff; stroke: #2c3e50; stroke-width: 1.5; rx: 3; ry: 3; }
+      .legend-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; fill: #555; text-anchor: start; dominant-baseline: central; }
+      .legend-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; fill: #2c3e50; text-anchor: start; dominant-baseline: central; font-weight: bold; }
+    </style>
+  </defs>
+  <rect width="1100" height="420" fill="#fafbfc" rx="8" ry="8"/>
+  <text x="550" y="28" class="title-text">HTA 1 — Submeter Vídeo ao Dataset de Treinamento (Módulo Admin)</text>
+  <rect x="380" y="50" width="280" height="55" class="node-rect"/>
+  <text x="520" y="61" class="node-text">0. Submeter vídeo ao</text>
+  <text x="520" y="78" class="node-text">dataset de treinamento</text>
+  <text x="520" y="95" class="plan-text">1 > 2 > 3</text>
+  <rect x="50" y="170" width="220" height="50" class="node-rect"/>
+  <text x="160" y="187" class="node-text">1. Autenticar no sistema</text>
+  <text x="160" y="205" class="plan-text">1 > 2</text>
+  <rect x="400" y="170" width="250" height="50" class="node-rect"/>
+  <text x="525" y="187" class="node-text">2. Cadastrar novo vídeo</text>
+  <text x="525" y="205" class="plan-text">1 > 2 > 3</text>
+  <rect x="790" y="170" width="250" height="50" class="node-rect"/>
+  <line x1="798" y1="210" x2="1032" y2="210" class="op-line"/>
+  <text x="915" y="187" class="node-text">3. Verificar resultado</text>
+  <text x="915" y="204" class="node-text">do processamento</text>
+  <rect x="10" y="290" width="150" height="50" class="node-rect"/>
+  <line x1="18" y1="330" x2="152" y2="330" class="op-line"/>
+  <text x="85" y="307" class="node-text">1.1. Inserir</text>
+  <text x="85" y="324" class="node-text">credenciais</text>
+  <rect x="175" y="290" width="150" height="50" class="node-rect"/>
+  <line x1="183" y1="330" x2="317" y2="330" class="op-line"/>
+  <text x="250" y="315" class="node-text">1.2. Confirmar login</text>
+  <rect x="340" y="290" width="160" height="50" class="node-rect"/>
+  <line x1="348" y1="330" x2="492" y2="330" class="op-line"/>
+  <text x="420" y="307" class="node-text">2.1. Selecionar</text>
+  <text x="420" y="324" class="node-text">arquivo de vídeo</text>
+  <rect x="515" y="290" width="170" height="55" class="node-rect"/>
+  <line x1="523" y1="335" x2="677" y2="335" class="op-line"/>
+  <text x="600" y="309" class="node-text">2.2. Classificar rótulo</text>
+  <text x="600" y="326" class="node-text">(Neurotípico / TEA)</text>
+  <rect x="700" y="290" width="160" height="50" class="node-rect"/>
+  <line x1="708" y1="330" x2="852" y2="330" class="op-line"/>
+  <text x="780" y="315" class="node-text">2.3. Confirmar upload</text>
+  <path d="M520,105 L520,137 L160,137 L160,170" class="conn-line"/>
+  <path d="M520,105 L520,137 L525,137 L525,170" class="conn-line"/>
+  <path d="M520,105 L520,137 L915,137 L915,170" class="conn-line"/>
+  <path d="M160,220 L160,255 L85,255 L85,290" class="conn-line"/>
+  <path d="M160,220 L160,255 L250,255 L250,290" class="conn-line"/>
+  <path d="M525,220 L525,255 L420,255 L420,290" class="conn-line"/>
+  <path d="M525,220 L525,255 L600,255 L600,290" class="conn-line"/>
+  <path d="M525,220 L525,255 L780,255 L780,290" class="conn-line"/>
+  <rect x="820" y="340" width="260" height="65" fill="#f0f2f5" stroke="#ccc" stroke-width="1" rx="5" ry="5"/>
+  <text x="830" y="355" class="legend-title">Legenda:</text>
+  <rect x="830" y="365" width="40" height="16" class="legend-rect"/>
+  <text x="878" y="373" class="legend-text">Objetivo</text>
+  <rect x="950" y="365" width="40" height="16" class="legend-rect"/>
+  <line x1="954" y1="378" x2="986" y2="378" class="op-line"/>
+  <text x="998" y="373" class="legend-text">Operação</text>
+  <text x="830" y="395" class="legend-text"><tspan fill="#e74c3c" font-weight="bold">1&gt;2</tspan> seq. | <tspan fill="#e74c3c" font-weight="bold">1/2</tspan> seleção | <tspan fill="#e74c3c" font-weight="bold">1+2</tspan> paralelo</text>
+</svg>
