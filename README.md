@@ -348,13 +348,269 @@ A seguir são apresentadas as Análises Hierárquicas de Tarefas das três taref
 | **3.1. Visualizar métricas e insights** *(operação)* | **Ação:** Especialista visualiza o dashboard de dados do vídeo: indicador de risco, gráficos de olhar mútuo, postura, padrões de atenção e demais insights. **Feedback:** Dashboard completo com todas as métricas computadas pela IA. **Problema:** Se o especialista quiser comparar este vídeo com sessões anteriores do mesmo paciente, não há mecanismo de comparação. **Recomendação:** Oferecer funcionalidade de comparação longitudinal entre sessões do mesmo paciente para acompanhar evolução. |
 | **3.2. Reproduzir vídeo com anotações da IA** *(operação)* | **Ação:** Especialista reproduz o vídeo processado com sobreposições visuais (bounding boxes, marcações de atenção, face mesh). **Feedback:** Player de vídeo exibe as anotações da IA sincronizadas com a reprodução. **Problema:** Vídeos com muitas anotações podem ficar visualmente poluídos, dificultando a observação do comportamento natural da criança. **Recomendação:** Permitir que o especialista ative/desative camadas de anotação individualmente (ex.: mostrar apenas face mesh, ou apenas marcações de atenção). |
 
-### 2) GOMS (Goals, Operators, Methods, Selection rules)
-> [Inserir Modelo GOMS]
-> *Explicação:*
+
+---
+
+### 2) GOMS (Goals, Operators, Methods, Selection Rules)
+
+A seguir são apresentados os modelos GOMS das tarefas principais do sistema GAIA, seguindo a notação de Barbosa e Silva (2010). Para cada tarefa, é apresentada uma versão resumida e uma versão detalhada com operadores primitivos, além da análise KLM (Keystroke-Level Model) para comparação de eficiência.
+
+---
+
+#### GOMS — Tarefa 1: Submeter Vídeo para Prognóstico Clínico (Módulo Especialista)
+
+**Versão Resumida:**
+
+```
+GOAL 0: submeter vídeo de sessão para prognóstico clínico de TEA
+    GOAL 1: acessar o sistema
+        METHOD 1.A: login com credenciais salvas no navegador
+            (SEL. RULE: o navegador possui as credenciais salvas e o usuário aceita o preenchimento automático)
+        METHOD 1.B: login com digitação manual
+            (SEL. RULE: primeiro acesso, ou credenciais não salvas, ou outro computador)
+    GOAL 2: cadastrar novo vídeo para análise
+        METHOD 2.A: upload por seleção no explorador de arquivos
+            (SEL. RULE: o especialista sabe a localização do arquivo no computador)
+        METHOD 2.B: upload por arrastar e soltar (drag and drop)
+            (SEL. RULE: a janela do explorador de arquivos já está aberta ao lado do navegador)
+    GOAL 3: analisar resultado do prognóstico
+        GOAL 3.1: interpretar indicador de risco TEA
+        GOAL 3.2: interpretar insights comportamentais
+```
+
+**Versão Detalhada:**
+
+```
+GOAL 0: submeter vídeo de sessão para prognóstico clínico de TEA
+
+    GOAL 1: acessar o sistema
+
+        METHOD 1.A: login com credenciais salvas no navegador
+        (SEL. RULE: o navegador possui as credenciais salvas e o usuário aceita o preenchimento automático)
+            OP. 1.A.1: deslocar o cursor do mouse para o campo de usuário
+            OP. 1.A.2: clicar com o botão esquerdo do mouse para ativar o preenchimento automático
+            OP. 1.A.3: selecionar a conta desejada na lista suspensa do navegador
+            OP. 1.A.4: deslocar o cursor do mouse para o botão "Entrar"
+            OP. 1.A.5: clicar com o botão esquerdo do mouse
+            OP. 1.A.6: verificar se o dashboard foi carregado corretamente
+
+        METHOD 1.B: login com digitação manual
+        (SEL. RULE: primeiro acesso, ou credenciais não salvas, ou outro computador)
+            OP. 1.B.1: deslocar o cursor do mouse para o campo de usuário
+            OP. 1.B.2: clicar com o botão esquerdo do mouse
+            OP. 1.B.3: digitar o nome de usuário
+            OP. 1.B.4: deslocar o cursor do mouse para o campo de senha (ou pressionar Tab)
+            OP. 1.B.5: clicar com o botão esquerdo do mouse
+            OP. 1.B.6: digitar a senha
+            OP. 1.B.7: deslocar o cursor do mouse para o botão "Entrar"
+            OP. 1.B.8: clicar com o botão esquerdo do mouse
+            OP. 1.B.9: verificar se o dashboard foi carregado corretamente
+
+    GOAL 2: cadastrar novo vídeo para análise
+
+        METHOD 2.A: upload por seleção no explorador de arquivos
+        (SEL. RULE: o especialista sabe a localização do arquivo no computador)
+            OP. 2.A.1: deslocar o cursor do mouse para o botão "+"
+            OP. 2.A.2: clicar com o botão esquerdo do mouse
+            OP. 2.A.3: aguardar abertura do explorador de arquivos do sistema operacional
+            OP. 2.A.4: navegar até a pasta onde o vídeo está salvo
+            OP. 2.A.5: selecionar o arquivo de vídeo desejado
+            OP. 2.A.6: clicar no botão "Abrir" do explorador de arquivos
+            OP. 2.A.7: verificar se o nome do arquivo apareceu na interface
+            OP. 2.A.8: deslocar o cursor do mouse para o botão "Realizar Upload"
+            OP. 2.A.9: clicar com o botão esquerdo do mouse
+            OP. 2.A.10: aguardar processamento pela IA
+
+        METHOD 2.B: upload por arrastar e soltar (drag and drop)
+        (SEL. RULE: a janela do explorador de arquivos já está aberta ao lado do navegador)
+            OP. 2.B.1: localizar o arquivo de vídeo na janela do explorador de arquivos
+            OP. 2.B.2: pressionar o botão esquerdo do mouse sobre o arquivo
+            OP. 2.B.3: arrastar o arquivo até a zona de upload na interface do GAIA
+            OP. 2.B.4: soltar o botão esquerdo do mouse
+            OP. 2.B.5: verificar se o nome do arquivo apareceu na interface
+            OP. 2.B.6: deslocar o cursor do mouse para o botão "Realizar Upload"
+            OP. 2.B.7: clicar com o botão esquerdo do mouse
+            OP. 2.B.8: aguardar processamento pela IA
+
+    GOAL 3: analisar resultado do prognóstico
+
+        GOAL 3.1: interpretar indicador de risco TEA
+            OP. 3.1.1: examinar o indicador percentual de probabilidade de risco de TEA
+            OP. 3.1.2: examinar a escala visual (gauge ou barra colorida) associada ao indicador
+
+        GOAL 3.2: interpretar insights comportamentais
+            OP. 3.2.1: examinar gráfico de porcentagem de tempo de olhar mútuo ("Warm")
+            OP. 3.2.2: examinar dados de análise postural
+            OP. 3.2.3: examinar demais indicadores de padrões de atenção
+            OP. 3.2.4: verificar resumo executivo dos achados mais relevantes
+```
+
+---
+
+#### GOMS-KLM — Comparação de Métodos de Upload
+
+Análise comparativa do tempo estimado para o upload de vídeo utilizando os dois métodos disponíveis, conforme o modelo KLM (Keystroke-Level Model).
+
+**METHOD 2.A — Upload por seleção no explorador de arquivos:**
+
+| Operador | Descrição | Tempo (s) |
+| :--- | :--- | :--- |
+| M | Preparação mental (decidir fazer upload) | 1,20 |
+| P | Levar o cursor até o botão "+" | 1,10 |
+| B | Pressionar o botão do mouse | 0,10 |
+| B | Soltar o botão do mouse | 0,10 |
+| R | Aguardar abertura do explorador de arquivos | 1,00 |
+| M | Preparação mental (localizar a pasta) | 1,20 |
+| P | Navegar e selecionar o arquivo | 1,10 |
+| B | Pressionar o botão do mouse (selecionar) | 0,10 |
+| B | Soltar o botão do mouse | 0,10 |
+| P | Levar o cursor até "Abrir" | 1,10 |
+| B | Pressionar o botão do mouse | 0,10 |
+| B | Soltar o botão do mouse | 0,10 |
+| M | Preparação mental (confirmar upload) | 1,20 |
+| P | Levar o cursor até "Realizar Upload" | 1,10 |
+| B | Pressionar o botão do mouse | 0,10 |
+| B | Soltar o botão do mouse | 0,10 |
+| | **TOTAL** | **9,80** |
+
+**METHOD 2.B — Upload por arrastar e soltar (drag and drop):**
+
+| Operador | Descrição | Tempo (s) |
+| :--- | :--- | :--- |
+| M | Preparação mental (decidir fazer upload) | 1,20 |
+| P | Levar o cursor até o arquivo no explorador | 1,10 |
+| B | Pressionar o botão do mouse (segurar) | 0,10 |
+| P | Arrastar até a zona de upload do GAIA | 1,10 |
+| B | Soltar o botão do mouse | 0,10 |
+| M | Preparação mental (confirmar upload) | 1,20 |
+| P | Levar o cursor até "Realizar Upload" | 1,10 |
+| B | Pressionar o botão do mouse | 0,10 |
+| B | Soltar o botão do mouse | 0,10 |
+| | **TOTAL** | **6,10** |
+
+**Conclusão KLM:** O método de drag and drop (6,10s) é **37,8% mais rápido** que o método de seleção via explorador (9,80s), pois elimina a abertura do explorador de arquivos e a navegação de pastas. No entanto, a regra de seleção indica que ele só é viável quando a janela do explorador já está aberta ao lado do navegador.
+
+---
+
+#### GOMS — Tarefa 2: Consultar Análise de Vídeo Já Processado (Módulo Especialista)
+
+**Versão Resumida:**
+
+```
+GOAL 0: consultar análise de vídeo já processado
+    GOAL 1: acessar o sistema
+        METHOD 1.A: login com credenciais salvas no navegador
+            (SEL. RULE: o navegador possui as credenciais salvas)
+        METHOD 1.B: login com digitação manual
+            (SEL. RULE: credenciais não salvas ou outro computador)
+    GOAL 2: localizar o vídeo desejado
+        METHOD 2.A: buscar pelo nome do paciente ou data
+            (SEL. RULE: o especialista sabe o nome do paciente ou a data da sessão)
+        METHOD 2.B: navegar pela lista do dashboard
+            (SEL. RULE: o vídeo foi processado recentemente e deve estar no topo da lista)
+    GOAL 3: analisar dados do vídeo
+        METHOD 3.A: visualizar métricas e insights no dashboard
+            (SEL. RULE: o especialista precisa de dados quantitativos para o laudo)
+        METHOD 3.B: reproduzir vídeo com anotações da IA
+            (SEL. RULE: o especialista precisa revisar visualmente o comportamento da criança)
+```
+
+**Versão Detalhada:**
+
+```
+GOAL 0: consultar análise de vídeo já processado
+
+    GOAL 1: acessar o sistema
+        (idêntico à Tarefa 1 — métodos 1.A e 1.B)
+
+    GOAL 2: localizar o vídeo desejado
+
+        METHOD 2.A: buscar pelo nome do paciente ou data
+        (SEL. RULE: o especialista sabe o nome do paciente ou a data da sessão)
+            OP. 2.A.1: deslocar o cursor do mouse para o campo de busca
+            OP. 2.A.2: clicar com o botão esquerdo do mouse
+            OP. 2.A.3: digitar o nome do paciente ou data da sessão
+            OP. 2.A.4: pressionar Enter ou clicar no ícone de busca
+            OP. 2.A.5: verificar resultados retornados
+            OP. 2.A.6: clicar sobre o vídeo desejado na lista de resultados
+
+        METHOD 2.B: navegar pela lista do dashboard
+        (SEL. RULE: o vídeo foi processado recentemente e deve estar no topo da lista)
+            OP. 2.B.1: examinar a lista de vídeos no dashboard
+            OP. 2.B.2: deslocar o cursor do mouse para o vídeo desejado
+            OP. 2.B.3: clicar com o botão esquerdo do mouse sobre o vídeo
+
+    GOAL 3: analisar dados do vídeo
+
+        METHOD 3.A: visualizar métricas e insights no dashboard
+        (SEL. RULE: o especialista precisa de dados quantitativos para o laudo)
+            OP. 3.A.1: examinar indicador percentual de risco TEA
+            OP. 3.A.2: examinar gráfico de tempo de olhar mútuo ("Warm")
+            OP. 3.A.3: examinar dados de análise postural
+            OP. 3.A.4: examinar padrões de atenção e demais insights
+            OP. 3.A.5: examinar resumo executivo dos achados
+
+        METHOD 3.B: reproduzir vídeo com anotações da IA
+        (SEL. RULE: o especialista precisa revisar visualmente o comportamento da criança)
+            OP. 3.B.1: deslocar o cursor do mouse para o botão "Play" do player de vídeo
+            OP. 3.B.2: clicar com o botão esquerdo do mouse
+            OP. 3.B.3: observar o vídeo com as sobreposições da IA (bounding boxes, face mesh)
+            OP. 3.B.4: pausar e retroceder conforme necessário para análise detalhada
+            OP. 3.B.5: verificar se as anotações da IA correspondem à percepção clínica
+```
+
+---
 
 ### 3) CTT (ConcurTaskTrees)
-> [Inserir Árvore de Tarefas CTT]
-> *Explicação:*
+
+A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a notação de Barbosa e Silva (2010), com os 4 tipos de tarefa e as relações temporais entre elas.
+
+**Legenda dos tipos de tarefa:**
+- 👤 **Tarefa do Usuário** — realizada fora do sistema (cognição, decisão)
+- 💻 **Tarefa do Sistema** — processamento sem interação com o usuário
+- 🔄 **Tarefa Interativa** — diálogo usuário–sistema
+- ☁️ **Tarefa Abstrata** — composição de tarefas (agrupamento)
+
+**Legenda das relações:**
+- `>>` Ativação (T1 termina, T2 inicia)
+- `[]>>` Ativação com passagem de informação
+- `[]` Escolha (uma desabilita a outra)
+- `|||` Concorrência (qualquer ordem ou simultâneo)
+- `|[]|` Concorrência com comunicação
+- `|=|` Independência (qualquer ordem, mas não simultâneo)
+- `[>` Desativação (T2 interrompe T1)
+- `|>` Suspensão/retomada
+
+---
+
+#### CTT — Tarefa 1: Submeter Vídeo para Prognóstico Clínico
+
+![CTT 1 — Submeter Vídeo para Prognóstico Clínico](./assets/ctt1_prognostico.svg)
+
+**Explicação das relações utilizadas:**
+
+- **Acessar o sistema `>>` Enviar vídeo:** ativação — o upload só pode ser feito após a autenticação.
+- **Inserir credenciais `>>` Validar credenciais:** ativação — o sistema só valida após o envio dos dados.
+- **Validar credenciais `[]>>` Carregar dashboard:** ativação com passagem de informação — o sistema usa os dados do login para carregar o dashboard específico do especialista.
+- **Selecionar arquivo `[]>>` Confirmar upload:** ativação com passagem de informação — o arquivo selecionado é passado para a etapa de confirmação.
+- **Confirmar upload `[]>>` Processar vídeo:** ativação com passagem de informação — o vídeo enviado é passado ao pipeline de IA.
+- **Enviar vídeo `[]>>` Analisar resultado:** ativação com passagem de informação — os dados processados pela IA são passados para a tela de resultado.
+- **Visualizar indicador `|||` Visualizar insights:** concorrência — o especialista pode examinar o indicador de risco e os gráficos de insights em qualquer ordem ou simultaneamente na mesma tela.
+- **Análise `[>` Finalizar sessão:** desativação — ao clicar em finalizar, a análise corrente é interrompida e o sistema retorna ao dashboard.
+
+---
+
+#### CTT — Tarefa 2: Consultar Análise de Vídeo Já Processado
+
+![CTT 2 — Consultar Análise de Vídeo Já Processado](./assets/ctt2_consulta.svg)
+
+**Explicação das relações utilizadas:**
+
+- **Acessar o sistema `>>` Localizar vídeo:** ativação — a navegação só ocorre após autenticação.
+- **Buscar por nome/data `[]` Navegar pela lista:** escolha — o especialista utiliza a busca OU a navegação manual; uma vez iniciado um método, o outro fica desabilitado naquela ação.
+- **Localizar vídeo `[]>>` Analisar dados:** ativação com passagem de informação — o vídeo selecionado é passado para a tela de análise detalhada.
+- **Visualizar métricas `|=|` Reproduzir vídeo:** independência — o especialista pode realizar as duas atividades em qualquer ordem, mas quando inicia uma (ex.: reproduzir o vídeo), precisa concluí-la ou pausá-la antes de focar na outra (pois são atividades que exigem atenção dedicada).
+- **Análise `|>` Retornar ao dashboard:** suspensão/retomada — ao clicar em "Home", a análise é suspensa e o especialista retorna ao menu; se abrir o mesmo vídeo novamente, retoma do ponto onde parou.
 
 ---
 
@@ -514,6 +770,7 @@ A seguir são apresentadas as Análises Hierárquicas de Tarefas das três taref
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
