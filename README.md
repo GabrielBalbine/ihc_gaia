@@ -597,10 +597,30 @@ A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a nota�
 ---
 
 ## 📝 Entrega 6: Prototipação de Baixa Fidelidade
-*Status: [Em andamento]*
 
-### Protótipo em Papel
-> [Inserir fotos dos desenhos/rascunhos das telas]
+### Tela 01 — Login
+![Tela Login](./assets/tela01_login.png)
+
+### Tela 02 — Dashboard Admin
+![Dashboard Admin](./assets/tela02_dashboard_admin.png)
+
+### Tela 03 — Upload: Seleção de Arquivo
+![Upload Seleção](./assets/tela03_upload_selecao.png)
+
+### Tela 04 — Upload: Classificação
+![Upload Classificar](./assets/tela04_upload_classificar.png)
+
+### Tela 05 — Upload: Confirmação
+![Upload Confirmar](./assets/tela05_upload_confirmar.png)
+
+### Tela 06 — Dashboard Especialista
+![Dashboard Especialista](./assets/tela06_dashboard_especialista.png)
+
+### Tela 07 — Upload Especialista
+![Upload Especialista](./assets/tela07_upload_especialista.png)
+
+### Tela 08 — Resultado do Prognóstico
+![Resultado Prognóstico](./assets/tela08_resultado_prognostico.png)
 
 ---
 
@@ -752,6 +772,7 @@ A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a nota�
 
 ---
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
+
 
 
 
