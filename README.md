@@ -625,19 +625,81 @@ A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a nota�
 ---
 
 ## 📋 Entrega 7: Requisitos e Ética
-*Status: [Em andamento]*
+*Status: Concluído*
+
+---
 
 ### 1) Identificação de Necessidades e Requisitos
-* **Que dados coletar?** [Resposta]
-* **De quem coletar?** [Resposta]
+
+#### Que dados coletar?
+
+Os dados necessários para o desenvolvimento e validação do sistema GAIA são de natureza **comportamental e cinesiológica**, extraídos de sessões de interação entre guardião e criança. São eles:
+
+| Dado | Descrição | Como é obtido |
+| :--- | :--- | :--- |
+| **Direção do olhar (gaze)** | Estimativa do vetor de direção do olhar de cada participante, inferida a partir de landmarks iris via MediaPipe Face Mesh | Processamento computacional de visão (frame a frame) |
+| **Pose corporal** | Posição das articulações-chave (ombros, quadril, membros) de cada participante | YOLOv8-Pose + BoTSORT |
+| **Distância interpessoal** | Distância euclidiana estimada entre os bounding boxes de guardião e criança ao longo do tempo | Cálculo geométrico a partir de coordenadas de detecção |
+| **Frequência de olhar mútuo** | Percentual de frames em que ambos os participantes apresentam vetores de gaze convergentes | Derivado das métricas de gaze |
+| **Identidade de papel** | Classificação automática dos indivíduos detectados nos papéis de "Guardião" e "Criança" | Par-based prescan por tamanho relativo + BH cross-check |
+| **Rótulo clínico do vídeo** | Classificação binária da sessão como Neurotípico ou TEA, atribuída no ato do upload pelo Admin | Fornecido pelo clínico responsável da UNSW |
+
+#### De quem coletar?
+
+Os dados foram coletados junto a **díades guardião-criança** recrutadas pelo *Perinatal and Children's Research Centre (PCRC)* da **University of New South Wales (UNSW), Sydney, Austrália**. O dataset é composto por **10 vídeos** de sessões de interação lúdica estruturada, com duração média de ~30 minutos cada, resolução 1280×720 a 24 FPS.
+
+Os participantes incluem:
+
+* **Crianças** com diagnóstico confirmado de Transtorno do Espectro Autista (TEA) e crianças com desenvolvimento neurotípico, na faixa etária de 2 a 6 anos;
+* **Guardiões** (pais ou responsáveis legais) presentes durante as sessões.
+
+---
 
 ### 2) Aspectos Éticos
-> [Justificativa sobre ética, consentimento e privacidade de dados sensíveis]
+
+O uso dos dados neste projeto está integralmente amparado por aprovação ética institucional formal, conforme descrito a seguir.
+
+#### Aprovação do Comitê de Ética — UNSW
+
+A coleta e o uso dos vídeos foram aprovados pelo **Human Research Ethics Committee (HREC)** da *University of New South Wales*, órgão competente para deliberar sobre pesquisas envolvendo participantes humanos no contexto australiano. A aprovação cobre:
+
+* Coleta de imagens de crianças menores de idade em ambiente clínico controlado;
+* Uso dos vídeos para fins de pesquisa em análise computacional do comportamento;
+* Compartilhamento dos dados com pesquisadores parceiros, sob acordo de colaboração entre a UNSW e o Centro Universitário FEI (Brasil).
+
+O acesso ao dataset foi viabilizado pela parceria entre o orientador deste projeto e os pesquisadores do **PCRC/UNSW**, que autorizaram formalmente a utilização do material para desenvolvimento e validação do sistema GAIA no contexto do TCC.
+
+#### Privacidade e Anonimização
+
+Dado que o dataset envolve imagens de crianças — categoria de dado pessoal sensível sob qualquer legislação —, as seguintes salvaguardas são adotadas:
+
+| Medida | Descrição |
+| :--- | :--- |
+| **Identificação anonimizada** | Os vídeos são referenciados por código alfanumérico (ex.: `Sessao_H012`), sem nome, data de nascimento ou qualquer dado que permita identificação direta dos participantes |
+| **Armazenamento local** | O dataset é armazenado em ambiente local controlado, sem upload para serviços de nuvem públicos |
+| **Acesso restrito** | O acesso aos vídeos é limitado exclusivamente ao pesquisador responsável (o autor deste TCC) e ao orientador |
+| **Não reutilização** | Os vídeos não serão utilizados para nenhuma finalidade além da descrita neste trabalho, em conformidade com os termos da aprovação ética da UNSW |
+
+#### Conformidade com a LGPD (Lei nº 13.709/2018)
+
+Embora a coleta tenha ocorrido na Austrália sob aprovação do HREC/UNSW, o processamento dos dados ocorre no Brasil, sujeitando-se também à **Lei Geral de Proteção de Dados Pessoais (LGPD)**. A base legal aplicável é o **Art. 7º, inciso IV** (pesquisa científica), observados os princípios de finalidade, necessidade e segurança previstos nos Arts. 6º e 46 da mesma lei.
+
+---
 
 ### 3) Ferramentas de Coleta de Dados
-* **Instrumento:** [Ex: Questionário, Entrevista]
-* **Como aplicar:** [Procedimento]
-* **Link/Roteiro:** https://www.collinsdictionary.com/dictionary/portuguese-english/ou
+
+A coleta de dados deste projeto **não foi conduzida diretamente pelos autores**. O dataset foi obtido por meio de **cessão institucional formal** entre o PCRC/UNSW e o Centro Universitário FEI, viabilizada pela atuação do orientador deste trabalho como pesquisador vinculado a ambas as instituições.
+
+| Item | Descrição |
+| :--- | :--- |
+| **Instrumento** | Dataset de vídeos de sessões terapêuticas cedido pelo PCRC/UNSW |
+| **Procedimento de coleta original** | Sessões de interação lúdica estruturada entre guardião e criança, filmadas em ambiente clínico controlado (sala de terapia com câmera fixa, iluminação padronizada) |
+| **Equipamento de captação** | Câmera fixa com resolução 1280×720 a 24 FPS |
+| **Volume** | 10 vídeos, ~30 minutos cada (~5 horas de material bruto) |
+| **Acesso** | Autorizado via acordo de colaboração entre UNSW e FEI, com aprovação prévia do HREC/UNSW |
+| **Formato entregue** | Arquivos de vídeo digitais acompanhados de metadados clínicos (rótulo Neurotípico/TEA por sessão) fornecidos pelos clínicos responsáveis da UNSW |
+
+> **Nota:** Em razão da natureza institucional da cessão de dados, não há questionário, formulário de consentimento próprio ou roteiro de entrevista produzido por este projeto. O consentimento dos participantes foi obtido diretamente pela equipe da UNSW no momento da coleta original, conforme exigido pelo HREC.
 
 ---
 
