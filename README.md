@@ -629,77 +629,229 @@ A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a nota�
 
 ---
 
-### 1) Identificação de Necessidades e Requisitos
+### 1) Que Dados Coletar?
 
-#### Que dados coletar?
+Seguindo Barbosa e Silva (2010), os dados a serem coletados sobre os usuários do sistema GAIA se organizam em cinco eixos:
 
-Os dados necessários para o desenvolvimento e validação do sistema GAIA são de natureza **comportamental e cinesiológica**, extraídos de sessões de interação entre guardião e criança. São eles:
+#### 1.1 Dados sobre o próprio usuário
+Buscamos entender o perfil demográfico e de formação do especialista que utilizará o sistema:
+- Faixa etária e gênero
+- Grau de instrução e área de formação (Psicologia, Neuropsicologia, Fonoaudiologia, etc.)
+- Tempo de atuação na área clínica com crianças com TEA
+- Contexto de trabalho (clínica particular, hospital, escola especializada, pesquisa)
 
-| Dado | Descrição | Como é obtido |
-| :--- | :--- | :--- |
-| **Direção do olhar (gaze)** | Estimativa do vetor de direção do olhar de cada participante, inferida a partir de landmarks iris via MediaPipe Face Mesh | Processamento computacional de visão (frame a frame) |
-| **Pose corporal** | Posição das articulações-chave (ombros, quadril, membros) de cada participante | YOLOv8-Pose + BoTSORT |
-| **Distância interpessoal** | Distância euclidiana estimada entre os bounding boxes de guardião e criança ao longo do tempo | Cálculo geométrico a partir de coordenadas de detecção |
-| **Frequência de olhar mútuo** | Percentual de frames em que ambos os participantes apresentam vetores de gaze convergentes | Derivado das métricas de gaze |
-| **Identidade de papel** | Classificação automática dos indivíduos detectados nos papéis de "Guardião" e "Criança" | Par-based prescan por tamanho relativo + BH cross-check |
-| **Rótulo clínico do vídeo** | Classificação binária da sessão como Neurotípico ou TEA, atribuída no ato do upload pelo Admin | Fornecido pelo clínico responsável da UNSW |
+#### 1.2 Dados sobre sua relação com tecnologia
+Compreender o nível de familiaridade tecnológica é essencial para calibrar a complexidade da interface:
+- Nível de experiência com computadores e softwares clínicos
+- Ferramentas computacionais já utilizadas na rotina profissional (prontuários eletrônicos, planilhas, plataformas de teleatendimento)
+- Experiência prévia com sistemas de análise assistida por IA ou videoconferência clínica
+- Dispositivos habitualmente utilizados no trabalho (desktop, notebook, tablet)
 
-#### De quem coletar?
+#### 1.3 Dados sobre seu conhecimento do domínio
+- Nível de familiaridade com critérios diagnósticos de TEA (DSM-5, CID-11)
+- Conhecimento sobre métricas comportamentais observáveis em sessão (contato visual, postura, proximidade física)
+- Experiência com análise de vídeos de sessões terapêuticas
 
-Os dados foram coletados junto a **díades guardião-criança** recrutadas pelo *Perinatal and Children's Research Centre (PCRC)* da **University of New South Wales (UNSW), Sydney, Austrália**. O dataset é composto por **10 vídeos** de sessões de interação lúdica estruturada, com duração média de ~30 minutos cada, resolução 1280×720 a 24 FPS.
+#### 1.4 Dados sobre suas tarefas
+- Quais são as principais atividades realizadas na avaliação de TEA atualmente?
+- Como é feita hoje a análise de sessões (manual, com software, com apoio de equipe)?
+- Qual a frequência e duração média das sessões analisadas?
+- Quais os maiores gargalos e dificuldades do processo atual?
+- Qual a gravidade dos erros de classificação comportamental para o diagnóstico?
 
-Os participantes incluem:
+#### 1.5 Dados sobre suas motivações e valores
+- O especialista estaria disposto a adotar uma ferramenta de auxílio computacional ao diagnóstico?
+- Qual o nível de confiança depositado em sistemas de IA para apoio clínico?
+- O quanto valoriza objetividade e rastreabilidade nas avaliações?
+- Prefere aprender novas ferramentas por conta própria, ou necessita de treinamento guiado?
 
-* **Crianças** com diagnóstico confirmado de Transtorno do Espectro Autista (TEA) e crianças com desenvolvimento neurotípico, na faixa etária de 2 a 6 anos;
-* **Guardiões** (pais ou responsáveis legais) presentes durante as sessões.
+---
+
+### 2) De Quem Coletar?
+
+Conforme Barbosa e Silva (2010), os dados devem ser coletados dos **usuários finais** e **stakeholders** do sistema.
+
+Para o GAIA, os participantes-alvo são:
+
+| Perfil | Justificativa |
+| :--- | :--- |
+| **Neuropsicólogos e psicólogos clínicos** com experiência em TEA | Usuário primário do sistema — quem interpreta os resultados e toma decisões diagnósticas |
+| **Terapeutas ocupacionais e fonoaudiólogos** que atuam com TEA | Usuários secundários — podem usar o sistema para acompanhamento de evolução |
+| **Pesquisadores** da área de comportamento infantil e neurodesenvolvimento | Stakeholders — interessados nos dados gerados pelo pipeline para fins científicos |
+
+**Questões norteadoras da seleção (Barbosa e Silva, 2010):**
+- *Quem utilizará o sistema?* → Especialistas clínicos com formação em saúde mental infantil
+- *Quem será afetado por ele?* → Os próprios especialistas, as crianças avaliadas e seus responsáveis
+- *Quem decide os objetivos que o sistema deve apoiar?* → O orientador clínico e os pesquisadores da UNSW/FEI
+- *Quem definiu os processos a serem apoiados?* → A equipe do PCRC/UNSW, que conduziu as sessões originais
 
 ---
 
 ### 2) Aspectos Éticos
 
-O uso dos dados neste projeto está integralmente amparado por aprovação ética institucional formal, conforme descrito a seguir.
+A pesquisa com usuários especialistas envolve coleta de dados de pessoas direta ou indiretamente, devendo seguir os princípios da **Resolução nº 196/96 do Conselho Nacional de Saúde**, conforme recomendado por Barbosa e Silva (2010):
 
-#### Aprovação do Comitê de Ética — UNSW
-
-A coleta e o uso dos vídeos foram aprovados pelo **Human Research Ethics Committee (HREC)** da *University of New South Wales*, órgão competente para deliberar sobre pesquisas envolvendo participantes humanos no contexto australiano. A aprovação cobre:
-
-* Coleta de imagens de crianças menores de idade em ambiente clínico controlado;
-* Uso dos vídeos para fins de pesquisa em análise computacional do comportamento;
-* Compartilhamento dos dados com pesquisadores parceiros, sob acordo de colaboração entre a UNSW e o Centro Universitário FEI (Brasil).
-
-O acesso ao dataset foi viabilizado pela parceria entre o orientador deste projeto e os pesquisadores do **PCRC/UNSW**, que autorizaram formalmente a utilização do material para desenvolvimento e validação do sistema GAIA no contexto do TCC.
-
-#### Privacidade e Anonimização
-
-Dado que o dataset envolve imagens de crianças — categoria de dado pessoal sensível sob qualquer legislação —, as seguintes salvaguardas são adotadas:
-
-| Medida | Descrição |
+| Princípio | Aplicação no GAIA |
 | :--- | :--- |
-| **Identificação anonimizada** | Os vídeos são referenciados por código alfanumérico (ex.: `Sessao_H012`), sem nome, data de nascimento ou qualquer dado que permita identificação direta dos participantes |
-| **Armazenamento local** | O dataset é armazenado em ambiente local controlado, sem upload para serviços de nuvem públicos |
-| **Acesso restrito** | O acesso aos vídeos é limitado exclusivamente ao pesquisador responsável (o autor deste TCC) e ao orientador |
-| **Não reutilização** | Os vídeos não serão utilizados para nenhuma finalidade além da descrita neste trabalho, em conformidade com os termos da aprovação ética da UNSW |
+| **Não maleficência** | O questionário não expõe os participantes a riscos físicos, emocionais ou profissionais. As perguntas são de caráter técnico-profissional, sem coleta de dados clínicos dos pacientes atendidos pelos participantes. |
+| **Justiça e equidade** | A pesquisa beneficia diretamente os próprios especialistas participantes, ao contribuir para o desenvolvimento de uma ferramenta que aliviará sua carga de trabalho. Não há ônus desproporcional para grupos vulneráveis. |
+| **Autonomia** | A participação é voluntária. Os respondentes são informados dos objetivos da pesquisa antes de iniciarem o questionário e podem interromper sua participação a qualquer momento, sem qualquer consequência. |
+| **Beneficência** | Os resultados da coleta serão usados exclusivamente para aprimorar a usabilidade do sistema GAIA, gerando benefícios diretos à prática clínica dos participantes e indiretos às crianças atendidas. |
 
-#### Conformidade com a LGPD (Lei nº 13.709/2018)
-
-Embora a coleta tenha ocorrido na Austrália sob aprovação do HREC/UNSW, o processamento dos dados ocorre no Brasil, sujeitando-se também à **Lei Geral de Proteção de Dados Pessoais (LGPD)**. A base legal aplicável é o **Art. 7º, inciso IV** (pesquisa científica), observados os princípios de finalidade, necessidade e segurança previstos nos Arts. 6º e 46 da mesma lei.
+Na prática, o questionário será aplicado com as seguintes garantias:
+- Os objetivos da pesquisa são explicados na introdução do formulário
+- Nenhum dado de identificação pessoal será divulgado publicamente — os dados serão apresentados de forma anonimizada
+- Nenhuma informação sobre pacientes atendidos pelos participantes será solicitada
+- A participação é inteiramente voluntária e o respondente pode encerrar a qualquer momento
 
 ---
 
-### 3) Ferramentas de Coleta de Dados
+### 3) Ferramenta de Coleta de Dados
 
-A coleta de dados deste projeto **não foi conduzida diretamente pelos autores**. O dataset foi obtido por meio de **cessão institucional formal** entre o PCRC/UNSW e o Centro Universitário FEI, viabilizada pela atuação do orientador deste trabalho como pesquisador vinculado a ambas as instituições.
+**Instrumento escolhido:** Questionário online (Google Forms)
 
-| Item | Descrição |
-| :--- | :--- |
-| **Instrumento** | Dataset de vídeos de sessões terapêuticas cedido pelo PCRC/UNSW |
-| **Procedimento de coleta original** | Sessões de interação lúdica estruturada entre guardião e criança, filmadas em ambiente clínico controlado (sala de terapia com câmera fixa, iluminação padronizada) |
-| **Equipamento de captação** | Câmera fixa com resolução 1280×720 a 24 FPS |
-| **Volume** | 10 vídeos, ~30 minutos cada (~5 horas de material bruto) |
-| **Acesso** | Autorizado via acordo de colaboração entre UNSW e FEI, com aprovação prévia do HREC/UNSW |
-| **Formato entregue** | Arquivos de vídeo digitais acompanhados de metadados clínicos (rótulo Neurotípico/TEA por sessão) fornecidos pelos clínicos responsáveis da UNSW |
+**Justificativa da escolha:** O questionário permite coletar dados de múltiplos especialistas de forma rápida, padronizada e assíncrona — sem exigir deslocamento ou agendamento —, sendo adequado para o perfil do público-alvo (profissionais de saúde com agenda restrita). Conforme Barbosa e Silva (2010), o questionário é um meio rápido e eficaz para obtenção de dados em maior escala, sendo especialmente indicado quando o pesquisador já tem clareza sobre quais informações precisa coletar.
 
-> **Nota:** Em razão da natureza institucional da cessão de dados, não há questionário, formulário de consentimento próprio ou roteiro de entrevista produzido por este projeto. O consentimento dos participantes foi obtido diretamente pela equipe da UNSW no momento da coleta original, conforme exigido pelo HREC.
+**Como aplicar:** O link do formulário será compartilhado diretamente com os especialistas via contato pessoal do pesquisador (WhatsApp e e-mail profissional). O formulário será precedido por uma breve apresentação do projeto e das garantias éticas, e estimado em 8 a 12 minutos de preenchimento.
+
+---
+
+#### Roteiro do Questionário — GAIA: Sistema de Análise de Interação Terapêutica
+
+> *Introdução exibida ao respondente:*
+> Este questionário faz parte de uma pesquisa de Trabalho de Conclusão de Curso (TCC) do Centro Universitário FEI, cujo objetivo é levantar requisitos de usabilidade para o sistema GAIA — uma ferramenta de apoio computacional à análise de sessões de interação terapêutica com crianças com suspeita de TEA. Sua participação é voluntária e anônima. Nenhuma informação sobre seus pacientes será solicitada. Tempo estimado: 10 minutos.
+
+---
+
+**Bloco 1 — Perfil do Respondente**
+*(dados sobre o próprio usuário — Barbosa e Silva, 2010, eixo 1)*
+
+**Q1.** Qual é a sua faixa etária?
+- ( ) Abaixo de 25 anos
+- ( ) 25–34 anos
+- ( ) 35–44 anos
+- ( ) 45–54 anos
+- ( ) 55 anos ou mais
+
+**Q2.** Qual é a sua área de formação principal? *(escolha até 2 opções)*
+- [ ] Psicologia
+- [ ] Neuropsicologia
+- [ ] Fonoaudiologia
+- [ ] Terapia Ocupacional
+- [ ] Pedagogia / Educação Especial
+- [ ] Outra: ___________
+
+**Q3.** Há quanto tempo você atua clinicamente com crianças com TEA ou suspeita de TEA?
+- ( ) Menos de 1 ano
+- ( ) 1–3 anos
+- ( ) 4–7 anos
+- ( ) 8–15 anos
+- ( ) Mais de 15 anos
+
+**Q4.** Em qual contexto você exerce sua prática profissional? *(escolha até 2 opções)*
+- [ ] Clínica particular
+- [ ] Hospital ou UBS
+- [ ] Escola ou centro de educação especial
+- [ ] Pesquisa acadêmica
+- [ ] Outro: ___________
+
+---
+
+**Bloco 2 — Relação com Tecnologia**
+*(dados sobre relação com tecnologia — Barbosa e Silva, 2010, eixo 2)*
+
+**Q5.** Como você avalia seu nível geral de experiência com tecnologia e computadores?
+- ( ) Básico — uso e-mail e navegação web
+- ( ) Intermediário — uso planilhas, prontuários eletrônicos, videoconferência
+- ( ) Avançado — uso softwares especializados, analiso dados, configuro sistemas
+- ( ) Especialista — tenho formação ou experiência técnica em TI
+
+**Q6.** Quais das seguintes ferramentas digitais você já utilizou na sua prática profissional? *(marque todas que se aplicam)*
+- [ ] Prontuário eletrônico (ex.: iClinic, ProntMed)
+- [ ] Plataformas de teleatendimento (ex.: Zoom, Google Meet)
+- [ ] Planilhas para registro de evolução (ex.: Excel, Google Sheets)
+- [ ] Software de análise de vídeo (ex.: ELAN, Observer XT)
+- [ ] Ferramentas com inteligência artificial para apoio clínico
+- [ ] Nenhuma das anteriores
+
+**Q7.** Você já utilizou algum sistema ou ferramenta que usa Inteligência Artificial para apoiar decisões clínicas?
+- ( ) Sim, uso regularmente
+- ( ) Sim, já experimentei pontualmente
+- ( ) Não, mas tenho interesse
+- ( ) Não, e não tenho interesse no momento
+
+---
+
+**Bloco 3 — Conhecimento do Domínio e Tarefas Atuais**
+*(dados sobre domínio e tarefas — Barbosa e Silva, 2010, eixos 3 e 4)*
+
+**Q8.** Com que frequência você analisa vídeos de sessões terapêuticas como parte do seu processo de avaliação de TEA?
+- ( ) Nunca
+- ( ) Raramente (menos de 1x por mês)
+- ( ) Ocasionalmente (1–3x por mês)
+- ( ) Frequentemente (1x por semana ou mais)
+
+**Q9.** Quando analisa vídeos de sessões, como você costuma fazer isso atualmente? *(marque todas que se aplicam)*
+- [ ] Assisto ao vídeo integralmente e anoto observações manualmente
+- [ ] Assisto em partes, pausando e retrocedendo conforme necessário
+- [ ] Utilizo algum software específico de anotação de comportamento
+- [ ] Faço análise em equipe com outros profissionais
+- [ ] Não analiso vídeos atualmente
+
+**Q10.** Quais comportamentos você mais busca observar e registrar ao analisar vídeos de sessões? *(marque até 3 opções)*
+- [ ] Contato visual e direção do olhar
+- [ ] Expressão facial e emoções
+- [ ] Postura e movimentação corporal
+- [ ] Distância interpessoal (criança–guardião)
+- [ ] Resposta a estímulos verbais
+- [ ] Iniciativa de interação
+- [ ] Outro: ___________
+
+**Q11.** Quanto tempo, em média, você gasta analisando manualmente uma sessão de 30 minutos?
+- ( ) Menos de 30 minutos
+- ( ) 30 min – 1 hora
+- ( ) 1–2 horas
+- ( ) Mais de 2 horas
+
+**Q12.** Quais são as maiores dificuldades do seu processo atual de análise de sessões? *(pergunta aberta)*
+
+> _____________________________________________________________
+
+---
+
+**Bloco 4 — Motivações, Valores e Expectativas sobre o GAIA**
+*(dados sobre motivações e valores — Barbosa e Silva, 2010, eixo 5)*
+
+**Q13.** Para cada afirmação abaixo, indique seu grau de concordância: *(Escala de Likert: 1 = Discordo totalmente → 5 = Concordo plenamente)*
+
+| Afirmação | 1 | 2 | 3 | 4 | 5 |
+| :--- | :-: | :-: | :-: | :-: | :-: |
+| A análise manual de vídeos de sessões é um processo desgastante | ○ | ○ | ○ | ○ | ○ |
+| Métricas objetivas (ex.: % de contato visual) agregariam valor ao meu laudo | ○ | ○ | ○ | ○ | ○ |
+| Confiaria em dados gerados por IA como *apoio* (não substituição) ao diagnóstico | ○ | ○ | ○ | ○ | ○ |
+| Estaria disposto(a) a aprender a usar um novo sistema se ele reduzisse meu tempo de análise | ○ | ○ | ○ | ○ | ○ |
+| A privacidade dos vídeos de sessão é um fator crítico para eu adotar qualquer ferramenta | ○ | ○ | ○ | ○ | ○ |
+
+**Q14.** Como você avalia as características abaixo em um sistema de análise de sessões? *(Escala de diferenciais semânticos)*
+
+| | 1 | 2 | 3 | 4 | 5 | |
+| ---: | :-: | :-: | :-: | :-: | :-: | :--- |
+| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(interface simples e intuitiva)* |
+| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(processamento automático em segundo plano)* |
+| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(exportação de relatório em PDF)* |
+| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(armazenamento local dos vídeos, sem nuvem)* |
+
+**Q15.** Que funcionalidade você considera mais importante em um sistema como o GAIA? *(pergunta aberta)*
+
+> _____________________________________________________________
+
+**Q16.** Você teria alguma preocupação em adotar um sistema de IA para apoio ao diagnóstico de TEA? Se sim, qual?  *(pergunta aberta)*
+
+> _____________________________________________________________
+
+---
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. Editado por Plinio Aquino.*
 
 ---
 
