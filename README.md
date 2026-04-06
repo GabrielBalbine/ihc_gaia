@@ -856,32 +856,107 @@ Na prática, o questionário será aplicado com as seguintes garantias:
 ---
 
 ## 🔄 Entrega 8: Engenharia de Usabilidade
-*Status: [Em andamento]*
+*Status: Concluído*
+
+> Baseado no Ciclo da Engenharia de Usabilidade de Mayhew (Barbosa e Silva, 2010): análise das capacidades e restrições da plataforma, análise de princípios gerais para o projeto e especificação dos objetivos de usabilidade.
+
+---
 
 ### 1. Características da Plataforma
+
+#### 1.1 Descrição de Software e Hardware
+
 | Característica | Descrição |
 | :--- | :--- |
-| **Descrição do Software** | [Web/Desktop, Linguagem, etc] |
-| **Descrição do Hardware** | [Requisitos mínimos, Câmera, Processamento] |
-| **Capacidades** | [O que o sistema consegue fazer] |
-| **Restrições** | [Limitações técnicas ou de ambiente] |
+| **Tipo de sistema** | Aplicação desktop local (não requer conexão com internet para processamento) |
+| **Linguagem e stack principal** | Python 3.10+, com bibliotecas PyTorch, Ultralytics (YOLOv8), MediaPipe, OpenCV e BoTSORT |
+| **Interface do usuário** | Aplicação web local servida via navegador (localhost), desenvolvida com HTML, CSS e JavaScript |
+| **Sistema operacional** | Windows 10/11 (64-bit) — ambiente primário de uso clínico |
+| **Hardware mínimo recomendado** | CPU: Intel Core i7 (8ª geração ou superior) / AMD Ryzen 7; RAM: 16 GB; GPU: NVIDIA com suporte a CUDA (mínimo 6 GB VRAM); Armazenamento: 50 GB livres para vídeos e modelos |
+| **Hardware do ambiente de desenvolvimento** | NVIDIA RTX 5060, AMD Ryzen 7 5700X, 32 GB RAM |
+| **Câmera / entrada de vídeo** | Não requer câmera — o sistema processa arquivos de vídeo pré-gravados (.mp4, .avi, .mov) |
+| **Resolução de vídeo suportada** | 1280×720 (padrão do dataset UNSW); compatível com resoluções superiores |
 
-### 2. Princípios Gerais do Projeto (Legislação e Normas)
+---
 
-| Nome | Descrição | Link | Descrição do Contexto no Projeto |
-| :--- | :--- | :--- | :--- |
-| **LGPD (Lei 13.709/2018)** | Lei que regulamenta o tratamento de dados pessoais no Brasil. | [Planalto](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm) | Estabelece regras sobre coleta e proteção dos vídeos e dados dos pacientes (crianças). |
-| **Lei da Acessibilidade (10.098/2000)** | Normas gerais e critérios básicos para a promoção da acessibilidade. | [Planalto](https://www.planalto.gov.br/ccivil_03/leis/l10098.htm) | Diretrizes para tornar a interface acessível a profissionais com deficiência. |
-| **ABNT NBR ISO 9241** | Ergonomia da interação humano-sistema. | - | Princípios de design centrado no usuário para garantir usabilidade. |
+#### 1.2 Capacidades da Plataforma
+
+| Capacidade | Justificativa |
+| :--- | :--- |
+| **Detecção e rastreamento de pessoas em vídeo** | O pipeline YOLOv8l-pose + BoTSORT identifica e rastreia continuamente os dois participantes da sessão (guardião e criança) frame a frame, mesmo em casos de oclusão parcial ou saída temporária do quadro |
+| **Classificação automática de papéis (Guardião / Criança)** | O sistema identifica qual dos dois indivíduos detectados é o guardião e qual é a criança por meio de análise de tamanho relativo (par-based prescan), eliminando a necessidade de configuração manual por sessão |
+| **Estimativa de direção do olhar (gaze)** | O MediaPipe Face Mesh com detecção de íris permite estimar o vetor de gaze de cada participante, mesmo com rotação parcial da cabeça — métrica diretamente relacionada ao contato visual e ao indicador "Warm" |
+| **Análise de postura corporal** | O YOLOv8l-pose extrai 17 keypoints do esqueleto de cada participante, possibilitando inferir o engajamento postural ao longo da sessão |
+| **Cálculo de distância interpessoal** | A distância euclidiana entre os bounding boxes de guardião e criança é calculada frame a frame, gerando uma série temporal de proximidade física entre os participantes |
+| **Geração de métricas comportamentais agregadas** | O sistema consolida as métricas frame a frame em indicadores por sessão: % de olhar mútuo, % de desvio de gaze, distância média, variância de postura e outros — insumos diretos para o classificador LSTM |
+| **Classificação probabilística de risco TEA** | O classificador Bidirectional LSTM com attention pooling (GAIA LSTM v1) processa as métricas extraídas e retorna uma probabilidade P(TEA) com breakdowns por dimensão comportamental |
+| **Exportação de relatório** | O sistema gera relatórios em PDF via ReportLab com as métricas da sessão, o indicador de risco e os insights automáticos, prontos para uso clínico |
+| **Processamento em lote** | O pipeline suporta processar múltiplos vídeos em sequência com controle de fila e registro de sessões já processadas (processed.txt) |
+
+---
+
+#### 1.3 Restrições da Plataforma
+
+| Restrição | Justificativa |
+| :--- | :--- |
+| **Requer GPU NVIDIA com CUDA** | O pipeline YOLOv8 e o MediaPipe operam com aceleração GPU para atingir performance viável (processamento próximo ao tempo real). Sem GPU compatível, o tempo de processamento torna-se inviável clinicamente |
+| **Limitado a exatamente 2 pessoas por cena** | O sistema foi projetado e validado para díades (um guardião + uma criança). Cenas com mais de 2 pessoas ou com apenas 1 pessoa detectada são descartadas pelo mecanismo de controle de qualidade |
+| **Câmera fixa e elevada recomendada** | Os pesos de estimativa de posição (camera_y_weight) foram calibrados para câmera com ângulo superior. Câmeras frontais ou móveis degradam a qualidade da classificação de papéis e do gaze |
+| **Iluminação controlada** | O MediaPipe Face Mesh falha silenciosamente em condições de baixa luminosidade, caindo para o fallback YOLO que é menos preciso para estimativa de gaze |
+| **Sem processamento em tempo real** | O sistema processa vídeos pré-gravados. Não há suporte a streams de câmera ao vivo na versão atual |
+| **Armazenamento local obrigatório** | Os vídeos de sessão não são enviados para nenhum servidor externo — permanecem no dispositivo do clínico. Isso é uma restrição arquitetural deliberada para conformidade com a LGPD e com os termos éticos da UNSW |
+| **Sem suporte a macOS / Linux na interface clínica** | A interface web local foi desenvolvida e testada em Windows. Suporte a outros sistemas operacionais requer validação adicional |
+| **Dependência de qualidade mínima do vídeo** | Vídeos com menos de 50% de frames válidos (para sessões NT) ou 40% (para sessões TEA) são descartados do treinamento LSTM, pois não atingem limiar mínimo de confiabilidade |
+
+---
+
+### 2. Princípios Gerais do Projeto
+
+> Conforme Barbosa e Silva (2010), esta etapa consiste na pesquisa e catalogação do conhecimento ergonômico disponível para a concepção da interface, considerando o contexto de uso (usuário, tarefa, equipamento e ambiente) no qual o sistema está inserido.
+
+#### Contexto de Uso
+O sistema GAIA é utilizado por **neuropsicólogos, psicólogos clínicos e demais especialistas em TEA** (Dra. Helena — persona primária), em ambiente clínico ou de pesquisa, em estações de trabalho desktop com Windows. O especialista interage com a interface para fazer upload de vídeos de sessões, acompanhar o processamento e interpretar os resultados de prognóstico gerados pela IA. O contexto envolve dados de saúde sensíveis de crianças, exigindo atenção redobrada a privacidade, segurança e clareza das informações apresentadas.
+
+| Nome da Referência | Descrição e Relevância para o Projeto | Link |
+| :--- | :--- | :--- |
+| **LGPD — Lei nº 13.709/2018** | Lei Geral de Proteção de Dados Pessoais brasileira. Regula o tratamento de dados pessoais, incluindo dados sensíveis como imagens de crianças. O GAIA processa vídeos de menores de idade, tornando o cumprimento da LGPD obrigatório: os dados devem ser armazenados localmente, acessados apenas por profissionais autorizados e utilizados exclusivamente para a finalidade declarada (análise comportamental auxiliar ao diagnóstico). | [planalto.gov.br](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm) |
+| **Lei de Acessibilidade — Lei nº 10.098/2000** | Estabelece normas gerais e critérios básicos para a promoção da acessibilidade de pessoas com deficiência. A interface do GAIA deve ser acessível a especialistas com deficiências visuais ou motoras, adotando contraste adequado, fontes legíveis e compatibilidade com leitores de tela. | [planalto.gov.br](https://www.planalto.gov.br/ccivil_03/leis/l10098.htm) |
+| **ABNT NBR ISO 9241 — Ergonomia da Interação Humano-Sistema** | Norma internacional que define princípios de usabilidade para sistemas interativos, incluindo eficácia, eficiência e satisfação do usuário. Orienta as decisões de design da interface do GAIA, especialmente nos critérios de navegabilidade, clareza das métricas apresentadas e prevenção de erros no upload e classificação de vídeos. | [abnt.org.br](https://www.abnt.org.br) |
+| **WCAG 2.1 — Web Content Accessibility Guidelines** | Diretrizes internacionais de acessibilidade para conteúdo web, definidas pelo W3C. Como a interface do GAIA é servida via navegador (localhost), as diretrizes de contraste mínimo (4.5:1), navegação por teclado e descrição de elementos interativos se aplicam diretamente. | [w3.org/WAI/WCAG21](https://www.w3.org/WAI/WCAG21/quickref/) |
+| **Resolução CFM nº 2.299/2021** | Regulamenta o uso de Inteligência Artificial na Medicina no Brasil, estabelecendo que sistemas de IA devem atuar como ferramenta de apoio à decisão clínica — nunca substituindo o julgamento do médico ou especialista. O GAIA é explicitamente projetado como ferramenta auxiliar (copiloto), em conformidade com este princípio. | [cfm.org.br](https://www.cfm.org.br) |
+| **Heurísticas de Nielsen (1994)** | Conjunto de 10 princípios de usabilidade amplamente adotados como guia de design de interfaces. Aplicados ao GAIA especialmente nos critérios de: visibilidade do status do sistema (barra de progresso do processamento), controle e liberdade do usuário (cancelar upload), prevenção de erros (alerta antes de classificar vídeo como TEA/Neurotípico) e ajuda e documentação. | [nngroup.com](https://www.nngroup.com/articles/ten-usability-heuristics/) |
+| **Material Design 3 — Google** | Guia de estilo e sistema de design do Google para aplicações web e mobile. Utilizado como referência para padronização de componentes visuais da interface do GAIA: botões, cards, barras de progresso, toggles e tipografia — garantindo consistência visual e comportamento previsível para o usuário. | [m3.material.io](https://m3.material.io) |
+
+---
 
 ### 3. Metas de Usabilidade
-| Metas (Qualitativo/Quantitativo) | Porcentagem | Justificativa |
-| :--- | :--- | :--- |
-| **Facilidade de Aprendizado** | [X]% | [Motivo] |
-| **Eficiência de Uso** | [X]% | [Motivo] |
-| **Prevenção de Erros** | [X]% | [Motivo] |
-| **TOTAL** | **100%** | |
 
+> Conforme Barbosa e Silva (2010), as metas de usabilidade definem as **exigências quantitativas e qualitativas** esperadas para o sistema, nos termos dos fatores básicos de usabilidade: eficácia, eficiência e satisfação do usuário.
+
+#### 3.1 Exigências Qualitativas
+
+| Meta | Descrição |
+| :--- | :--- |
+| **Facilidade de aprendizado** | Um especialista sem treinamento prévio deve conseguir realizar seu primeiro upload e interpretar o resultado sem necessidade de manual, apenas com os elementos da interface |
+| **Clareza das métricas** | Os indicadores comportamentais (% olhar mútuo, distância interpessoal, P(TEA)) devem ser apresentados de forma que o especialista compreenda seu significado clínico sem formação em computação |
+| **Prevenção de erros críticos** | O sistema deve alertar o usuário antes de ações irreversíveis ou de alto impacto, como a classificação de rótulo TEA/Neurotípico de um vídeo no dataset de treinamento |
+| **Transparência da IA** | O sistema deve deixar claro que o resultado é uma estimativa de apoio à decisão — nunca um diagnóstico definitivo |
+| **Privacidade por design** | Nenhum dado de paciente deve sair do dispositivo local sem consentimento explícito do usuário |
+
+#### 3.2 Exigências Quantitativas
+
+| Meta de Usabilidade | Indicador | Valor Mínimo Admissível | Justificativa |
+| :--- | :--- | :--- | :--- |
+| **Eficácia — Taxa de conclusão de tarefas** | % de usuários que completam o fluxo de upload + visualização de resultado sem ajuda externa | ≥ 85% | Especialistas clínicos têm perfil tecnológico intermediário (conforme levantamento da Entrega 7); a interface deve ser autoexplicativa para a maioria |
+| **Eficiência — Tempo para primeira análise** | Tempo médio desde o login até a visualização do primeiro resultado de prognóstico | ≤ 5 minutos (excluindo tempo de processamento da IA) | A interação com a interface não deve ser o gargalo — o tempo de processamento do pipeline é inevitável, mas a navegação deve ser fluida |
+| **Eficiência — Tempo de aprendizado** | Tempo para um usuário novo realizar a primeira tarefa principal sem erros | ≤ 10 minutos | Condizente com o perfil de usuário intermediário e com a complexidade reduzida do fluxo (Lei de Hick-Hyman aplicada ao design) |
+| **Satisfação do usuário** | Pontuação mínima no questionário de satisfação pós-uso (escala Likert 1–5) | ≥ 4,0 / 5,0 | Ferramenta clínica precisa gerar confiança e conforto — satisfação baixa reduz adoção e pode levar ao abandono |
+| **Prevenção de erros — Taxa de erro em classificação** | % de sessões classificadas com rótulo errado (TEA/Neurotípico) por falha de interface | ≤ 2% | Erro de classificação contamina o dataset de treinamento e compromete a validade do modelo LSTM — consequência clínica grave |
+| **Facilidade de aprendizado — Retenção** | % de tarefas realizadas corretamente em segundo uso, sem treinamento adicional | ≥ 90% | Interface consistente deve permitir que o usuário retome o sistema após dias sem uso sem dificuldade |
+
+---
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. Editado por Plinio Aquino.*
 ---
 
 ## 🎭 Entrega 9: Cenários de Interação e Design
