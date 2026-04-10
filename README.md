@@ -6,6 +6,27 @@
 
 ---
 
+## 🗂️ Índice
+
+| # | Entrega | Status |
+| :-: | :--- | :-: |
+| [1](#-entrega-1-conhecendo-o-problema-definição-do-escopo) | Conhecendo o Problema (Definição do Escopo) | ✅ |
+| [2](#-entrega-2-análise-de-concorrência-soluções-análogas) | Análise de Concorrência (Soluções Análogas) | ✅ |
+| [3](#-entrega-3-personas-e-contexto) | Personas e Contexto | ✅ |
+| [4](#️-entrega-4-cenários-de-análise-problema) | Cenários de Análise (Problema) | ✅ |
+| [5](#️-entrega-5-análise-de-tarefas) | Análise de Tarefas (HTA, GOMS, CTT) | ✅ |
+| [6](#-entrega-6-prototipação-de-baixa-fidelidade) | Prototipação de Baixa Fidelidade | ✅ |
+| [7](#-entrega-7-requisitos-e-ética) | Requisitos e Ética | ✅ |
+| [8](#-entrega-8-engenharia-de-usabilidade) | Engenharia de Usabilidade | ✅ |
+| [9](#-entrega-9-cenários-de-interação-e-design) | Cenários de Interação e Design | ✅ |
+| [10](#️-entrega-10-diagrama-molic) | Diagrama MOLIC | ✅ |
+| [11](#-entrega-11-protótipo-de-alta-fidelidade) | Protótipo de Alta Fidelidade | 🔄 |
+| [12](#-entrega-12-planejamento-de-usabilidade-decide) | Planejamento de Usabilidade (DECIDE) | 🔄 |
+| [13](#-entrega-13-avaliação-heurística) | Avaliação Heurística | 🔄 |
+| [14](#-entrega-14-avaliação-por-observação) | Avaliação por Observação | 🔄 |
+
+---
+
 ## 👥 Membros da Equipe
 
 | Nome Completo | Matrícula |
