@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 680" width="1300" height="680">
+  <defs>
+    <style>
+      text { font-family: 'IBM Plex Mono', Consolas, monospace; }
+      .title  { font-size:15px; fill:#1a1a2e; font-weight:700; text-anchor:middle; }
+      .sub    { font-size:10px; fill:#777; text-anchor:middle; }
+      .cn     { font-size:10px; fill:#1a1a2e; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+      .cu     { font-size:9px;  fill:#1a3a8f; text-anchor:middle; dominant-baseline:central; }
+      .cs     { font-size:9px;  fill:#1a6b2a; text-anchor:middle; dominant-baseline:central; }
+      .cr     { font-size:9px;  fill:#b36000; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+      .el     { font-size:8.5px; fill:#555; text-anchor:middle; dominant-baseline:central; }
+      .leg    { font-size:10px; fill:#444; dominant-baseline:central; }
+      .e      { stroke:#1a1a2e; stroke-width:1.5; fill:none; }
+      .er     { stroke:#b36000; stroke-width:1.5; fill:none; stroke-dasharray:5,3; }
+    </style>
+    <marker id="arr"  markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#1a1a2e"/>
+    </marker>
+    <marker id="arrr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#b36000"/>
+    </marker>
+  </defs>
+
+  <rect width="1300" height="680" fill="#f5f0e8" rx="8"/>
+  <text x="650" y="28" class="title">Diagrama MOLIC — GAIA · Fluxo do Especialista</text>
+  <text x="650" y="46" class="sub">Model of Interaction as Conversation — Barbosa e Silva (2010)</text>
+
+  <!-- ════════════════════════════════════════
+       LAYOUT:
+       Linha 1 (Y~90):  INÍCIO → C1 → C2 → C3 → C4
+       Linha 2 (Y~250): C8(FIM)  C7   C6   C5
+       Rupturas abaixo de cada cena relevante
+  ════════════════════════════════════════════ -->
+
+  <!-- ── LINHA 1 ── -->
+
+  <!-- INÍCIO -->
+  <ellipse cx="80" cy="115" rx="50" ry="24" fill="#1a1a2e"/>
+  <text x="80" y="115" class="cn" fill="#fff">INÍCIO</text>
+
+  <!-- C1: Login — X centro=270 -->
+  <rect x="152" y="82" width="236" height="66" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="270" y="100" class="cn">C1: Tela de Login</text>
+  <text x="270" y="116" class="cu">U: Seleciona perfil + credenciais</text>
+  <text x="270" y="130" class="cs">S: Valida → redireciona dashboard</text>
+
+  <!-- C2: Dashboard — X centro=530 -->
+  <rect x="412" y="82" width="236" height="66" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="530" y="100" class="cn">C2: Dashboard</text>
+  <text x="530" y="116" class="cu">U: Visualiza análises anteriores</text>
+  <text x="530" y="130" class="cs">S: Lista cards por data</text>
+
+  <!-- C3: Nova Análise — X centro=790 -->
+  <rect x="672" y="82" width="236" height="66" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="790" y="100" class="cn">C3: Nova Análise</text>
+  <text x="790" y="116" class="cu">U: Preenche ID e nº sessão</text>
+  <text x="790" y="130" class="cs">S: Exibe formulário de upload</text>
+
+  <!-- C4: Upload — X centro=1080 -->
+  <rect x="962" y="82" width="236" height="66" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="1080" y="100" class="cn">C4: Upload de Vídeo</text>
+  <text x="1080" y="116" class="cu">U: Arrasta arquivo para zona</text>
+  <text x="1080" y="130" class="cs">S: Confirma recebimento</text>
+
+  <!-- ── LINHA 2 ── -->
+
+  <!-- C5: Processamento — X centro=1080 -->
+  <rect x="962" y="270" width="236" height="66" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="1080" y="288" class="cn">C5: Processamento</text>
+  <text x="1080" y="304" class="cs">S: Pipeline YOLOv8 + MediaPipe</text>
+  <text x="1080" y="318" class="cs">S: Barra progresso + tempo</text>
+
+  <!-- C6: Resultado — X centro=790 -->
+  <rect x="660" y="260" width="256" height="86" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="788" y="278" class="cn">C6: Resultado / Prognóstico</text>
+  <text x="788" y="294" class="cs">S: Exibe P(TEA) + métricas</text>
+  <text x="788" y="308" class="cu">U: Lê indicadores e insights</text>
+  <text x="788" y="322" class="cs">S: Player com camadas IA</text>
+  <text x="788" y="336" class="cs">S: Aviso "apoio, não substitui"</text>
+
+  <!-- C7: Exportar — X centro=510 -->
+  <rect x="400" y="278" width="220" height="50" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="510" y="296" class="cn">C7: Exportar PDF</text>
+  <text x="510" y="312" class="cu">U: Clica "Exportar Relatório"</text>
+
+  <!-- C8: FIM — X centro=240 -->
+  <ellipse cx="240" cy="303" rx="70" ry="26" fill="#1a6b2a"/>
+  <text x="240" y="303" class="cn" fill="#fff">FIM / Home</text>
+
+  <!-- ════════════════════════
+       ARESTAS NORMAIS
+  ════════════════════════ -->
+
+  <!-- INÍCIO → C1 -->
+  <line x1="130" y1="115" x2="150" y2="115" class="e" marker-end="url(#arr)"/>
+
+  <!-- C1 → C2 -->
+  <line x1="388" y1="115" x2="410" y2="115" class="e" marker-end="url(#arr)"/>
+  <text x="399" y="108" class="el">login OK</text>
+
+  <!-- C2 → C3 -->
+  <line x1="648" y1="115" x2="670" y2="115" class="e" marker-end="url(#arr)"/>
+  <text x="659" y="108" class="el">clica ＋</text>
+
+  <!-- C3 → C4 -->
+  <line x1="908" y1="115" x2="960" y2="115" class="e" marker-end="url(#arr)"/>
+  <text x="934" y="108" class="el">confirma</text>
+
+  <!-- C4 ↓ C5 -->
+  <line x1="1080" y1="148" x2="1080" y2="268" class="e" marker-end="url(#arr)"/>
+  <text x="1096" y="210" class="el">upload OK</text>
+
+  <!-- C5 → C6 (esquerda) -->
+  <line x1="960" y1="303" x2="918" y2="303" class="e" marker-end="url(#arr)"/>
+  <text x="940" y="295" class="el">concluído</text>
+
+  <!-- C6 → C7 (esquerda) -->
+  <line x1="660" y1="303" x2="622" y2="303" class="e" marker-end="url(#arr)"/>
+  <text x="641" y="295" class="el">exportar</text>
+
+  <!-- C7 → C8 (esquerda) -->
+  <line x1="400" y1="303" x2="312" y2="303" class="e" marker-end="url(#arr)"/>
+  <text x="356" y="295" class="el">PDF gerado</text>
+
+  <!-- C2 → C8 (ver análise existente — curva descendo) -->
+  <path d="M530,148 Q530,215 380,280 Q320,295 312,303" class="e" fill="none" marker-end="url(#arr)"/>
+  <text x="420" y="228" class="el">ver análise existente</text>
+
+  <!-- ════════════════════════
+       RUPTURAS — losangos
+  ════════════════════════ -->
+
+  <!-- R1: abaixo de C1 -->
+  <polygon points="270,175 310,200 270,225 230,200" fill="#fff3e0" stroke="#b36000" stroke-width="1.8"/>
+  <text x="270" y="196" class="cr">R1</text>
+  <text x="270" y="208" class="cr" style="font-size:8px;">Credencial</text>
+  <text x="270" y="218" class="cr" style="font-size:8px;">inválida</text>
+
+  <!-- C1 → R1 -->
+  <line x1="270" y1="148" x2="270" y2="173" style="stroke:#b36000;stroke-width:1.5;fill:none;" marker-end="url(#arrr)"/>
+
+  <!-- R1 → C1 retry (curva à esquerda) -->
+  <path d="M230,200 Q180,200 180,140 Q180,115 152,115" class="er" marker-end="url(#arrr)"/>
+  <text x="154" y="178" class="cr" style="font-size:8px;">retry</text>
+
+  <!-- R2: abaixo de C4 -->
+  <polygon points="1080,175 1120,200 1080,225 1040,200" fill="#fff3e0" stroke="#b36000" stroke-width="1.8"/>
+  <text x="1080" y="196" class="cr">R2</text>
+  <text x="1080" y="208" class="cr" style="font-size:8px;">Formato</text>
+  <text x="1080" y="218" class="cr" style="font-size:8px;">inválido</text>
+
+  <!-- C4 → R2 -->
+  <line x1="1080" y1="148" x2="1080" y2="173" style="stroke:#b36000;stroke-width:1.5;" marker-end="url(#arrr)"/>
+
+  <!-- R2 → C4 retry (curva exterior direita) -->
+  <path d="M1120,200 Q1160,200 1160,148 Q1160,115 1198,115" class="er" marker-end="url(#arrr)"/>
+  <text x="1175" y="165" class="cr" style="font-size:8px;">retry</text>
+
+  <!-- R3: abaixo de C5 -->
+  <polygon points="1080,360 1120,385 1080,410 1040,385" fill="#fff3e0" stroke="#b36000" stroke-width="1.8"/>
+  <text x="1080" y="381" class="cr">R3</text>
+  <text x="1080" y="393" class="cr" style="font-size:8px;">Falha no</text>
+  <text x="1080" y="403" class="cr" style="font-size:8px;">processo</text>
+
+  <!-- C5 → R3 -->
+  <line x1="1080" y1="336" x2="1080" y2="358" style="stroke:#b36000;stroke-width:1.5;" marker-end="url(#arrr)"/>
+
+  <!-- R3 → C4 retry -->
+  <path d="M1040,385 Q1000,385 1000,300 Q1000,148 960,148" class="er" marker-end="url(#arrr)"/>
+  <text x="966" y="290" class="cr" style="font-size:8px;">retry</text>
+
+  <!-- R4: abaixo de C6 -->
+  <polygon points="788,375 828,400 788,425 748,400" fill="#fff3e0" stroke="#b36000" stroke-width="1.8"/>
+  <text x="788" y="396" class="cr">R4</text>
+  <text x="788" y="408" class="cr" style="font-size:8px;">Frames</text>
+  <text x="788" y="418" class="cr" style="font-size:8px;">insuficientes</text>
+
+  <!-- C6 → R4 -->
+  <line x1="788" y1="346" x2="788" y2="373" style="stroke:#b36000;stroke-width:1.5;" marker-end="url(#arrr)"/>
+
+  <!-- R4 → C3 re-upload -->
+  <path d="M748,400 Q710,400 710,300 Q710,115 672,115" class="er" marker-end="url(#arrr)"/>
+  <text x="676" y="290" class="cr" style="font-size:8px;">re-upload</text>
+
+  <!-- ════════════════════════
+       LEGENDA
+  ════════════════════════ -->
+  <rect x="50" y="460" width="1200" height="90" rx="4" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <text x="70" y="480" style="font-size:11px;fill:#1a1a2e;font-weight:700;">Legenda</text>
+
+  <!-- Cena -->
+  <rect x="70" y="490" width="60" height="24" rx="3" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="100" y="503" class="cn">Cena</text>
+  <text x="140" y="502" class="leg">= estado da interface onde ocorre interação U↔S</text>
+
+  <!-- Ruptura -->
+  <polygon points="400,490 426,503 400,516 374,503" fill="#fff3e0" stroke="#b36000" stroke-width="1.8"/>
+  <text x="400" y="503" class="cr">R</text>
+  <text x="438" y="502" class="leg">= Ruptura de comunicação (erro / desvio do fluxo)</text>
+
+  <!-- Seta normal -->
+  <line x1="70" y1="535" x2="130" y2="535" class="e" marker-end="url(#arr)"/>
+  <text x="140" y="535" class="leg">= Fluxo normal</text>
+
+  <!-- Seta ruptura -->
+  <line x1="290" y1="535" x2="350" y2="535" class="er" marker-end="url(#arrr)"/>
+  <text x="360" y="535" class="leg">= Fluxo de ruptura / recuperação</text>
+
+  <text x="600" y="502" style="font-size:9px;fill:#1a3a8f;font-weight:600;dominant-baseline:central;">U:</text>
+  <text x="616" y="502" class="leg">fala do usuário</text>
+  <text x="740" y="502" style="font-size:9px;fill:#1a6b2a;font-weight:600;dominant-baseline:central;">S:</text>
+  <text x="756" y="502" class="leg">fala do sistema</text>
+
+  <text x="600" y="535" class="leg">Início/Fim = estados terminais (elipses)</text>
+</svg>
