@@ -960,33 +960,104 @@ O sistema GAIA é utilizado por **neuropsicólogos, psicólogos clínicos e dema
 ---
 
 ## 🎭 Entrega 9: Cenários de Interação e Design
-*Status: [Em andamento]*
+*Status: Concluído*
 
-### 1) Cenários de Interação
-> [Reescrita do cenário problema, agora incluindo a interação com a solução GAIA]
+---
 
-### 2) Design Centrado na Comunicação (Diálogos)
-| Tópico > Subtópico | Falas e Signos (U=Usuário, S=Sistema) |
+### 1) Cenário de Interação
+
+> Reescrita do cenário-problema (Entrega 4), agora incluindo a interação da Dra. Helena com o sistema GAIA.
+
+---
+
+É quinta-feira à noite. Helena chega em casa às 21h, após um dia intenso de atendimentos. Na semana passada ela gravou a sessão lúdica de J., uma criança de 4 anos com suspeita de TEA, e prometeu à família um retorno até o final da semana. Ela abre o notebook, acessa o GAIA pelo navegador e faz login com suas credenciais de especialista.
+
+Na dashboard, ela vê suas análises anteriores listadas em cards organizados. Clica no botão "＋", preenche o identificador anonimizado do paciente ("J.M.S") e o número da sessão, e arrasta o arquivo de vídeo para a zona de upload. Em segundos, o sistema confirma o recebimento e exibe uma barra de progresso indicando que o pipeline está em execução — YOLOv8, BoTSORT e MediaPipe processando cada frame em segundo plano. Helena vai preparar um chá.
+
+Quando volta, o resultado já está disponível. Na tela de prognóstico, ela vê o indicador central: **P(TEA) = 74% — Risco Moderado-Alto**. Abaixo, os indicadores comportamentais detalham o que o modelo identificou: apenas 31% de olhar mútuo ao longo da sessão, distância interpessoal média de 2,1 metros (acima do esperado para a faixa etária) e baixo engajamento postural. O player de vídeo à direita exibe a sessão com as anotações da IA sobrepostas — bounding boxes, face mesh e vetores de gaze — e Helena pode ativar ou desativar cada camada individualmente para confirmar visualmente os comportamentos que o sistema sinalizou.
+
+Ela não usa o número como diagnóstico — nunca faria isso. Mas agora, pela primeira vez, ela tem dados objetivos que corroboram o que sua intuição clínica já indicava. Exporta o relatório em PDF, que acompanhará suas anotações no laudo. São 22h15. Ela fecha o notebook e vai jantar com a família — algo que raramente conseguia fazer quando o processo era inteiramente manual.
+
+---
+
+### 2) Design Centrado na Comunicação — Diálogos
+
+| Tópico > Subtópico | U = Usuário (Helena) · S = Sistema (GAIA) |
 | :--- | :--- |
-| U: Preciso... | U: [Ação] |
-| > | S: [Resposta/Tela] |
+| **Acesso ao sistema** | |
+| > Autenticação | U: Acessa o GAIA pelo navegador e insere e-mail + senha |
+| | S: Valida as credenciais e exibe a dashboard personalizada da especialista |
+| > Perfil errado | U: Insere credenciais de Admin no perfil Especialista |
+| | S: Exibe mensagem "Perfil de acesso incompatível. Verifique o toggle de perfil." |
+| **Dashboard** | |
+| > Visualização de análises | U: Visualiza os cards das análises anteriores com nome do paciente, sessão e data |
+| | S: Lista as análises em ordem cronológica decrescente com status (Processado / Em fila) |
+| > Iniciar nova análise | U: Clica no botão "＋" |
+| | S: Abre o formulário de nova análise com campos de identificação e zona de upload |
+| **Upload de vídeo** | |
+| > Seleção do arquivo | U: Preenche identificador do paciente, número da sessão e arrasta o vídeo para a zona de upload |
+| | S: Confirma o recebimento com card de sucesso mostrando nome do arquivo e tamanho |
+| > Formato inválido | U: Tenta enviar um arquivo .wmv |
+| | S: Exibe alerta "Formato não suportado. Use .mp4, .avi ou .mov." e mantém a zona de upload ativa |
+| > Arquivo muito grande | U: Tenta enviar vídeo maior que 2 GB |
+| | S: Exibe alerta "Arquivo excede o limite de 2 GB." e sugere compressão antes do reenvio |
+| **Processamento** | |
+| > Acompanhamento | U: Aguarda o processamento do pipeline |
+| | S: Exibe barra de progresso com percentual e tempo estimado restante em tempo real |
+| > Processamento concluído | S: Exibe notificação "Análise concluída — clique para ver o resultado" |
+| **Resultado do prognóstico** | |
+| > Indicador principal | U: Visualiza a tela de resultado |
+| | S: Exibe P(TEA) em destaque com barra de risco colorida (verde → vermelho) e classificação textual |
+| > Métricas comportamentais | U: Lê os indicadores individuais |
+| | S: Apresenta % olhar mútuo, distância interpessoal, engajamento postural e variância de movimento em cards com referência ao valor esperado para a faixa etária |
+| > Player de vídeo | U: Reproduz o vídeo com anotações da IA |
+| | S: Exibe o player com sobreposições visuais (bounding box, face mesh, gaze). Permite ativar/desativar camadas individualmente |
+| > Interpretação da IA | U: Lê os insights automáticos |
+| | S: Lista os 3 principais comportamentos sinalizados com ícone (⚠ atenção / ✓ dentro do esperado) e justificativa textual |
+| > Aviso clínico | S: Exibe nota fixa "Este resultado é uma estimativa de apoio à decisão clínica. O diagnóstico é responsabilidade exclusiva do especialista." |
+| **Exportação** | |
+| > Relatório PDF | U: Clica em "Exportar Relatório PDF" |
+| | S: Gera e baixa automaticamente o relatório com métricas, indicador de risco e dados da sessão |
+| **Navegação** | |
+| > Retornar à dashboard | U: Clica no ícone "Home" na topbar |
+| | S: Retorna à dashboard principal mantendo o histórico de análises atualizado |
+
+---
 
 ### 3) Mapa de Objetivos
-> [Inserir diagrama]
+
+> Diagrama representando a hierarquia de objetivos do usuário (Dra. Helena) ao interagir com o sistema GAIA, do objetivo principal até as ações concretas na interface.
+
+![Mapa de Objetivos](./assets/entrega9_mapa_objetivos.svg)
+
+---
 
 ### 4) Esquema Conceitual de Signos
-| Signo | Origem | Tipo Conteúdo | Restrição | Prevenção | Recuperação |
+
+| Signo | Origem | Tipo de Conteúdo | Restrição | Prevenção | Recuperação |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Usuário** | Domínio | Texto | Não nulo | Campo Obrigatório | Mensagem de erro |
-| **Vídeo** | Domínio | Arquivo | .mp4, .avi | Formato inválido | Re-upload |
+| **Identificador do paciente** | Domínio clínico | Texto alfanumérico anonimizado | Não nulo; sem dados pessoais identificáveis | Campo obrigatório com placeholder "Ex.: J.M.S" | Mensagem de erro: "Campo obrigatório" |
+| **Número da sessão** | Domínio clínico | Texto / número | Não nulo | Campo obrigatório com placeholder "Ex.: Sessão 1" | Mensagem de erro: "Campo obrigatório" |
+| **Arquivo de vídeo** | Domínio clínico | Arquivo binário (.mp4, .avi, .mov) | Formato e tamanho (≤ 2 GB) | Zona de upload com indicação de formatos aceitos | Alerta de formato inválido com instrução de reenvio |
+| **Barra de progresso** | Interface / sistema | Visual (percentual + tempo restante) | Atualização em tempo real durante o processamento | Exibida automaticamente após upload confirmado | Se o processamento falhar: mensagem "Erro no processamento — tente novamente" |
+| **P(TEA) — Indicador de risco** | Saída do modelo LSTM | Numérico (0–100%) + classificação textual | Deve ser acompanhado do aviso clínico obrigatório | Aviso fixo: "Estimativa de apoio — não substitui diagnóstico" | N/A — dado de leitura, não editável |
+| **Métricas comportamentais** | Saída do pipeline de visão | Numérico (% ou metros) | Requer mínimo de frames válidos processados | Exibidas apenas quando há dados suficientes; caso contrário, flag "Dados insuficientes" | Flag "Dados insuficientes" com orientação de re-upload |
+| **Toggle de camadas do player** | Interface | Estado booleano (on/off) por camada | Pelo menos 1 camada deve permanecer ativa | Desabilitar o último toggle exibe tooltip "Ative ao menos uma camada" | Reativar a camada desativada inadvertidamente |
+| **Botão "Exportar PDF"** | Interface | Ação (download de arquivo) | Disponível apenas após processamento concluído | Botão desabilitado (cinza) durante processamento | Caso o download falhe: "Erro ao gerar relatório — tente novamente" |
+| **Perfil de acesso (toggle Login)** | Sistema de autenticação | Estado binário (Admin / Especialista) | Deve ser selecionado antes do login | Toggle visível na tela de login com destaque no estado ativo | Mensagem de perfil incompatível com instrução de correção |
 
 ---
 
 ## 🗺️ Entrega 10: Diagrama MOLIC
-*Status: [Em andamento]*
+*Status: Concluído*
 
-### Diagrama de Interação
-> [Inserir imagem do diagrama MOLIC desenhado]
+> O MOLIC (Model of Interaction as Conversation) representa a interação entre usuário e sistema como uma conversa estruturada, evidenciando as falas do usuário, as respostas do sistema e os possíveis desvios (rupturas) de comunicação.
+
+![Diagrama MOLIC](./assets/entrega10_molic.svg)
+
+---
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
 
 ---
 
