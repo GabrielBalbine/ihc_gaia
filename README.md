@@ -913,6 +913,8 @@ Na prática, o questionário será aplicado com as seguintes garantias:
 | **Classificação probabilística de risco TEA** | O classificador Bidirectional LSTM com attention pooling (GAIA LSTM v1) processa as métricas extraídas e retorna uma probabilidade P(TEA) com breakdowns por dimensão comportamental |
 | **Exportação de relatório** | O sistema gera relatórios em PDF via ReportLab com as métricas da sessão, o indicador de risco e os insights automáticos, prontos para uso clínico |
 | **Processamento em lote** | O pipeline suporta processar múltiplos vídeos em sequência com controle de fila e registro de sessões já processadas (processed.txt) |
+| **Tema de interface (claro / escuro)** | O usuário pode alternar entre modo claro e modo escuro diretamente nas configurações da interface. A escolha é persistida entre sessões, respondendo diretamente ao contexto de uso noturno da persona primária |
+| **Interface bilíngue (PT / EN)** | A interface suporta alternância entre Português e Inglês. Justificado pela colaboração com pesquisadores da UNSW (Austrália) documentada neste projeto — elimina barreira linguística sem exigir instalações separadas |
 
 ---
 
@@ -928,6 +930,19 @@ Na prática, o questionário será aplicado com as seguintes garantias:
 | **Armazenamento local obrigatório** | Os vídeos de sessão não são enviados para nenhum servidor externo — permanecem no dispositivo do clínico. Isso é uma restrição arquitetural deliberada para conformidade com a LGPD e com os termos éticos da UNSW |
 | **Sem suporte a macOS / Linux na interface clínica** | A interface web local foi desenvolvida e testada em Windows. Suporte a outros sistemas operacionais requer validação adicional |
 | **Dependência de qualidade mínima do vídeo** | Vídeos com menos de 50% de frames válidos (para sessões NT) ou 40% (para sessões TEA) são descartados do treinamento LSTM, pois não atingem limiar mínimo de confiabilidade |
+
+#### 1.4 Restrições Contextuais e Humanas
+
+> Além das restrições técnicas, o ciclo de Mayhew (Barbosa e Silva, 2010) prevê a análise do **contexto de uso** — incluindo as condições ambientais, cognitivas e emocionais do usuário no momento da interação. Assim como o Waze adapta sua interface ao contexto do motorista (desabilitando a tela para economizar bateria e oferecendo comandos de voz), o GAIA deve considerar as restrições humanas da Dra. Helena para não gerar desconforto ou sobrecarga durante o uso.
+
+| Restrição Contextual | Impacto no Usuário | Implicação para o Design |
+| :--- | :--- | :--- |
+| **Uso predominantemente noturno e pós-expediente** | Helena utiliza o sistema após horas de atendimento clínico intenso. O processador cognitivo já está saturado — ela está cansada, com menor capacidade de atenção e tolerância a fluxos complexos | A interface deve exigir o mínimo de decisões por tela (Lei de Hick-Hyman), apresentar resultados críticos em destaque visual imediato e evitar menus aninhados ou etapas desnecessárias. O modo escuro deve ser oferecido como opção, reduzindo a fadiga visual em ambientes de baixa luminosidade |
+| **Atenção dividida com anotações e laudos** | O especialista frequentemente analisa os resultados do GAIA enquanto consulta suas próprias anotações clínicas em papel ou em outro documento aberto | A tela de resultado deve ser legível em janela reduzida, com hierarquia visual clara para que o dado mais importante (P(TEA)) seja captado em menos de 2 segundos sem leitura completa da tela |
+| **Alta carga emocional e responsabilidade clínica** | O especialista sabe que o resultado influenciará uma decisão diagnóstica sobre uma criança — risco de interpretar o indicador de risco como diagnóstico definitivo | O sistema deve exibir avisos contextuais (não modais intrusivos) que reforcem o papel auxiliar da IA sem interromper o fluxo de leitura. A linguagem dos resultados deve ser clínica e cautelosa, não alarmista |
+| **Baixa tolerância a espera sem feedback** | Aguardar processamento sem informação após um dia longo aumenta a percepção de demora e gera a impressão de travamento | A barra de progresso com percentual e tempo estimado é obrigatória. O silêncio do sistema é percebido como falha (princípio de causalidade do Processador Humano: gap >180ms entre ação e resposta quebra a percepção de causalidade) |
+| **Ambiente silencioso (consultório ou home office noturno)** | Notificações sonoras abruptas ao fim do processamento podem causar sobressalto ou incomodar outras pessoas no ambiente | Notificações devem ser visuais por padrão (toast suave) e sonoras apenas se explicitamente ativadas pelo usuário |
+| **Desconforto com terminologia técnica de IA** | Helena é especialista clínica, não em computação. Termos como "LSTM", "bounding box" ou "keypoints" são opacos e podem gerar insegurança sobre o que o sistema está fazendo | A interface deve usar linguagem clínica nos resultados ("percentual de olhar mútuo", "engajamento postural") e reservar terminologia técnica para documentação avançada — nunca na tela principal |
 
 ---
 
@@ -978,7 +993,6 @@ O sistema GAIA é utilizado por **neuropsicólogos, psicólogos clínicos e dema
 ---
 
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. Editado por Plinio Aquino.*
----
 
 ## 🎭 Entrega 9: Cenários de Interação e Design
 *Status: Concluído*
