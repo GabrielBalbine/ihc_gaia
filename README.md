@@ -1097,12 +1097,87 @@ Ela não usa o número como diagnóstico — nunca faria isso. Mas agora, pela p
 ---
 
 ## 🎨 Entrega 11: Protótipo de Alta Fidelidade
-*Status: [Em andamento]*
+*Status: Concluído*
 
-### Link para o Figma
-> [Inserir Link Aqui]
+> **Nota metodológica:** O GAIA encontra-se em estágio de implementação funcional, dispensando a etapa de prototipação em ferramenta dedicada (Figma). As telas apresentadas a seguir são capturas da aplicação real em execução — o que representa, pelo ciclo de Mayhew (Barbosa e Silva, 2010), o nível mais alto de fidelidade possível: o sistema operacional. As decisões de design documentadas nas Entregas 6, 8 e 9 foram implementadas e podem ser verificadas diretamente nas telas abaixo.
 
-*(Inserir alguns prints das telas principais aqui no README)*
+---
+
+### Tela 01 — Login
+
+![Login](./assets/hifi_login.png)
+
+**Decisões de design aplicadas:**
+
+- **Modo escuro por padrão** — resposta direta à restrição contextual de uso noturno documentada na Entrega 8 (1.4). A interface não cansa os olhos da Dra. Helena após um expediente longo.
+- **Toggle de idioma (PT / EN) visível no canto superior direito** — implementação da capacidade bilíngue documentada na Entrega 8 (1.2), acessível antes mesmo do login para eliminar barreiras linguísticas para pesquisadores internacionais da UNSW.
+- **Toggle de tema (Claro / Escuro) acessível sem autenticação** — o usuário configura seu conforto visual antes de qualquer interação com dados clínicos.
+- **Formulário minimalista** — apenas dois campos (usuário e senha) e um botão de ação, aplicando a Lei de Hick-Hyman: zero decisões paralelas na tela de entrada.
+- **Ícone de revelar senha** — reduz erros de digitação, cumprindo a heurística de Nielsen de prevenção de erros.
+
+---
+
+### Tela 02 — Dashboard Admin (Gerenciamento do Dataset)
+
+![Dashboard Admin](./assets/hifi_dashboard_admin.png)
+
+**Decisões de design aplicadas:**
+
+- **Cards de métricas em destaque no topo** — 4 indicadores (Total Sessões, Neurotípico, TEA, Com Dados) permitem ao Admin captar o estado do dataset em menos de 2 segundos, sem ler a lista. Aplica o princípio de hierarquia visual da Gestalt (proximidade e similaridade entre os cards).
+- **Badges coloridos por rótulo (NT verde / TEA)** — uso de cor como canal semiótico para distinção imediata entre categorias, aplicando o princípio de similaridade da Gestalt.
+- **Métricas inline por sessão (G→C, C→G, duração)** — o Admin vê as métricas principais de cada sessão diretamente na lista, sem precisar abrir cada vídeo individualmente — reduz cliques desnecessários (Fitts + Hick).
+- **Campo de busca + filtro por rótulo** — resposta à restrição documentada na Entrega 5 (HTA 3): "com muitos vídeos, localizar um específico pode ser difícil".
+- **Navegação por abas (Dataset / Upload / Análise Corporal / Comparativo)** — separação clara de contextos de trabalho, evitando sobrecarga cognitiva numa única tela.
+
+---
+
+### Tela 03 — Resultado da Análise (Prognóstico LSTM)
+
+![Prognóstico LSTM](./assets/hifi_prognostico.png)
+
+**Decisões de design aplicadas:**
+
+- **Gauge central com P(TEA) em destaque numérico** — o indicador mais crítico (probabilidade de TEA) é o elemento visualmente dominante da tela, captável imediatamente sem leitura sequencial. Implementa a meta de usabilidade quantitativa: "P(TEA) captado em menos de 2 segundos".
+- **Escala de cores verde → vermelho** — linguagem visual universal de risco, sem necessidade de texto explicativo adicional para interpretar a faixa de probabilidade.
+- **Aviso de apoio clínico em banner fixo** — *"Este prognóstico é gerado por um modelo computacional e serve exclusivamente como ferramenta auxiliar. Não constitui diagnóstico clínico."* — implementa a transparência da IA documentada nas metas qualitativas da Entrega 8 e a Resolução CFM nº 2.299/2021.
+- **Cards de métricas comportamentais organizados por dimensão** — Engajamento Visual, Proximidade, Postura e Motor, Padrões Temporais — organização por região comum (Gestalt), separando claramente cada dimensão clínica.
+- **Linguagem clínica nos rótulos** — "Atenção Mutua", "Tendencia Aprox.", "Dist. Maos" em vez de termos técnicos de visão computacional — implementa a implicação de design documentada na restrição "desconforto com terminologia técnica de IA" (Entrega 8, 1.4).
+- **Navegação por abas (Prognóstico LSTM / Atenção / Gaze / Detecção / Postura / Keypoints / Vídeo / Relatório / Dados Brutos)** — o especialista navega para o nível de detalhe que precisa sem ser sobrecarregado por tudo de uma vez. Implementa o drill-down recomendado no HTA 2 (Entrega 5).
+
+---
+
+### Tela 04 — Explorador de Frames (Dados Brutos)
+
+![Dados Brutos](./assets/hifi_dados_brutos.png)
+
+**Decisões de design aplicadas:**
+
+- **Player de vídeo com sobreposições da IA** — bounding boxes de GUARDIAN e CHILD, keypoints do esqueleto, vetores de gaze e overlay de dados do TITAN visíveis diretamente no frame — implementa a funcionalidade central descrita no HTA 3 (Entrega 5): "reproduzir vídeo com anotações da IA".
+- **Slider de navegação por frame** — permite ao especialista ir diretamente a qualquer momento da sessão sem assistir ao vídeo linear, reduzindo drasticamente o tempo de revisão (eficiência documentada nas metas da Entrega 8).
+- **Painel lateral com dados do frame atual** — timestamp, status de ID Lock, Mutual Gaze e detalhes expandíveis de GUARDIAN e CHILD por track ID — informação disponível sob demanda (acordeão), sem poluir a visualização principal.
+- **Overlay TITAN com dados técnicos** — visível no canto superior do frame para usuários avançados (pesquisadores), mas discreto o suficiente para não interferir na visualização clínica. Respeita o princípio de separação entre usuário clínico e usuário pesquisador.
+- **Acesso ao JSON completo do frame** — expansível na base da tela, disponível para pesquisadores sem impactar o fluxo do especialista clínico.
+
+---
+
+### Síntese de Conformidade com as Entregas Anteriores
+
+| Decisão de Design Implementada | Origem |
+| :--- | :--- |
+| Modo escuro por padrão | Entrega 8 — Restrição contextual: uso noturno |
+| Interface bilíngue PT / EN | Entrega 8 — Capacidade adaptativa: colaboração UNSW |
+| Formulário de login minimalista (2 campos) | Entrega 6 — Protótipo de baixa fidelidade; Lei de Hick-Hyman |
+| Gauge P(TEA) como elemento dominante | Entrega 8 — Meta: P(TEA) captado em <2s |
+| Aviso clínico em banner fixo | Entrega 8 — Meta qualitativa: transparência da IA; CFM 2.299/2021 |
+| Linguagem clínica nos rótulos | Entrega 8 — Restrição contextual: desconforto com terminologia técnica |
+| Navegação por abas com drill-down | Entrega 5 — HTA 2: visualizar insights sob demanda |
+| Player com sobreposições ativáveis | Entrega 5 — HTA 3: reproduzir vídeo com anotações da IA |
+| Busca + filtro na lista de sessões | Entrega 5 — HTA 3: localizar vídeo com muitos registros |
+| Cards de métricas por dimensão clínica | Entrega 9 — Cenário de interação: Helena lê indicadores por categoria |
+
+---
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
 
 ---
 
