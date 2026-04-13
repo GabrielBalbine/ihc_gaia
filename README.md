@@ -20,7 +20,7 @@
 | [8](#-entrega-8-engenharia-de-usabilidade) | Engenharia de Usabilidade | ✅ |
 | [9](#-entrega-9-cenários-de-interação-e-design) | Cenários de Interação e Design | ✅ |
 | [10](#️-entrega-10-diagrama-molic) | Diagrama MOLIC | ✅ |
-| [11](#-entrega-11-protótipo-de-alta-fidelidade) | Protótipo de Alta Fidelidade | 🔄 |
+| [11](#-entrega-11-protótipo-de-alta-fidelidade) | Protótipo de Alta Fidelidade | ✅ |
 | [12](#-entrega-12-planejamento-de-usabilidade-decide) | Planejamento de Usabilidade (DECIDE) | 🔄 |
 | [13](#-entrega-13-avaliação-heurística) | Avaliação Heurística | 🔄 |
 | [14](#-entrega-14-avaliação-por-observação) | Avaliação por Observação | 🔄 |
