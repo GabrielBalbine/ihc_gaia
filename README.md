@@ -1181,22 +1181,162 @@ Ela não usa o número como diagnóstico — nunca faria isso. Mas agora, pela p
 
 ---
 
-## 📊 Entrega 12: Planejamento de Usabilidade (DECIDE)
-*Status: [Em andamento]*
+## 📊 Entrega 12: Planejamento da Avaliação de IHC (DECIDE)
+*Status: Concluído*
 
-### a) Planejamento (DECIDE)
-* **D (Determinar):** Objetivos da avaliação.
-* **E (Explorar):** Perguntas a serem respondidas.
-* **C (Escolher):** Métodos de avaliação.
-* **I (Identificar):** Questões práticas (participantes, equipamentos).
-* **D (Decidir):** Como lidar com questões éticas.
-* **E (Avaliar):** Como analisar os dados.
+> Baseado no framework DECIDE (Preece et al., 2002), apresentado em Barbosa e Silva (2010). O planejamento cobre dois métodos complementares: **Avaliação Heurística** (inspeção sem usuários) e **Teste com Usuários** (observação com participantes reais).
 
-### b) Lista de Instrumentos
-* [ ] Termo de Consentimento Livre e Esclarecido (TCLE)
-* [ ] Roteiro de Tarefas
-* [ ] Questionário Pós-Teste
+---
 
+### D — Determinar os Objetivos da Avaliação
+
+A avaliação do GAIA tem como objetivos:
+
+1. **Identificar problemas na interação e na interface** que possam prejudicar a experiência da Dra. Helena (persona primária) durante o uso clínico do sistema.
+2. **Verificar a conformidade com padrões e princípios** de usabilidade estabelecidos (Heurísticas de Nielsen, ISO 9241, Material Design 3).
+3. **Avaliar a apropriação da tecnologia pelos usuários** — verificar se especialistas clínicos sem formação técnica conseguem operar o sistema com autonomia e confiança.
+4. **Medir a eficácia e eficiência do sistema** em relação às metas de usabilidade quantitativas definidas na Entrega 8.
+
+---
+
+### E — Explorar as Perguntas a Serem Respondidas
+
+As perguntas de investigação são derivadas diretamente dos objetivos acima:
+
+#### Sobre problemas na interação e interface
+- O especialista consegue completar o fluxo de upload e visualização de resultado sem auxílio externo?
+- Há elementos da interface que causam confusão ou induzem a erros — especialmente na classificação de rótulo TEA/Neurotípico?
+- O sistema fornece feedback adequado durante o processamento? O usuário sabe o que está acontecendo?
+- O aviso clínico ("não constitui diagnóstico") é percebido e compreendido pelo especialista?
+
+#### Sobre conformidade com padrões
+- Quais heurísticas de Nielsen são violadas e com qual grau de severidade?
+- A hierarquia visual da tela de resultado permite captar o P(TEA) em menos de 2 segundos (meta da Entrega 8)?
+- A linguagem clínica adotada nos rótulos é compreensível para o público-alvo?
+
+#### Sobre apropriação da tecnologia
+- O especialista confia nos dados gerados pela IA como apoio à sua decisão clínica?
+- Após uma sessão de uso, o especialista consegue repetir as tarefas principais sem treinamento adicional?
+- O modo escuro e a interface bilíngue contribuem para o conforto de uso?
+
+#### Sobre eficácia e eficiência
+- O tempo médio para completar o fluxo de upload até visualização do resultado está dentro do limite de 5 minutos estabelecido na Entrega 8?
+- A taxa de conclusão de tarefas sem ajuda atinge o mínimo de 85%?
+- A satisfação geral do usuário atinge pontuação ≥ 4,0 / 5,0?
+
+---
+
+### C — Escolher os Métodos de Avaliação
+
+Serão utilizados dois métodos complementares, aplicados em sequência:
+
+#### Método 1 — Avaliação Heurística (Inspeção)
+- **Tipo:** Inspeção sem usuários
+- **Momento:** Avaliação formativa — antes do teste com usuários, para identificar e corrigir problemas óbvios
+- **Avaliadores:** O próprio pesquisador (autor do TCC), com base nas 10 Heurísticas de Nielsen (1994)
+- **Escopo:** Todas as telas principais — Login, Dashboard Admin, Upload, Resultado do Prognóstico, Explorador de Frames
+- **Dados gerados:** Qualitativos (descrição do problema) e ordinais (grau de severidade 0–4)
+- **Justificativa:** Método de inspeção permite antecipar problemas de uso sem necessidade de recrutar participantes, sendo especialmente eficaz para identificar violações de padrões e inconsistências de interface (Barbosa e Silva, 2010)
+
+#### Método 2 — Teste com Usuários (Observação)
+- **Tipo:** Avaliação somativa com observação em contexto de uso
+- **Momento:** Após as correções decorrentes da Avaliação Heurística
+- **Participantes:** Neuropsicólogos e/ou psicólogos clínicos com experiência em TEA (perfil da persona primária)
+- **Número de participantes:** 3 a 5 especialistas — conforme Nielsen (1994), 5 usuários identificam ~85% dos problemas de usabilidade
+- **Dados gerados:** Quantitativos (tempo de tarefa, taxa de conclusão, erros) e qualitativos (comentários, dificuldades verbalizadas, respostas ao questionário pós-teste)
+- **Justificativa:** O teste com usuários é o único método que captura problemas reais de uso — as diferenças entre quem concebe e quem utiliza não podem ser desprezadas (Barbosa e Silva, 2010)
+
+---
+
+### I — Identificar Questões Práticas
+
+#### Perfil dos Participantes (Teste com Usuários)
+| Critério | Especificação |
+| :--- | :--- |
+| **Formação** | Psicologia, Neuropsicologia, Fonoaudiologia ou área correlata |
+| **Experiência** | Atuação clínica com crianças com TEA ou suspeita de TEA |
+| **Perfil tecnológico** | Intermediário (conforme levantamento da Entrega 7) |
+| **Exclusão** | Profissionais com experiência prévia no sistema GAIA |
+
+#### Tarefas a Serem Realizadas
+As tarefas seguem os fluxos mapeados no HTA (Entrega 5) e no Cenário de Interação (Entrega 9):
+
+| # | Tarefa | Critério de Sucesso |
+| :-: | :--- | :--- |
+| T1 | Fazer login com as credenciais fornecidas como Especialista | Login realizado sem erro em até 1 minuto |
+| T2 | Enviar um vídeo de sessão para análise | Upload concluído sem ajuda externa |
+| T3 | Localizar e interpretar o indicador de risco P(TEA) na tela de resultado | Identificar corretamente o valor e a classificação de risco |
+| T4 | Navegar até a aba "Dados Brutos" e identificar o frame 4160 | Chegada ao frame correto usando o slider |
+| T5 | Exportar o relatório PDF da análise | Download do arquivo concluído |
+
+#### Equipamentos e Recursos
+- Computador com o GAIA em execução (Windows 10/11, GPU NVIDIA)
+- Software de gravação de tela (OBS Studio ou similar) para registro da sessão
+- Termo de Consentimento Livre e Esclarecido (TCLE) impresso
+- Questionário pré-teste (perfil do participante)
+- Questionário pós-teste (satisfação — escala Likert 1–5)
+- Roteiro de observação para anotação de eventos pelo avaliador
+
+#### Ambiente
+- Sala de reunião ou consultório com mesa e computador — contexto próximo ao uso real clínico
+- Avaliador presente na sala para observação, sem interferir nas tarefas
+- Sessão estimada em 40 a 60 minutos por participante
+
+#### Teste-Piloto
+Antes das sessões formais, realizar uma sessão de teste-piloto com um participante interno (colega ou familiar com perfil tecnológico similar) para validar o roteiro, o tempo estimado e identificar falhas no protocolo.
+
+---
+
+### D — Decidir sobre as Questões Éticas
+
+A avaliação envolve participantes humanos e, portanto, segue os princípios da **Resolução nº 196/96 do Conselho Nacional de Saúde**, já adotados na Entrega 7:
+
+| Princípio | Medida adotada |
+| :--- | :--- |
+| **Autonomia** | Participação voluntária, com direito de desistência a qualquer momento sem consequências. Consentimento formalizado via TCLE antes do início |
+| **Não maleficência** | Nenhuma informação real de pacientes é utilizada durante o teste — os vídeos de sessão usados são os do dataset UNSW, já anonimizados e aprovados pelo HREC |
+| **Beneficência** | Os resultados da avaliação serão usados para aprimorar o sistema, beneficiando os próprios especialistas que forem usuários futuros |
+| **Confidencialidade** | Os dados coletados (gravações de tela, questionários) serão tratados de forma anônima e utilizados exclusivamente para fins acadêmicos |
+| **Anonimato** | Os participantes serão identificados apenas por códigos (P1, P2, P3...) nos relatórios |
+
+#### Lista de Instrumentos
+- [ ] Termo de Consentimento Livre e Esclarecido (TCLE)
+- [ ] Questionário pré-teste (perfil do participante)
+- [ ] Roteiro de tarefas (entregue ao participante)
+- [ ] Roteiro de observação (usado pelo avaliador)
+- [ ] Questionário pós-teste (satisfação e percepções)
+
+---
+
+### E — Avaliar, Interpretar e Apresentar os Resultados
+
+#### Avaliação Heurística
+- Cada problema identificado será registrado na tabela da Entrega 13 com: heurística violada, descrição do problema, grau de severidade (0–4) e tela afetada
+- Problemas com severidade 3 (Grave) ou 4 (Catastrófico) serão priorizados para correção antes do teste com usuários
+
+#### Teste com Usuários
+Os dados serão consolidados conforme Barbosa e Silva (2010) — análise intersujeito para identificar recorrências entre participantes:
+
+| Dado coletado | Tipo | Instrumento |
+| :--- | :--- | :--- |
+| Tempo de execução por tarefa | Quantitativo (razão) | Cronômetro / gravação de tela |
+| Taxa de conclusão por tarefa | Quantitativo (razão) | Roteiro de observação |
+| Número de erros por tarefa | Quantitativo (razão) | Roteiro de observação |
+| Satisfação geral (Likert 1–5) | Quantitativo (ordinal) | Questionário pós-teste |
+| Dificuldades e comentários verbalizados | Qualitativo | Anotações do avaliador |
+
+#### Relato dos Resultados (Entrega 14)
+O relato incluirá, conforme Barbosa e Silva (2010):
+- Objetivos e escopo da avaliação
+- Perfil dos participantes
+- Sumário dos dados coletados (tabelas e gráficos)
+- Lista de problemas encontrados por severidade
+- Interpretação e análise dos dados
+- Planejamento de reprojeto para os problemas identificados
+
+---
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. | PREECE, J.; ROGERS, Y.; SHARP, H. Interaction Design. Wiley, 2002.*
 ---
 
 ## 🧐 Entrega 13: Avaliação Heurística
