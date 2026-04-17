@@ -21,7 +21,7 @@
 | [9](#-entrega-9-cenários-de-interação-e-design) | Cenários de Interação e Design | ✅ |
 | [10](#️-entrega-10-diagrama-molic) | Diagrama MOLIC | ✅ |
 | [11](#-entrega-11-protótipo-de-alta-fidelidade) | Protótipo de Alta Fidelidade | ✅ |
-| [12](#-entrega-12-planejamento-de-usabilidade-decide) | Planejamento de Usabilidade (DECIDE) | 🔄 |
+| [12](#-entrega-12-planejamento-de-usabilidade-decide) | Planejamento de Usabilidade (DECIDE) | ✅ |
 | [13](#-entrega-13-avaliação-heurística) | Avaliação Heurística | 🔄 |
 | [14](#-entrega-14-avaliação-por-observação) | Avaliação por Observação | 🔄 |
 
@@ -1333,8 +1333,6 @@ O relato incluirá, conforme Barbosa e Silva (2010):
 - Lista de problemas encontrados por severidade
 - Interpretação e análise dos dados
 - Planejamento de reprojeto para os problemas identificados
-
----
 
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. | PREECE, J.; ROGERS, Y.; SHARP, H. Interaction Design. Wiley, 2002.*
 ---
