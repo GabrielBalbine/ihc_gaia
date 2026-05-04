@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 580" width="1200" height="580">
+  <defs>
+    <style>
+      text { font-family: Consolas, 'Courier New', monospace; }
+      .title { font-size:15px; fill:#1a1a2e; font-weight:700; text-anchor:middle; }
+      .sub   { font-size:10px; fill:#999; text-anchor:middle; }
+      .cn    { font-size:11px; fill:#1a1a2e; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+      .cu    { font-size:9.5px; fill:#1a3a8f; text-anchor:middle; dominant-baseline:central; }
+      .cs    { font-size:9.5px; fill:#1a6b2a; text-anchor:middle; dominant-baseline:central; }
+      .cr    { font-size:9.5px; fill:#b36000; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+      .el    { font-size:9px; fill:#555; text-anchor:middle; }
+      .rl    { font-size:9px; fill:#b36000; text-anchor:middle; }
+      .leg   { font-size:10.5px; fill:#444; dominant-baseline:central; }
+      .e     { stroke:#1a1a2e; stroke-width:1.8; fill:none; }
+      .er    { stroke:#d4820a; stroke-width:1.5; fill:none; stroke-dasharray:6,3; }
+    </style>
+    <marker id="arr"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a1a2e"/>
+    </marker>
+    <marker id="arrr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#d4820a"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="580" fill="#f7f4ef" rx="10"/>
+  <text x="600" y="28" class="title">Diagrama MOLIC — GAIA · Fluxo do Especialista</text>
+  <text x="600" y="46" class="sub">Fluxo real implementado — gaia_app.py · Barbosa e Silva (2010)</text>
+
+  <!-- ══════════════════════════════════
+       LINHA 1 (Y=110): INÍCIO → C1 → C2
+  ══════════════════════════════════ -->
+
+  <!-- INÍCIO -->
+  <ellipse cx="80" cy="110" rx="55" ry="26" fill="#1a1a2e"/>
+  <text x="80" y="110" class="cn" fill="#fff">INÍCIO</text>
+
+  <!-- C1: Login -->
+  <rect x="164" y="82" width="260" height="56" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="294" y="100" class="cn">C1: Tela de Login</text>
+  <text x="294" y="116" class="cu">U: Seleciona perfil + credenciais</text>
+  <text x="294" y="130" class="cs">S: Valida → redireciona dashboard</text>
+
+  <!-- C2: Dashboard -->
+  <rect x="464" y="82" width="300" height="56" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="614" y="100" class="cn">C2: Dashboard Especialista</text>
+  <text x="614" y="116" class="cu">U: Busca / filtra sessão processada</text>
+  <text x="614" y="130" class="cs">S: Lista sessões com métricas inline</text>
+
+  <!-- ══════════════════════════════════
+       LINHA 2 (Y=280): C3 → C4 → FIM
+  ══════════════════════════════════ -->
+
+  <!-- C3: Resultado -->
+  <rect x="464" y="248" width="340" height="86" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="634" y="268" class="cn">C3: Resultado / Prognóstico</text>
+  <text x="634" y="284" class="cs">S: Exibe P(TEA) + métricas comportamentais</text>
+  <text x="634" y="298" class="cu">U: Lê indicadores e navega pelas abas</text>
+  <text x="634" y="312" class="cs">S: Abas: Atenção, Gaze, Postura, Vídeo...</text>
+  <text x="634" y="326" class="cs">S: Aviso "não constitui diagnóstico"</text>
+
+  <!-- C4: Exportar -->
+  <rect x="860" y="262" width="230" height="58" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="975" y="282" class="cn">C4: Exportar Relatório</text>
+  <text x="975" y="298" class="cu">U: Acessa aba "Relatório"</text>
+  <text x="975" y="312" class="cs">S: Exibe relatório TITAN / PDF</text>
+
+  <!-- FIM -->
+  <ellipse cx="294" cy="291" rx="70" ry="28" fill="#1a6b2a"/>
+  <text x="294" y="291" class="cn" fill="#fff">FIM / Home</text>
+
+  <!-- ══════════════════════════════════
+       ARESTAS NORMAIS
+  ══════════════════════════════════ -->
+
+  <!-- INÍCIO → C1 -->
+  <line x1="135" y1="110" x2="162" y2="110" class="e" marker-end="url(#arr)"/>
+
+  <!-- C1 → C2 -->
+  <line x1="424" y1="110" x2="462" y2="110" class="e" marker-end="url(#arr)"/>
+  <text x="443" y="103" class="el">login OK</text>
+
+  <!-- C2 → C3 (desce) -->
+  <line x1="614" y1="138" x2="614" y2="246" class="e" marker-end="url(#arr)"/>
+  <text x="638" y="194" class="el">clica "Analisar"</text>
+
+  <!-- C3 → C4 (vai direita) -->
+  <line x1="804" y1="291" x2="858" y2="291" class="e" marker-end="url(#arr)"/>
+  <text x="831" y="283" class="el">aba Relatório</text>
+
+  <!-- C3 → FIM (vai esquerda) -->
+  <line x1="464" y1="291" x2="366" y2="291" class="e" marker-end="url(#arr)"/>
+  <text x="415" y="283" class="el">← Home</text>
+
+  <!-- C4 → FIM (curva para baixo e esquerda) -->
+  <path d="M975,320 Q975,380 600,380 Q380,380 366,295" class="e" fill="none" marker-end="url(#arr)"/>
+  <text x="680" y="395" class="el">← Home</text>
+
+  <!-- C2 → FIM direto (ver sessão sem dados) -->
+  <path d="M614,138 Q614,175 450,220 Q380,245 366,278" class="e" fill="none" marker-end="url(#arr)"/>
+  <text x="470" y="200" class="el">sem dados</text>
+
+  <!-- ══════════════════════════════════
+       RUPTURAS
+  ══════════════════════════════════ -->
+
+  <!-- R1: Credencial inválida — abaixo de C1 -->
+  <polygon points="294,170 330,192 294,214 258,192" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="294" y="188" class="cr">R1</text>
+  <text x="294" y="200" class="cr" style="font-size:8.5px;">Credencial inválida</text>
+
+  <line x1="294" y1="138" x2="294" y2="168" class="er" marker-end="url(#arrr)"/>
+  <path d="M258,192 Q210,192 210,138 Q210,110 164,110" class="er" marker-end="url(#arrr)"/>
+  <text x="185" y="165" class="rl">retry</text>
+
+  <!-- R2: JSON vazio/corrompido — à direita de C2 -->
+  <polygon points="830,110 866,130 830,150 794,130" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="830" y="126" class="cr">R2</text>
+  <text x="830" y="138" class="cr" style="font-size:8.5px;">JSON sem dados</text>
+
+  <line x1="764" y1="110" x2="792" y2="110" class="er" marker-end="url(#arrr)"/>
+  <path d="M866,130 Q920,130 920,80 Q920,60 764,60 Q614,60 464,62" class="er" marker-end="url(#arrr)"/>
+  <text x="690" y="52" class="rl">volta ao dashboard</text>
+
+  <!-- R3: Falha exportação — abaixo de C4 -->
+  <polygon points="975,350 1015,372 975,394 935,372" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="975" y="368" class="cr">R3</text>
+  <text x="975" y="380" class="cr" style="font-size:8.5px;">Falha na exportação</text>
+
+  <line x1="975" y1="320" x2="975" y2="348" class="er" marker-end="url(#arrr)"/>
+  <path d="M1015,372 Q1060,372 1060,291 Q1060,248 1092,248 Q1092,248 1092,248" class="er"/>
+  <path d="M1060,291 Q1060,230 860,262" class="er" marker-end="url(#arrr)"/>
+  <text x="1065" y="255" class="rl">retry</text>
+
+  <!-- ══════════════════════════════════
+       NOTA: FLUXO ADMIN
+  ══════════════════════════════════ -->
+  <rect x="60" y="420" width="500" height="52" rx="5" fill="#f0f0ff" stroke="#9999cc" stroke-width="1.5"/>
+  <text x="80" y="440" style="font-size:10px;fill:#333;font-weight:700;">📌 Fluxo Admin (separado):</text>
+  <text x="80" y="456" style="font-size:9.5px;fill:#555;">Login (Admin) → Dashboard Admin → Seleciona sessão → Detalhes / Upload novo vídeo</text>
+  <text x="80" y="469" style="font-size:9.5px;fill:#555;">Upload de vídeo novo é função exclusiva do módulo Admin — não faz parte do fluxo do Especialista</text>
+
+  <!-- LEGENDA -->
+  <rect x="60" y="418" width="1100" height="116" rx="5" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <text x="80" y="434" style="font-size:11px;fill:#1a1a2e;font-weight:700;dominant-baseline:central;">Legenda</text>
+
+  <!-- Item 1: Cena -->
+  <rect x="80" y="446" width="52" height="20" rx="3" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="106" y="456" class="cn">Cena</text>
+  <text x="140" y="456" class="leg">= estado da interface onde ocorre interação (falas U e S)</text>
+
+  <!-- Item 2: Ruptura -->
+  <polygon points="96,476 116,488 96,500 76,488" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="96" y="488" class="cr" style="font-size:8.5px;">R</text>
+  <text x="126" y="488" class="leg">= Ruptura de comunicação (erro ou desvio do fluxo normal)</text>
+
+  <!-- Item 3: Fluxo normal -->
+  <line x1="80" y1="518" x2="128" y2="518" class="e" marker-end="url(#arr)"/>
+  <text x="138" y="518" class="leg">= Fluxo normal de interação</text>
+
+  <!-- Item 4: Fluxo ruptura -->
+  <line x1="400" y1="518" x2="448" y2="518" class="er" marker-end="url(#arrr)"/>
+  <text x="458" y="518" class="leg">= Fluxo de ruptura / recuperação (retry)</text>
+
+  <!-- U/S -->
+  <text x="750" y="456" style="font-size:9.5px;fill:#1a3a8f;font-weight:700;dominant-baseline:central;">U:</text>
+  <text x="766" y="456" style="font-size:9.5px;fill:#444;dominant-baseline:central;">fala do usuário</text>
+  <text x="750" y="488" style="font-size:9.5px;fill:#1a6b2a;font-weight:700;dominant-baseline:central;">S:</text>
+  <text x="766" y="488" style="font-size:9.5px;fill:#444;dominant-baseline:central;">fala do sistema</text>
+  <text x="750" y="518" style="font-size:9px;fill:#999;dominant-baseline:central;">Elipses = estados terminais (Início / Fim)</text>
+
+</svg>
