@@ -1174,8 +1174,6 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 | Busca + filtro na lista de sessões | Entrega 5 — HTA 3: localizar vídeo com muitos registros |
 | Cards de métricas por dimensão clínica | Entrega 9 — Cenário de interação: Helena lê indicadores por categoria |
 
----
-
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
 
 ---
