@@ -1001,17 +1001,19 @@ O sistema GAIA é utilizado por **neuropsicólogos, psicólogos clínicos e dema
 
 ### 1) Cenário de Interação
 
-> Reescrita do cenário-problema (Entrega 4), agora incluindo a interação da Dra. Helena com o sistema GAIA.
+> Reescrita do cenário-problema (Entrega 4), agora incluindo a interação da Dra. Helena com o sistema GAIA conforme implementado.
 
 ---
 
-É quinta-feira à noite. Helena chega em casa às 21h, após um dia intenso de atendimentos. Na semana passada ela gravou a sessão lúdica de J., uma criança de 4 anos com suspeita de TEA, e prometeu à família um retorno até o final da semana. Ela abre o notebook, acessa o GAIA pelo navegador e faz login com suas credenciais de especialista.
+É quinta-feira à noite. Helena chega em casa às 21h, após um dia intenso de atendimentos. Na semana passada o pipeline TITAN processou automaticamente a sessão de J., uma criança de 4 anos com suspeita de TEA, e ela prometeu à família um retorno até o final da semana. Ela abre o notebook, acessa o GAIA pelo navegador e faz login com suas credenciais de especialista.
 
-Na dashboard, ela vê suas análises anteriores listadas em cards organizados. Clica no botão "＋", preenche o identificador anonimizado do paciente ("J.M.S") e o número da sessão, e arrasta o arquivo de vídeo para a zona de upload. Em segundos, o sistema confirma o recebimento e exibe uma barra de progresso indicando que o pipeline está em execução — YOLOv8, BoTSORT e MediaPipe processando cada frame em segundo plano. Helena vai preparar um chá.
+No dashboard, ela vê todas as sessões já processadas listadas em cards — nome da sessão, badge NT/TEA e as métricas principais inline (G→C%, C→G%, duração). Ela digita "J" no campo de busca e a sessão aparece de imediato. Clica em "Analisar".
 
-Quando volta, o resultado já está disponível. Na tela de prognóstico, ela vê o indicador central: **P(TEA) = 74% — Risco Moderado-Alto**. Abaixo, os indicadores comportamentais detalham o que o modelo identificou: apenas 31% de olhar mútuo ao longo da sessão, distância interpessoal média de 2,1 metros (acima do esperado para a faixa etária) e baixo engajamento postural. O player de vídeo à direita exibe a sessão com as anotações da IA sobrepostas — bounding boxes, face mesh e vetores de gaze — e Helena pode ativar ou desativar cada camada individualmente para confirmar visualmente os comportamentos que o sistema sinalizou.
+Em instantes, a tela de prognóstico carrega. O indicador central exibe **P(TEA) = 28,6%** — baixo risco, mas com intervalos de confiança amplos. Abaixo, os cards comportamentais detalham o que o modelo identificou: 5,1% de atenção mútua, distância média de 215px entre os participantes. Helena navega pelas abas — Atenção, Gaze, Postura, Vídeo — revisando cada dimensão clínica. Na aba "Vídeo", ela assiste à sessão com os bounding boxes e keypoints sobrepostos, podendo pausar em qualquer frame de interesse.
 
-Ela não usa o número como diagnóstico — nunca faria isso. Mas agora, pela primeira vez, ela tem dados objetivos que corroboram o que sua intuição clínica já indicava. Exporta o relatório em PDF, que acompanhará suas anotações no laudo. São 22h15. Ela fecha o notebook e vai jantar com a família — algo que raramente conseguia fazer quando o processo era inteiramente manual.
+Ela lê o aviso fixo na tela: *"Este prognóstico é gerado por um modelo computacional e serve exclusivamente como ferramenta auxiliar. Não constitui diagnóstico clínico."* — e concorda. Não usa o número como diagnóstico, mas como referência objetiva que corrobora (ou questiona) sua leitura clínica. Acessa a aba "Relatório" e salva o documento gerado pelo TITAN, que acompanhará suas anotações no laudo.
+
+São 22h10. Ela fecha o notebook e vai jantar com a família.
 
 ---
 
@@ -1020,48 +1022,45 @@ Ela não usa o número como diagnóstico — nunca faria isso. Mas agora, pela p
 | Tópico > Subtópico | U = Usuário (Helena) · S = Sistema (GAIA) |
 | :--- | :--- |
 | **Acesso ao sistema** | |
-| > Autenticação | U: Acessa o GAIA pelo navegador e insere e-mail + senha |
-| | S: Valida as credenciais e exibe a dashboard personalizada da especialista |
-| > Perfil errado | U: Insere credenciais de Admin no perfil Especialista |
-| | S: Exibe mensagem "Perfil de acesso incompatível. Verifique o toggle de perfil." |
+| > Autenticação | U: Acessa o GAIA pelo navegador, seleciona perfil Especialista e insere credenciais |
+| | S: Valida as credenciais e exibe o dashboard do especialista com a lista de sessões |
+| > Credencial inválida | U: Digita senha incorreta |
+| | S: Exibe mensagem de erro e mantém o formulário para nova tentativa |
 | **Dashboard** | |
-| > Visualização de análises | U: Visualiza os cards das análises anteriores com nome do paciente, sessão e data |
-| | S: Lista as análises em ordem cronológica decrescente com status (Processado / Em fila) |
-| > Iniciar nova análise | U: Clica no botão "＋" |
-| | S: Abre o formulário de nova análise com campos de identificação e zona de upload |
-| **Upload de vídeo** | |
-| > Seleção do arquivo | U: Preenche identificador do paciente, número da sessão e arrasta o vídeo para a zona de upload |
-| | S: Confirma o recebimento com card de sucesso mostrando nome do arquivo e tamanho |
-| > Formato inválido | U: Tenta enviar um arquivo .wmv |
-| | S: Exibe alerta "Formato não suportado. Use .mp4, .avi ou .mov." e mantém a zona de upload ativa |
-| > Arquivo muito grande | U: Tenta enviar vídeo maior que 2 GB |
-| | S: Exibe alerta "Arquivo excede o limite de 2 GB." e sugere compressão antes do reenvio |
-| **Processamento** | |
-| > Acompanhamento | U: Aguarda o processamento do pipeline |
-| | S: Exibe barra de progresso com percentual e tempo estimado restante em tempo real |
-| > Processamento concluído | S: Exibe notificação "Análise concluída — clique para ver o resultado" |
+| > Visualização de sessões | U: Visualiza os cards das sessões processadas com métricas inline (G→C%, C→G%, duração, badge NT/TEA) |
+| | S: Lista todas as sessões descobertas em `output/`, ordenadas por grupo |
+| > Busca de sessão | U: Digita identificador no campo de busca (ex.: "H016") |
+| | S: Filtra a lista em tempo real exibindo apenas as sessões correspondentes |
+| > Filtro por grupo | U: Seleciona "Neurotípico" ou "TEA" no seletor de filtro |
+| | S: Exibe apenas as sessões do grupo selecionado |
+| > Sessão sem dados | U: Clica em "Analisar" em uma sessão com JSON vazio ou corrompido |
+| | S: Exibe aviso "Não foi possível carregar os dados JSON desta sessão" |
+| > Iniciar análise | U: Clica em "Analisar" em uma sessão com dados válidos |
+| | S: Carrega a tela de resultado com todos os indicadores da sessão |
 | **Resultado do prognóstico** | |
 | > Indicador principal | U: Visualiza a tela de resultado |
-| | S: Exibe P(TEA) em destaque com barra de risco colorida (verde → vermelho) e classificação textual |
-| > Métricas comportamentais | U: Lê os indicadores individuais |
-| | S: Apresenta % olhar mútuo, distância interpessoal, engajamento postural e variância de movimento em cards com referência ao valor esperado para a faixa etária |
-| > Player de vídeo | U: Reproduz o vídeo com anotações da IA |
-| | S: Exibe o player com sobreposições visuais (bounding box, face mesh, gaze). Permite ativar/desativar camadas individualmente |
-| > Interpretação da IA | U: Lê os insights automáticos |
-| | S: Lista os 3 principais comportamentos sinalizados com ícone (⚠ atenção / ✓ dentro do esperado) e justificativa textual |
-| > Aviso clínico | S: Exibe nota fixa "Este resultado é uma estimativa de apoio à decisão clínica. O diagnóstico é responsabilidade exclusiva do especialista." |
+| | S: Exibe o gauge de P(TEA) com valor percentual, IC 95% e número de janelas temporais analisadas |
+| > Aviso clínico | S: Exibe banner fixo "Este prognóstico é gerado por um modelo computacional e serve exclusivamente como ferramenta auxiliar. Não constitui diagnóstico clínico." |
+| > Métricas comportamentais | U: Lê os cards de Engajamento Visual, Proximidade, Postura e Motor, Padrões Temporais |
+| | S: Apresenta cada dimensão clínica com valores numéricos extraídos do JSON do TITAN |
+| > Navegação por abas | U: Clica nas abas (Atenção / Gaze / Detecção / Postura / Keypoints / Vídeo / Relatório / Dados Brutos) |
+| | S: Exibe o conteúdo da aba selecionada sem recarregar a página |
+| > Player de vídeo | U: Acessa a aba "Vídeo" e reproduz a sessão |
+| | S: Exibe o player com o vídeo processado pelo TITAN (bounding boxes, keypoints, gaze) |
+| > Explorador de frames | U: Acessa "Dados Brutos" e arrasta o slider para o frame desejado |
+| | S: Exibe o frame selecionado com dados técnicos do TITAN e o JSON completo do frame expansível |
 | **Exportação** | |
-| > Relatório PDF | U: Clica em "Exportar Relatório PDF" |
-| | S: Gera e baixa automaticamente o relatório com métricas, indicador de risco e dados da sessão |
+| > Relatório | U: Acessa a aba "Relatório" |
+| | S: Exibe o relatório textual gerado pelo TITAN para download e consulta |
 | **Navegação** | |
-| > Retornar à dashboard | U: Clica no ícone "Home" na topbar |
-| | S: Retorna à dashboard principal mantendo o histórico de análises atualizado |
+| > Retornar ao dashboard | U: Clica em "← Voltar ao Painel" |
+| | S: Retorna ao dashboard mantendo o estado de busca e filtro |
 
 ---
 
 ### 3) Mapa de Objetivos
 
-> Diagrama representando a hierarquia de objetivos do usuário (Dra. Helena) ao interagir com o sistema GAIA, do objetivo principal até as ações concretas na interface.
+> Diagrama representando a hierarquia de objetivos do usuário (Dra. Helena) ao interagir com o sistema GAIA, conforme o fluxo real implementado no `gaia_app.py`.
 
 ![Mapa de Objetivos](./assets/entrega9_mapa_objetivos.svg)
 
@@ -1071,15 +1070,15 @@ Ela não usa o número como diagnóstico — nunca faria isso. Mas agora, pela p
 
 | Signo | Origem | Tipo de Conteúdo | Restrição | Prevenção | Recuperação |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Identificador do paciente** | Domínio clínico | Texto alfanumérico anonimizado | Não nulo; sem dados pessoais identificáveis | Campo obrigatório com placeholder "Ex.: J.M.S" | Mensagem de erro: "Campo obrigatório" |
-| **Número da sessão** | Domínio clínico | Texto / número | Não nulo | Campo obrigatório com placeholder "Ex.: Sessão 1" | Mensagem de erro: "Campo obrigatório" |
-| **Arquivo de vídeo** | Domínio clínico | Arquivo binário (.mp4, .avi, .mov) | Formato e tamanho (≤ 2 GB) | Zona de upload com indicação de formatos aceitos | Alerta de formato inválido com instrução de reenvio |
-| **Barra de progresso** | Interface / sistema | Visual (percentual + tempo restante) | Atualização em tempo real durante o processamento | Exibida automaticamente após upload confirmado | Se o processamento falhar: mensagem "Erro no processamento — tente novamente" |
-| **P(TEA) — Indicador de risco** | Saída do modelo LSTM | Numérico (0–100%) + classificação textual | Deve ser acompanhado do aviso clínico obrigatório | Aviso fixo: "Estimativa de apoio — não substitui diagnóstico" | N/A — dado de leitura, não editável |
-| **Métricas comportamentais** | Saída do pipeline de visão | Numérico (% ou metros) | Requer mínimo de frames válidos processados | Exibidas apenas quando há dados suficientes; caso contrário, flag "Dados insuficientes" | Flag "Dados insuficientes" com orientação de re-upload |
-| **Toggle de camadas do player** | Interface | Estado booleano (on/off) por camada | Pelo menos 1 camada deve permanecer ativa | Desabilitar o último toggle exibe tooltip "Ative ao menos uma camada" | Reativar a camada desativada inadvertidamente |
-| **Botão "Exportar PDF"** | Interface | Ação (download de arquivo) | Disponível apenas após processamento concluído | Botão desabilitado (cinza) durante processamento | Caso o download falhe: "Erro ao gerar relatório — tente novamente" |
-| **Perfil de acesso (toggle Login)** | Sistema de autenticação | Estado binário (Admin / Especialista) | Deve ser selecionado antes do login | Toggle visível na tela de login com destaque no estado ativo | Mensagem de perfil incompatível com instrução de correção |
+| **Campo de busca de sessão** | Interface | Texto livre | Nenhuma restrição de formato | Placeholder "Ex.: H017, C1009..." orienta o usuário | Sem resultado → lista vazia com mensagem "Nenhuma sessão encontrada" |
+| **Badge NT / TEA** | Pipeline TITAN | Rótulo binário (cor + texto) | Definido no momento do processamento | Verde = Neurotípico · Vermelho/destaque = TEA — uso consistente de cor | N/A — dado de leitura |
+| **Botão "Analisar"** | Interface | Ação (navegação para resultado) | Disponível apenas em sessões com JSON válido | Sessão sem dados exibe aviso antes de tentar carregar | Mensagem de erro com orientação se o JSON estiver corrompido |
+| **Gauge P(TEA)** | Saída do modelo LSTM | Numérico (0–100%) + IC 95% | Deve ser acompanhado do aviso clínico | Banner fixo sempre visível na aba de Prognóstico | N/A — dado de leitura, não editável |
+| **Métricas comportamentais (G→C, C→G, Mútua)** | Saída do pipeline TITAN | Numérico (%) | Requer mínimo de frames válidos | Exibidas apenas quando JSON tem dados suficientes | Flag "dados insuficientes" no card da sessão |
+| **Abas de resultado** | Interface | Estado de navegação | Uma aba ativa por vez | Aba atual destacada com sublinhado vermelho | Voltar à aba anterior clicando nela |
+| **Slider de navegação de frames** | Interface | Inteiro (número do frame) | Limitado ao range 0–N do JSON | Label do frame atual exibido acima do slider | Soltar o slider atualiza o frame exibido |
+| **Aviso clínico (banner fixo)** | Interface | Texto estático informativo | Sempre visível — não pode ser fechado | Posicionado antes dos resultados, impossível de ignorar | N/A — não é interativo |
+| **Relatório TITAN** | Saída do pipeline | Texto estruturado | Disponível apenas se o arquivo de relatório existir | Aba "Relatório" exibe aviso se arquivo não encontrado | Instrução para reprocessar a sessão pelo TITAN |
 
 ---
 
