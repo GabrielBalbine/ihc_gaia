@@ -22,8 +22,8 @@
 | [10](#️-entrega-10-diagrama-molic) | Diagrama MOLIC | ✅ |
 | [11](#-entrega-11-protótipo-de-alta-fidelidade) | Protótipo de Alta Fidelidade | ✅ |
 | [12](#-entrega-12-planejamento-da-avaliação-de-ihc-decide) | Planejamento de Usabilidade (DECIDE) | ✅ |
-| [13](#-entrega-13-avaliação-heurística) | Avaliação Heurística | 🔄 |
-| [14](#-entrega-14-avaliação-por-observação) | Avaliação por Observação | 🔄 |
+| [13](#-entrega-13-avaliação-heurística) | Avaliação Heurística | ✅ |
+| [14](#-entrega-14-avaliação-por-observação) | Avaliação por Observação | ✅ |
 
 ---
 
@@ -1335,50 +1335,210 @@ O relato incluirá, conforme Barbosa e Silva (2010):
 ---
 
 ## 🧐 Entrega 13: Avaliação Heurística
-*Status: [Em andamento]*
+*Status: Concluído*
 
-### A) Violações Encontradas (Heurísticas de Nielsen)
-
-| ID | Heurística Violada | Descrição do Problema | Grau de Severidade (0-4) | Local (Tela) |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | [Ex: Visibilidade do Status] | [O sistema não avisa quando o upload termina] | 3 (Grave) | Tela de Upload |
-
-*Legenda Severidade:*
-* 0: Sem importância
-* 1: Cosmético
-* 2: Simples
-* 3: Grave
-* 4: Catastrófico
-
-### B) Boas Práticas (Exemplos de Sucesso)
-> [Print de uma tela onde uma heurística foi muito bem aplicada]
+> Método de inspeção baseado nas **10 Heurísticas de Nielsen (1994)**, aplicado pelo avaliador (autor do TCC) sobre as telas funcionais do sistema GAIA. A avaliação cobre as telas principais: Login, Dashboard Admin (com upload), Dashboard Especialista, Resultado do Prognóstico e Explorador de Frames.
+>
+> **Escala de severidade adotada (Nielsen, 1994):**
+> `0` = Sem problema · `1` = Cosmético · `2` = Simples · `3` = Grave · `4` = Catastrófico
 
 ---
 
-## 🧪 Entrega 14: Avaliação por Observação
-*Status: [Em andamento]*
 
-### A) Fluxograma de Avaliação
-> [Imagem do fluxo]
+### A) Fluxograma da Avaliação Heurística
+
+> Baseado no modelo apresentado em aula, aplicado ao contexto do GAIA. O avaliador é o próprio autor do TCC; o passo 7 (debate) foi realizado com o orientador Prof. Dr. Victor Varela.
+
+![Fluxograma Avaliação Heurística](./assets/entrega13_fluxograma.svg)
+
+---
+
+### B) Violações Encontradas
+
+| ID | Heurística Violada | Descrição do Problema | Severidade | Tela |
+| :-: | :--- | :--- | :-: | :--- |
+| **H01** | **H1 — Visibilidade do status do sistema** | No módulo Admin, após o upload de um vídeo novo, não há estimativa de tempo restante para o processamento pelo pipeline TITAN. O Admin inicia o upload mas não sabe se o processamento levará 2 ou 20 minutos para concluir | 3 | Dashboard Admin — Upload |
+| **H02** | **H2 — Correspondência entre o sistema e o mundo real** | Os rótulos "G→C" e "C→G" na listagem do Dashboard Admin referenciam direção do gaze (Guardian→Child e Child→Guardian) sem qualquer legenda ou tooltip explicativo. Para um especialista clínico sem formação em visão computacional, o significado é opaco | 2 | Dashboard Admin |
+| **H03** | **H3 — Controle e liberdade do usuário** | No módulo Admin, não há botão de cancelamento após o início do upload de um vídeo novo. Enviado o arquivo errado, o Admin é obrigado a aguardar a conclusão do pipeline antes de corrigir o erro | 3 | Dashboard Admin — Upload |
+| **H04** | **H4 — Consistência e padronização** | A navegação por abas usa nomenclaturas mistas: "Prognostico LSTM" usa nome técnico do modelo, enquanto as demais abas ("Atenção", "Gaze", "Postura") usam termos clínicos. A mistura de vocabulários técnico e clínico quebra a consistência terminológica | 2 | Resultado |
+| **H05** | **H5 — Prevenção de erros** | No Dashboard Admin, o botão "Analisar" de cada sessão não exige confirmação antes de iniciar o reprocessamento. Um clique acidental reinicia o pipeline de um vídeo já processado, consumindo recursos computacionais desnecessariamente | 2 | Dashboard Admin |
+| **H06** | **H6 — Reconhecimento em vez de memorização** | Na aba "Dados Brutos", o slider de navegação por frame não exibe o timestamp correspondente enquanto o usuário arrasta — apenas ao soltar. O especialista precisa memorizar a posição aproximada do evento que quer inspecionar, em vez de ver o tempo em tempo real | 2 | Dados Brutos |
+| **H07** | **H7 — Flexibilidade e eficiência de uso** | Não há atalhos de teclado para as ações mais frequentes (avançar/retroceder frame, alternar entre abas, iniciar análise). Usuários avançados que usam o sistema repetidamente são obrigados a usar o mouse para todas as interações | 1 | Global |
+| **H08** | **H8 — Estética e design minimalista** | A tela de Resultado do Prognóstico apresenta 9 abas simultaneamente visíveis (Prognóstico LSTM, Atenção, Gaze, Detecção, Postura, Keypoints, Vídeo, Relatório, Dados Brutos). Para um especialista clínico, a maioria das abas técnicas é raramente acessada, mas a carga visual é a mesma que as abas clínicas relevantes | 2 | Resultado |
+| **H09** | **H9 — Ajuda aos usuários para reconhecer, diagnosticar e recuperar erros** | Quando o Especialista tenta analisar uma sessão com JSON vazio ou frames insuficientes, a mensagem exibida é genérica. O sistema não orienta sobre o motivo nem sobre como proceder — reprocessar? verificar câmera? — deixando o usuário sem saída clara | 3 | Dashboard Especialista |
+| **H10** | **H10 — Ajuda e documentação** | O sistema não possui seção de ajuda, FAQ ou tooltips contextuais nas métricas comportamentais. Um especialista que não saiba o que significa "Maior Streak G" ou "Tendência Aprox." não tem onde buscar explicação sem sair da interface | 2 | Global |
+| **H11** | **H1 — Visibilidade do status do sistema** | O indicador "ID Locked: True \| Mutual: False" na aba Dados Brutos usa terminologia técnica interna do pipeline TITAN sem tradução clínica. O especialista não consegue interpretar o que "ID Locked" significa para o caso em análise | 2 | Dados Brutos |
+| **H12** | **H5 — Prevenção de erros** | A tela de login não apresenta o seletor de perfil (Admin / Especialista) de forma visualmente destacada. Um admin que faça login como Especialista por engano terá acesso restrito sem entender o motivo, e o erro não é facilmente reversível sem novo login | 2 | Login |
+
+---
+
+### C) Boas Práticas Identificadas
+
+As decisões de design a seguir representam aplicações bem-sucedidas dos princípios de IHC no GAIA:
+
+| Heurística | Boa Prática Identificada | Tela |
+| :--- | :--- | :--- |
+| **H1 — Visibilidade** | O banner fixo de aviso clínico ("Não constitui diagnóstico clínico") está sempre visível na aba de Prognóstico, sem necessidade de scroll, garantindo que o especialista jamais perca o contexto do resultado | Resultado |
+| **H4 — Consistência** | Os badges de rótulo (NT verde / TEA) são aplicados de forma consistente em todas as listagens — Dashboard Admin e lista de sessões — usando sempre a mesma cor e formato | Dashboard Admin |
+| **H6 — Reconhecimento** | Os cards de métricas no topo do Dashboard Admin (Total Sessões, Neurotípico, TEA, Com Dados) permitem ao Admin captar o estado do dataset imediatamente, sem precisar navegar ou lembrar de valores anteriores | Dashboard Admin |
+| **H8 — Minimalismo** | A tela de Login é extremamente enxuta: apenas logo, dois campos e um botão de ação. Nenhum elemento visual desnecessário compete com a tarefa principal | Login |
+| **H2 — Mundo real** | A linguagem clínica adotada nos cards de resultado ("Atenção Mutua", "Dist. Maos", "Tendencia Aprox.") aproxima a interface do vocabulário do especialista, reduzindo a carga de tradução mental | Resultado |
+| **H3 — Controle** | O toggle de tema (Claro/Escuro) e o seletor de idioma (PT/EN) estão disponíveis na tela de Login, antes mesmo da autenticação, dando ao usuário controle sobre seu conforto antes de qualquer interação com dados clínicos | Login |
+
+---
+
+### D) Síntese por Prioridade de Correção
+
+| Prioridade | Violações | Ação Recomendada |
+| :-: | :--- | :--- |
+| 🔴 **Alta** (Sev. 3) | H01, H03, H09 | H01 e H03: impactam o fluxo de upload do Admin. H09: impacta o Especialista ao tentar analisar sessão com dados inválidos |
+| 🟡 **Média** (Sev. 2) | H02, H04, H05, H06, H08, H10, H11, H12 | Corrigir no próximo ciclo de desenvolvimento |
+| 🟢 **Baixa** (Sev. 1) | H07 | Melhorias futuras — não bloqueia o uso |
+
+*Referência: NIELSEN, J. Heuristic Evaluation. In: NIELSEN, J.; MACK, R. L. Usability Inspection Methods. Wiley, 1994. | BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
+
+---
+
+## 🧪 Entrega 14: Avaliação por Observação (Teste com Usuários)
+*Status: Concluído*
+
+> Método de observação com participante especialista no domínio, executado conforme o planejamento da Entrega 12 (DECIDE). Em razão do caráter acadêmico do projeto e da dificuldade de acesso a neuropsicólogos clínicos disponíveis para sessões formais, a avaliação foi realizada com o orientador do TCC — Prof. Dr. Victor Perrone de Lima Varela — pesquisador em neurodesenvolvimento com experiência direta no contexto de TEA e nas sessões do dataset utilizado pelo GAIA.
+
+---
+
+### A) Fluxograma da Avaliação
+
+```
+PREPARAÇÃO
+    │
+    ├── Recrutar participante (orientador — domínio TEA / neurodesenvolvimento)
+    ├── Preparar ambiente (GAIA em execução, gravação de tela via OBS)
+    ├── Preparar TCLE, roteiro de tarefas e questionário pós-teste
+    └── Realizar teste-piloto (autor do TCC)
+          │
+          ▼
+SESSÃO (~50 min)
+    │
+    ├── 1. Apresentação dos objetivos da avaliação (~5 min)
+    ├── 2. Assinatura do TCLE
+    ├── 3. Questionário pré-teste (perfil)
+    ├── 4. Exploração livre do sistema (~5 min)
+    ├── 5. Execução das tarefas T1–T5 (observação sem interferência)
+    ├── 6. Questionário pós-teste (satisfação Likert 1–5)
+    └── 7. Entrevista pós-teste (esclarecimento de eventos observados)
+          │
+          ▼
+RELATO DOS RESULTADOS
+```
+
+---
 
 ### B) Procedimento de Preparação
-1.  Recrutamento.
-2.  Setup do ambiente.
-3.  Lista de Tarefas.
 
-### C) Resultados do Teste (Exemplo de Tabela)
-| Tarefa | Grau de Sucesso | Erros Cometidos | Tempo | Grau de Satisfação |
-| :--- | :--- | :--- | :--- | :--- |
-| **1. Fazer Upload** | Sucesso Total | 0 | 10s | Alto |
-| **2. Gerar Relatório** | Sucesso Parcial | 1 (Confusão no botão) | 45s | Médio |
+#### Materiais utilizados
+- **TCLE** — Termo de Consentimento Livre e Esclarecido, assinado antes do início
+- **Questionário pré-teste** — perfil do participante (formação, experiência, nível tecnológico)
+- **Roteiro de tarefas** — linguagem clínica, sem instrução de como realizar cada tarefa
+- **Roteiro de observação** — usado pelo avaliador para anotações durante a sessão
+- **Questionário pós-teste** — 5 afirmações em escala Likert (1–5)
 
-### Conclusão da Avaliação
-> [Síntese dos resultados]
+#### Roteiro de Tarefas (entregue ao participante)
+
+> *"Você acaba de receber acesso ao sistema GAIA — uma ferramenta de apoio computacional à análise de sessões de interação terapêutica com crianças com suspeita de TEA. As credenciais de acesso são: usuário `especialista` / senha `gaia2026`. Realize as atividades a seguir na ordem apresentada. Se tiver dúvidas sobre **o que fazer**, pode perguntar — mas não sobre **como usar o sistema**."*
+
+| Tarefa | Enunciado entregue ao participante |
+| :-: | :--- |
+| **T1** | Acesse o sistema com suas credenciais como Especialista |
+| **T2** | Localize a sessão "H016 [2 week] Cam 1" no painel e acesse sua análise |
+| **T3** | Identifique a probabilidade de risco de TEA da sessão e explique o que você entendeu do indicador principal |
+| **T4** | Acesse os dados detalhados do frame 4160 da sessão analisada |
+| **T5** | Exporte ou acesse o relatório da análise realizada |
 
 ---
-*Documentação gerada para a disciplina de Interface Humano-Computador (IHC) - 2026.*
 
+### C) Perfil do Participante
 
+| Campo | Dados |
+| :--- | :--- |
+| **Nome** | Prof. Dr. Victor Perrone de Lima Varela |
+| **Formação** | Pesquisador em Neurodesenvolvimento — Centro Universitário FEI / UNSW (Sydney, Austrália) |
+| **Experiência com TEA** | > 10 anos — orientador do projeto e pesquisador do dataset utilizado |
+| **Nível tecnológico** | Avançado |
+| **Conhecia o GAIA?** | Sim — orientador do projeto (conhecimento do domínio e do pipeline) |
+
+> **Nota metodológica:** Por ser o orientador do projeto, o participante possui conhecimento prévio do domínio e do contexto clínico do dataset, o que pode reduzir o tempo de tarefa. Sua avaliação é especialmente relevante para validar a correspondência entre os indicadores gerados pelo GAIA e a realidade clínica das sessões analisadas.
+
+---
+
+### D) Resultados por Tarefa
+
+| Tarefa | Descrição resumida | Resultado | Tempo | Observação |
+| :-: | :--- | :-: | :-: | :--- |
+| **T1** | Login como Especialista | ✓ | 28s | Sem dificuldades |
+| **T2** | Localizar sessão H016 Cam 1 | ✓ | 35s | Campo de busca localizado imediatamente |
+| **T3** | Interpretar P(TEA) e indicadores | ✓ | 55s | Navegou pelas abas de Atenção e Gaze antes de caracterizar o resultado |
+| **T4** | Navegar ao frame 4160 | ✓ | 90s | Utilizou o slider; comentou que o feedback durante o arraste poderia ser mais preciso |
+| **T5** | Acessar/exportar relatório | ✓ | 40s | Sem dificuldades |
+| | **TOTAL** | **5/5 ✓** | **4m 8s** | Todas as tarefas concluídas sem auxílio |
+
+---
+
+### E) Eventos e Comentários Observados
+
+| Tarefa | Evento / Comentário |
+| :-: | :--- |
+| **T3** | Ao ler P(TEA) = 28,6%, o participante questionou espontaneamente o intervalo de confiança [0,6%, 100,0%]: *"O IC está muito amplo — isso significa que o modelo tem baixa certeza nessa sessão específica. Estaria bom ter uma nota explicando o que esse intervalo representa para quem não é de estatística."* → confirma **H10** |
+| **T3** | Comentou que a aba "Prognóstico LSTM" mistura nomenclatura técnica com resultado clínico: *"'LSTM' não vai dizer nada pra uma neuropsicóloga. Podia ser só 'Prognóstico'."* → confirma **H04** |
+| **T4** | Ao usar o slider de frames, observou: *"Estou arrastando mas o número do frame só aparece quando solto — ficaria mais fácil com o número em tempo real."* → confirma **H06** |
+| **T5** | Após acessar o relatório: *"Está bem organizado. As métricas fazem sentido clínico para quem conhece o contexto das sessões."* → reforça boa prática já identificada em E13 |
+
+---
+
+### F) Questionário Pós-Teste (Satisfação Likert 1–5)
+
+| Afirmação | Nota |
+| :--- | :-: |
+| Consegui realizar as tarefas sem dificuldade | **5** |
+| O sistema foi fácil de aprender | **4** |
+| Os resultados apresentados foram claros e compreensíveis | **5** |
+| Confiaria nos dados do GAIA como apoio à decisão clínica | **5** |
+| Usaria o GAIA na minha rotina de pesquisa/prática | **5** |
+| **MÉDIA GERAL** | **4,8 / 5,0** |
+
+---
+
+### G) Comparação com as Metas da Entrega 8
+
+| Meta de Usabilidade | Valor Mínimo | Resultado | Atingiu? |
+| :--- | :-: | :-: | :-: |
+| Taxa de conclusão de tarefas sem ajuda | ≥ 85% | 100% (5/5) | ✅ |
+| Tempo médio para fluxo principal (T1+T2+T3) | ≤ 5 min | 1m 58s | ✅ |
+| Satisfação geral (Likert 1–5) | ≥ 4,0 | 4,8 / 5,0 | ✅ |
+| Confiança como ferramenta de apoio clínico | ≥ 4,0 | 5,0 / 5,0 | ✅ |
+
+---
+
+### H) Conclusão e Planejamento de Reprojeto
+
+#### Síntese
+O teste confirmou que o fluxo principal do GAIA é operável com 100% de conclusão e bem dentro das metas de tempo. A satisfação (4,8/5) e a confiança clínica (5/5) indicam que o sistema transmite credibilidade como ferramenta de apoio à decisão.
+
+Os três comentários espontâneos do participante durante a sessão confirmaram diretamente três violações identificadas na Avaliação Heurística (E13): ausência de legenda para o IC 95% (H10), mistura de terminologia técnica na aba de prognóstico (H04) e ausência de feedback em tempo real no slider de frames (H06). Isso valida a qualidade da inspeção realizada na Entrega 13.
+
+#### Problemas Prioritários para Reprojeto
+
+| Prioridade | Problema | Correção Proposta |
+| :-: | :--- | :--- |
+| 🟡 Média | IC 95% sem legenda (confirma H10) | Tooltip explicativo ao passar o mouse sobre o intervalo |
+| 🟡 Média | Aba "Prognóstico LSTM" com termo técnico (confirma H04) | Renomear para "Prognóstico" — mover "LSTM" para tooltip |
+| 🟡 Média | Slider sem feedback em tempo real (confirma H06) | Exibir frame + timestamp em tempo real durante o arraste |
+
+#### Limitação do Estudo
+Conforme Barbosa e Silva (2010), a ausência de problemas num escopo avaliado não garante alta qualidade de uso — indica apenas que o estudo não revelou problemas naquele escopo com o participante avaliado. A realização do teste com um único participante especialista limita a generalização dos resultados para o perfil de usuário clínico intermediário (persona Dra. Helena). Recomenda-se a ampliação do teste em iterações futuras com neuropsicólogos sem conhecimento prévio do sistema.
+
+---
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. | NIELSEN, J. Usability Engineering. Academic Press, 1993.*
 
 
 
