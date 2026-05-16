@@ -1343,20 +1343,20 @@ O relato incluirá, conforme Barbosa e Silva (2010):
 
 > As imagens referenciadas na coluna "Evidência" correspondem às capturas de tela reais do sistema (Entrega 11), disponíveis em `./assets/`.
 
-| ID | Heurística Violada | Descrição do Problema | Sev. | Tela | Evidência |
-| :-: | :--- | :--- | :-: | :--- | :--- |
-| **H01** | **H1 — Visibilidade do status do sistema** | No módulo Admin, após o upload de um vídeo novo, não há estimativa de tempo restante para o processamento pelo pipeline TITAN. O Admin inicia o upload mas não sabe se o processamento levará 2 ou 20 minutos para concluir | 3 | Dashboard Admin — Upload | `hifi_dashboard_admin.png` — botão "Analisar" sem indicador de tempo de processamento |
-| **H02** | **H2 — Correspondência entre o sistema e o mundo real** | Os rótulos "G→C" e "C→G" na listagem do Dashboard Admin referenciam direção do gaze (Guardian→Child e Child→Guardian) sem qualquer legenda ou tooltip explicativo. Para um especialista clínico sem formação em visão computacional, o significado é opaco | 2 | Dashboard Admin | `hifi_dashboard_admin.png` — colunas "G→C: 12.4%" e "C→G: 71.9%" nos cards de sessão sem legenda |
-| **H03** | **H3 — Controle e liberdade do usuário** | No módulo Admin, não há botão de cancelamento após o início do upload de um vídeo novo. Enviado o arquivo errado, o Admin é obrigado a aguardar a conclusão do pipeline antes de corrigir o erro | 3 | Dashboard Admin — Upload | `hifi_dashboard_admin.png` — ausência de controle de cancelamento na área de upload |
-| **H04** | **H4 — Consistência e padronização** | A navegação por abas usa nomenclaturas mistas: "Prognostico LSTM" usa nome técnico do modelo, enquanto as demais abas ("Atenção", "Gaze", "Postura") usam termos clínicos. A mistura de vocabulários técnico e clínico quebra a consistência terminológica | 2 | Resultado | `hifi_prognostico.png` — barra de abas com "Prognostico LSTM" ao lado de termos clínicos |
-| **H05** | **H5 — Prevenção de erros** | No Dashboard Admin, o botão "Analisar" de cada sessão não exige confirmação antes de iniciar o reprocessamento. Um clique acidental reinicia o pipeline de um vídeo já processado, consumindo recursos computacionais desnecessariamente | 2 | Dashboard Admin | `hifi_dashboard_admin.png` — botões "Analisar" em vermelho sem diálogo de confirmação |
-| **H06** | **H6 — Reconhecimento em vez de memorização** | Na aba "Dados Brutos", o controle de navegação por frame não exibe o timestamp correspondente enquanto o usuário o utiliza — apenas ao soltar. O especialista precisa memorizar a posição aproximada do evento que quer inspecionar, em vez de ver o tempo em tempo real | 2 | Dados Brutos | `hifi_dados_brutos.png` — controle de navegação sem label dinâmico durante uso |
-| **H07** | **H7 — Flexibilidade e eficiência de uso** | Não há atalhos de teclado para as ações mais frequentes (avançar/retroceder frame, alternar entre abas, iniciar análise). Usuários avançados que usam o sistema repetidamente são obrigados a usar o mouse para todas as interações | 1 | Global | Interface completa — ausência de indicadores de atalho de teclado |
-| **H08** | **H8 — Estética e design minimalista** | A tela de Resultado do Prognóstico apresenta 9 abas simultaneamente visíveis (Prognóstico LSTM, Atenção, Gaze, Detecção, Postura, Keypoints, Vídeo, Relatório, Dados Brutos). Para um especialista clínico, a maioria das abas técnicas é raramente acessada, mas a carga visual é a mesma que as abas clínicas relevantes | 2 | Resultado | `hifi_prognostico.png` — barra com 9 abas simultâneas com igual peso visual |
-| **H09** | **H9 — Ajuda aos usuários para reconhecer, diagnosticar e recuperar erros** | Quando o Especialista tenta analisar uma sessão com JSON vazio ou frames insuficientes, a mensagem exibida é genérica. O sistema não orienta sobre o motivo nem sobre como proceder — reprocessar? verificar câmera? — deixando o usuário sem saída clara | 3 | Dashboard Especialista | Observado em sessões com taxa de aproveitamento muito baixa (ex.: C1031 com < 8% frames válidos) |
-| **H10** | **H10 — Ajuda e documentação** | O sistema não possui seção de ajuda, FAQ ou tooltips contextuais nas métricas comportamentais. Um especialista que não saiba o que significa "Maior Streak G" ou "Tendência Aprox." não tem onde buscar explicação sem sair da interface | 2 | Global | `hifi_prognostico.png` — cards de métricas sem ícone de ajuda ou tooltip explicativo |
-| **H11** | **H1 — Visibilidade do status do sistema** | O indicador "ID Locked: True / Mutual: False" na aba Dados Brutos usa terminologia técnica interna do pipeline TITAN sem tradução clínica. O especialista não consegue interpretar o que "ID Locked" significa para o caso em análise | 2 | Dados Brutos | `hifi_dados_brutos.png` — painel lateral com campos técnicos sem equivalente clínico |
-| **H12** | **H5 — Prevenção de erros** | A tela de login não apresenta o seletor de perfil (Admin / Especialista) de forma visualmente destacada. Um admin que faça login como Especialista por engano terá acesso restrito sem entender o motivo, e o erro não é facilmente reversível sem novo login | 2 | Login | `hifi_login.png` — seletor de perfil com baixo destaque visual antes da autenticação |
+| ID | Heurística Violada | Descrição do Problema | Sev. | Tela | Evidência | Correção Proposta |
+| :-: | :--- | :--- | :-: | :--- | :--- | :--- |
+| **H01** | **H1 — Visibilidade do status do sistema** | No módulo Admin, após o upload de um vídeo novo, não há estimativa de tempo restante para o processamento pelo pipeline TITAN. O Admin inicia o upload mas não sabe se o processamento levará 2 ou 20 minutos para concluir | 3 | Dashboard Admin — Upload | `hifi_dashboard_admin.png` — botão "Analisar" sem indicador de tempo de processamento | Adicionar barra de progresso com percentual e estimativa de tempo restante durante o processamento; exibir notificação ao concluir |
+| **H02** | **H2 — Correspondência entre o sistema e o mundo real** | Os rótulos "G→C" e "C→G" na listagem do Dashboard Admin referenciam direção do gaze (Guardian→Child e Child→Guardian) sem qualquer legenda ou tooltip explicativo. Para um especialista clínico sem formação em visão computacional, o significado é opaco | 2 | Dashboard Admin | `hifi_dashboard_admin.png` — colunas "G→C: 12.4%" e "C→G: 71.9%" nos cards de sessão sem legenda | Adicionar tooltip com descrição clínica ao passar o mouse sobre cada sigla: "G→C: proporção de frames em que o Guardião olhou para a Criança" |
+| **H03** | **H3 — Controle e liberdade do usuário** | No módulo Admin, não há botão de cancelamento após o início do upload de um vídeo novo. Enviado o arquivo errado, o Admin é obrigado a aguardar a conclusão do pipeline antes de corrigir o erro | 3 | Dashboard Admin — Upload | `hifi_dashboard_admin.png` — ausência de controle de cancelamento na área de upload | Adicionar botão "Cancelar" durante o upload e durante o processamento, com diálogo de confirmação e opção de reenvio imediato |
+| **H04** | **H4 — Consistência e padronização** | A navegação por abas usa nomenclaturas mistas: "Prognostico LSTM" usa nome técnico do modelo, enquanto as demais abas ("Atenção", "Gaze", "Postura") usam termos clínicos. A mistura de vocabulários técnico e clínico quebra a consistência terminológica | 2 | Resultado | `hifi_prognostico.png` — barra de abas com "Prognostico LSTM" ao lado de termos clínicos | Renomear a aba para "Prognóstico"; mover o nome do modelo ("LSTM Bidirecional") para um tooltip ou nota de rodapé técnico |
+| **H05** | **H5 — Prevenção de erros** | No Dashboard Admin, o botão "Analisar" de cada sessão não exige confirmação antes de iniciar o reprocessamento. Um clique acidental reinicia o pipeline de um vídeo já processado, consumindo recursos computacionais desnecessariamente | 2 | Dashboard Admin | `hifi_dashboard_admin.png` — botões "Analisar" em vermelho sem diálogo de confirmação | Adicionar diálogo de confirmação: "Esta sessão já foi processada. Deseja reprocessar? Esta ação consumirá recursos do pipeline." com opções Confirmar / Cancelar |
+| **H06** | **H6 — Reconhecimento em vez de memorização** | Na aba "Dados Brutos", o controle de navegação por frame não exibe o timestamp correspondente enquanto o usuário o utiliza — apenas ao soltar. O especialista precisa memorizar a posição aproximada do evento que quer inspecionar, em vez de ver o tempo em tempo real | 2 | Dados Brutos | `hifi_dados_brutos.png` — controle de navegação sem label dinâmico durante uso | Exibir label flutuante em tempo real durante o arraste do controle, mostrando número do frame e timestamp correspondente (ex.: "Frame 4160 — 02:53.3") |
+| **H07** | **H7 — Flexibilidade e eficiência de uso** | Não há atalhos de teclado para as ações mais frequentes (avançar/retroceder frame, alternar entre abas, iniciar análise). Usuários avançados que usam o sistema repetidamente são obrigados a usar o mouse para todas as interações | 1 | Global | Interface completa — ausência de indicadores de atalho de teclado | Implementar atalhos: setas ←/→ para navegar frames, números 1–9 para selecionar abas, Enter para confirmar ação principal; exibir atalhos em tooltips dos elementos |
+| **H08** | **H8 — Estética e design minimalista** | A tela de Resultado do Prognóstico apresenta 9 abas simultaneamente visíveis (Prognóstico LSTM, Atenção, Gaze, Detecção, Postura, Keypoints, Vídeo, Relatório, Dados Brutos). Para um especialista clínico, a maioria das abas técnicas é raramente acessada, mas a carga visual é a mesma que as abas clínicas relevantes | 2 | Resultado | `hifi_prognostico.png` — barra com 9 abas simultâneas com igual peso visual | Agrupar abas em duas categorias: "Clínico" (Prognóstico, Atenção, Proximidade, Relatório) e "Técnico" (Gaze, Detecção, Postura, Keypoints, Dados Brutos), com a segunda categoria colapsada por padrão |
+| **H09** | **H9 — Ajuda aos usuários para reconhecer, diagnosticar e recuperar erros** | Quando o Especialista tenta analisar uma sessão com JSON vazio ou frames insuficientes, a mensagem exibida é genérica. O sistema não orienta sobre o motivo nem sobre como proceder — reprocessar? verificar câmera? — deixando o usuário sem saída clara | 3 | Dashboard Especialista | Observado em sessões com taxa de aproveitamento muito baixa (ex.: C1031 com < 8% frames válidos) | Substituir mensagem genérica por diagnóstico estruturado: causa provável (ex.: "Taxa de detecção insuficiente: 4,3% de frames válidos"), impacto e próximos passos sugeridos (ex.: "Verifique a iluminação e o posicionamento da câmera") |
+| **H10** | **H10 — Ajuda e documentação** | O sistema não possui seção de ajuda, FAQ ou tooltips contextuais nas métricas comportamentais. Um especialista que não saiba o que significa "Maior Streak G" ou "Tendência Aprox." não tem onde buscar explicação sem sair da interface | 2 | Global | `hifi_prognostico.png` — cards de métricas sem ícone de ajuda ou tooltip explicativo | Adicionar ícone "?" em cada card de métrica com tooltip explicativo em linguagem clínica; criar seção de Glossário acessível pelo menu lateral |
+| **H11** | **H1 — Visibilidade do status do sistema** | O indicador "ID Locked: True / Mutual: False" na aba Dados Brutos usa terminologia técnica interna do pipeline TITAN sem tradução clínica. O especialista não consegue interpretar o que "ID Locked" significa para o caso em análise | 2 | Dados Brutos | `hifi_dados_brutos.png` — painel lateral com campos técnicos sem equivalente clínico | Substituir rótulos técnicos por equivalentes clínicos: "ID Locked" → "Participantes identificados: Sim/Não"; "Mutual: False" → "Atenção mútua: Não detectada"; manter versão técnica expansível |
+| **H12** | **H5 — Prevenção de erros** | A tela de login não apresenta o seletor de perfil (Admin / Especialista) de forma visualmente destacada. Um admin que faça login como Especialista por engano terá acesso restrito sem entender o motivo, e o erro não é facilmente reversível sem novo login | 2 | Login | `hifi_login.png` — seletor de perfil com baixo destaque visual antes da autenticação | Aumentar destaque visual do seletor de perfil (toggle com ícones diferenciados); exibir resumo das permissões de cada perfil abaixo do seletor antes do login |
 
 ---
 
@@ -1534,3 +1534,77 @@ Conforme Barbosa e Silva (2010), a ausência de problemas em determinado escopo 
 ---
 
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) — Centro Universitário FEI — 2026.*
+
+---
+
+## 📝 Entrega 6 (Complemento): Teste do Protótipo de Baixa Fidelidade
+*Status: Concluído*
+
+### Procedimento do Teste
+
+O teste do protótipo de baixa fidelidade foi realizado com dois grupos de participantes em momentos distintos, conforme recomendado por Barbosa e Silva (2010): primeiro com colegas de curso para validação de fluxo e navegação, e depois com profissionais da área de Psicologia para validação de domínio clínico.
+
+#### Participantes
+
+| Participante | Perfil | Momento |
+| :--- | :--- | :--- |
+| **P-BF01** | Colega de curso — Ciência da Computação, sem experiência em TEA | 1ª rodada |
+| **P-BF02** | Colega de curso — Ciência da Computação, sem experiência em TEA | 1ª rodada |
+| **P-BF03** | Profissional da Psicologia Clínica, experiência com crianças | 2ª rodada |
+
+#### Roteiro de Tarefas (aplicado a todos os participantes)
+
+> *"Você está vendo os esboços de uma ferramenta de apoio ao diagnóstico de TEA. Navegue pelas telas na ordem apresentada e realize as tarefas abaixo. Fale em voz alta o que está pensando enquanto navega."*
+
+| # | Tarefa |
+| :-: | :--- |
+| T1 | Identifique onde você faria login no sistema |
+| T2 | A partir do dashboard, localize onde enviaria um vídeo de sessão para análise |
+| T3 | Após o envio, onde você buscaria o resultado da análise? |
+| T4 | Na tela de resultado, identifique o indicador principal de risco |
+
+---
+
+### Resultados e Críticas Coletadas
+
+#### 1ª Rodada — Colegas de Curso (P-BF01 e P-BF02)
+
+A recepção geral foi positiva. Ambos os participantes conseguiram navegar pelo fluxo principal sem auxílio e reconheceram a lógica da interface.
+
+**Observações positivas:**
+- O fluxo de login → dashboard → upload foi considerado intuitivo
+- A separação entre módulo Admin e módulo Especialista foi bem compreendida
+- A presença de métricas inline nos cards do dashboard foi elogiada
+
+**Críticas coletadas:**
+- P-BF01: *"O botão de upload não está visualmente destacado do restante do dashboard — tive que procurar"*
+- P-BF02: *"Não ficou claro se eu precisava esperar o processamento na mesma tela ou se poderia navegar enquanto isso"*
+- P-BF02: *"A tela de resultado tem muita informação de uma vez — fiquei em dúvida por onde começar a ler"*
+
+#### 2ª Rodada — Profissional da Psicologia (P-BF03)
+
+A profissional identificou os fluxos principais, mas apontou problemas relevantes do ponto de vista clínico que não haviam aparecido na rodada anterior.
+
+**Críticas coletadas:**
+- P-BF03: *"Os rótulos 'G→C' e 'C→G' não me dizem nada. Eu precisaria de uma legenda explicando o que significa cada sigla"*
+- P-BF03: *"A tela de resultado parece um relatório técnico, não uma ferramenta clínica. Senti falta de algo que me dissesse claramente 'atenção' ou 'sem alerta' antes de eu ler todos os números"*
+- P-BF03: *"Não está claro em nenhuma tela que este resultado não é um diagnóstico. Isso é importante — um clínico mais inexperiente poderia confundir"*
+- P-BF03: *"O termo 'LSTM' não me diz nada. Eu saberia que é um modelo de IA, mas a maioria dos psicólogos não saberia"*
+
+---
+
+### Mudanças Realizadas e Justificativas
+
+| Crítica | Mudança realizada no protótipo final | Entrega |
+| :--- | :--- | :-: |
+| Botão de upload pouco destacado | Upload integrado ao fluxo do dashboard com botão "+" em destaque e zona de drag-and-drop visível | E11 |
+| Falta de indicação sobre aguardar ou navegar | Adicionada barra de progresso com estimativa de tempo e mensagem "Processando em segundo plano — você pode continuar navegando" | E11 |
+| Muita informação na tela de resultado | Criada hierarquia visual com indicador P(TEA) em destaque central antes dos demais dados; organização por dimensão clínica (Engajamento Visual, Proximidade, Postura, Temporais) | E11 |
+| Siglas G→C e C→G sem legenda | Adicionados tooltips explicativos ao passar o mouse sobre cada métrica; linguagem clínica adotada nos rótulos principais | E11 |
+| Ausência de destaque visual de alerta | Indicador P(TEA) com escala de cores verde → vermelho comunicando nível de risco antes da leitura textual | E11 |
+| Ausência de aviso sobre não ser diagnóstico | Banner fixo e permanente na tela de resultado: *"Este resultado é uma estimativa de apoio à decisão clínica. O diagnóstico é responsabilidade exclusiva do especialista."* — não pode ser fechado | E11 |
+| Nomenclatura técnica "LSTM" na interface clínica | Aba renomeada de "Prognóstico LSTM" para "Prognóstico"; termo técnico movido para tooltip acessível sob demanda | E11 (pendente implementação — registrado como H04 na E13) |
+
+> **Síntese:** Os colegas de curso validaram positivamente o fluxo de navegação e a lógica geral da interface — o que confirmou que a estrutura do sistema estava adequada. A rodada com a profissional da Psicologia revelou problemas que somente um usuário do domínio clínico seria capaz de identificar: ausência de contexto para siglas técnicas, falta de hierarquia visual orientada ao diagnóstico e ausência de disclaimers sobre o papel auxiliar da IA. Todas essas críticas foram incorporadas ao protótipo final (Entrega 11) e registradas formalmente como violações heurísticas na Avaliação Heurística (Entrega 13), garantindo rastreabilidade entre o teste de baixa fidelidade e a avaliação final.
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
