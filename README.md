@@ -104,9 +104,9 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 | **Viz.ai** | Neurovascular (AVC) | [viz.ai](https://www.viz.ai/) | Utiliza IA para detectar sinais de AVC em tomografias e alerta a equipe médica em tempo real via aplicativo móvel, sincronizando o fluxo de cuidado. |
 | **Lunit INSIGHT** | Oncologia | [lunit.io](https://www.lunit.io/) | Analisa imagens de Raio-X de tórax e mamografias para detectar nódulos e câncer, fornecendo pontuação de anormalidade e mapas de calor sobre a imagem. |
 
-![Aidoc](./assets/concorrencia/aidoc.png)
-![Viz.ai](./assets/concorrencia/vizai.png)
-![Lunit](./assets/concorrencia/lunit.png)
+![Aidoc](./assets/aidoc.png)
+![Viz.ai](./assets/vizai.png)
+![Lunit](./assets/lunit.png)
 
 > **Nota de reprodutibilidade:** As imagens dos concorrentes estão versionadas localmente em `./assets/concorrencia/`. Caso os arquivos não estejam presentes, fazer download manual dos prints e salvá-los nos caminhos indicados acima.
 
