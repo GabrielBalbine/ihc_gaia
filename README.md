@@ -31,37 +31,32 @@
 
 | Nome Completo | Matrícula |
 | :--- | :--- |
-| **[Gabriel Balbine de Andrades]** | [22.222.001-4] |
+| **Gabriel Balbine de Andrades** | 22.222.001-4 |
 
 ---
 
 ## 🚀 Entrega 1: Conhecendo o Problema (Definição do Escopo)
-*Status: [Concluído]*
+*Status: Concluído*
 
 ### 1.1) Membros de Equipe
 *(Ver tabela acima)*
 
 ### 1.2) Título Original do TCC
-> *ANÁLISE DE PADRÕES
-COMPORTAMENTAIS NO TEA: DESAFIOS
-DIAGNÓSTICOS E NOVAS FERRAMENTAS
-
-TECNOLÓGICAS*
+> *ANÁLISE DE PADRÕES COMPORTAMENTAIS NO TEA: DESAFIOS DIAGNÓSTICOS E NOVAS FERRAMENTAS TECNOLÓGICAS*
 
 ### 1.3) Nome do Orientador
-* Prof. Victor Perrone Varela
+* Prof. Dr. Victor Perrone de Lima Varela
 
 ### 1.4) Previsto desenvolver Interface?
 - [x] Sim
-- [ ] Não
 
 ### 1.5) Objetivo do trabalho?
 Desenvolver uma solução tecnológica para **auxílio ao prognóstico**, processando vídeos de interações sociais para identificar padrões comportamentais típicos do espectro autista (como falta de contato visual e atenção compartilhada), fornecendo dados quantitativos para embasar a decisão médica.
 
 ### 1.6) Qual o produto final?
 Um sistema desktop/web dividido em dois módulos distintos:
-1.  **Módulo Admin (Dataset):** Para curadoria, ingestão de vídeos e refinamento do treinamento da IA.
-2.  **Módulo Especialista (Clínico):** Para upload de vídeos de pacientes, análise pós-processada e visualização de dashboards de risco.
+1. **Módulo Admin (Dataset):** Para curadoria, ingestão de vídeos e refinamento do treinamento da IA.
+2. **Módulo Especialista (Clínico):** Para upload de vídeos de pacientes, análise pós-processada e visualização de dashboards de risco.
 
 ### 1.7) Quem é o usuário final deste produto?
 Exclusivamente profissionais da saúde mental e pesquisadores:
@@ -78,24 +73,24 @@ O profissional ganha uma "segunda opinião" técnica baseada em métricas. A fer
 * Rotulagem e retreinamento do modelo.
 
 **Módulo Especialista:**
-* Upload de vídeos (análise assíncrona).
-* Visualização do vídeo processado com *bounding boxes* (YOLO/MediaPipe).
-* **Dashboard de Insights:** Gráficos de tempo de foco e contato visual.
-* **Output de Decisão:** Indicador de "Probabilidade/Risco" sugerindo averiguação.
+* Upload de vídeos (análise assíncrona pelo pipeline TITAN).
+* Visualização do vídeo processado com sobreposições da IA (detecção de pose, estimativa de gaze).
+* **Dashboard de Insights:** Métricas de atenção visual, proximidade interpessoal e postura corporal.
+* **Output de Decisão:** Indicador probabilístico de risco de TEA (P(TEA)) como ferramenta auxiliar ao prognóstico clínico.
 
 ### 1.10) Quais tecnologias e ferramentas computacionais pretendem usar?
-* **Backend/IA:** Python, YOLO (detecção), MediaPipe (Face Mesh/Pose).
-* **Interface:** [Streamlit / React / Interface Web].
-* **Infraestrutura:** Docker.
+* **Backend/IA:** Python, YOLOv8 (detecção e pose), MediaPipe (Face Mesh/Iris), BoTSORT (rastreamento), PyTorch (Bi-LSTM).
+* **Interface:** Aplicação web local (HTML/CSS/JS), servida via localhost.
+* **Infraestrutura:** Processamento local, sem envio de dados para servidores externos (conformidade LGPD).
 
 ### 1.11) Qual é o contexto de uso dessa aplicação?
 * **Ambiente:** Consultórios terapêuticos ou laboratórios de pesquisa (ambiente controlado).
-* **Dinâmica:** Uso **assíncrono**. O profissional grava a sessão e submete o vídeo ao software posteriormente. A análise dos dados ocorre no computador do especialista durante a elaboração do laudo ou estudo do caso.
+* **Dinâmica:** Uso **assíncrono**. O profissional grava a sessão e submete o vídeo ao software posteriormente. A análise ocorre em segundo plano enquanto o especialista continua suas atividades.
 
 ---
 
 ## 🔍 Entrega 2: Análise de Concorrência (Soluções Análogas)
-*Status: [Concluído]*
+*Status: Concluído*
 
 ### 1) Público Alvo
 O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psiquiatras, Psicólogos, Neuropsicólogos) que buscam ferramentas de apoio à decisão clínica baseadas em evidências visuais quantitativas.
@@ -105,38 +100,36 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 #### A. Principais Concorrentes (Referências de Interação)
 | Nome | Área | Link | Descrição da Solução |
 | :--- | :--- | :--- | :--- |
-| **Aidoc** | Radiologia (IA) | [aidoc.com](https://www.aidoc.com/) | Plataforma de IA para radiologia que analisa imagens médicas (TC/Raio-X) para identificar anomalias agudas. Funciona como um sistema de triagem e priorização de lista de trabalho. |
-| **Viz.ai** | Neurovascular (AVC) | [viz.ai](https://www.viz.ai/) | Utiliza IA para detectar sinais de AVC em tomografias computadorizadas e alerta a equipe médica em tempo real via aplicativo móvel, sincronizando o fluxo de cuidado. |
-| **Lunit INSIGHT** | Oncologia | [lunit.io](https://www.lunit.io/) | Analisa imagens de Raio-X de tórax e mamografias para detectar nódulos e câncer, fornecendo uma pontuação de anormalidade e mapas de calor sobre a imagem. |
+| **Aidoc** | Radiologia (IA) | [aidoc.com](https://www.aidoc.com/) | Plataforma de IA para radiologia que analisa imagens médicas (TC/Raio-X) para identificar anomalias agudas. Funciona como sistema de triagem e priorização de lista de trabalho. |
+| **Viz.ai** | Neurovascular (AVC) | [viz.ai](https://www.viz.ai/) | Utiliza IA para detectar sinais de AVC em tomografias e alerta a equipe médica em tempo real via aplicativo móvel, sincronizando o fluxo de cuidado. |
+| **Lunit INSIGHT** | Oncologia | [lunit.io](https://www.lunit.io/) | Analisa imagens de Raio-X de tórax e mamografias para detectar nódulos e câncer, fornecendo pontuação de anormalidade e mapas de calor sobre a imagem. |
 
-<img width="800" height="470" alt="image" src="https://github.com/user-attachments/assets/08ed6794-b6e5-418e-a7c0-fc6022d15193" />
-<img width="800" height="470" alt="image" src="https://github.com/user-attachments/assets/7559989c-2b2d-4905-bb4f-e0d925bec94a" />
-<img width="800" height="470" alt="image" src="https://github.com/user-attachments/assets/9dc5c312-fb08-4303-904d-b0b57bfd5355" />
+![Aidoc](./assets/concorrencia/aidoc.png)
+![Viz.ai](./assets/concorrencia/vizai.png)
+![Lunit](./assets/concorrencia/lunit.png)
 
+> **Nota de reprodutibilidade:** As imagens dos concorrentes estão versionadas localmente em `./assets/concorrencia/`. Caso os arquivos não estejam presentes, fazer download manual dos prints e salvá-los nos caminhos indicados acima.
 
 #### B. Características e funcionalidades
-* **Triagem Automatizada ("Always-on AI"):** (Aidoc/Viz.ai) O sistema monitora o fluxo de imagens do hospital 24/7 e processa tudo automaticamente, sem necessidade de clique manual.
-* **Alertas Móveis:** (Viz.ai) Foco na mobilidade; envia notificações críticas para o smartphone do médico, permitindo visualização rápida da imagem processada.
-* **Mapas de Calor (Heatmaps):** (Lunit) A IA não diz apenas "tem câncer"; ela colore a região suspeita com um mapa de calor, ajudando o médico a focar sua atenção imediatamente na área correta.
+* **Triagem Automatizada ("Always-on AI"):** (Aidoc/Viz.ai) O sistema monitora o fluxo de imagens automaticamente, sem necessidade de clique manual.
+* **Alertas Móveis:** (Viz.ai) Envia notificações críticas para o smartphone do médico, permitindo visualização rápida da imagem processada.
+* **Mapas de Calor (Heatmaps):** (Lunit) A IA colore a região suspeita com um mapa de calor, ajudando o médico a focar sua atenção na área correta.
 * **Score de Probabilidade:** (Todos) Fornecem uma porcentagem de certeza ou "grau de risco" para cada caso analisado.
 
 #### C. Experiência do usuário (UX) e Opiniões
-* **Explicação Visual (Explainability):** A grande força da UX dessas ferramentas é a sobreposição visual (overlays). O médico vê a imagem original com as anotações da IA por cima (bounding boxes ou cores), o que valida a decisão da máquina.
-* **Priorização:** Em vez de analisar exames em ordem cronológica (fila comum), a interface reorganiza a lista colocando os casos críticos (detectados pela IA) no topo.
+* **Explicação Visual (Explainability):** A sobreposição visual (overlays) valida a decisão da máquina — o médico vê a imagem original com as anotações da IA por cima (bounding boxes ou cores).
+* **Priorização:** Em vez de analisar exames em ordem cronológica, a interface reorganiza a lista colocando os casos críticos no topo.
 * **Simplicidade:** Interfaces limpas, geralmente em modo escuro (Dark Mode) para destacar o contraste das imagens médicas.
 
-#### D. Preços e modelos de negócio
-* **Modelo B2B/Enterprise:** Venda para hospitais e redes de saúde. Geralmente cobrado por volume de exames analisados ou assinatura anual da plataforma.
-
-#### E. Padrões e tendências de mercado observadas
+#### D. Padrões e tendências de mercado observadas
 * **Suporte à Decisão (CDSS):** Consenso de mercado de que a IA é um "copiloto". A palavra final e o laudo são sempre humanos.
-* **Visualização Mobile:** Tendência forte de permitir que o médico veja os resultados preliminares da IA no celular (tablet/smartphone) para agilizar a triagem.
-* **Integração PACs:** As ferramentas não funcionam isoladas; elas injetam seus resultados diretamente nos visualizadores de imagem que os médicos já usam no dia a dia.
+* **Visualização Mobile:** Tendência forte de permitir que o médico veja os resultados preliminares da IA no celular para agilizar a triagem.
+* **Integração PACs:** As ferramentas injetam seus resultados diretamente nos visualizadores de imagem que os médicos já usam no dia a dia.
 
 ---
-# 👤 Entrega 3: Personas e Contexto
 
-**Status:** [Concluído]
+# 👤 Entrega 3: Personas e Contexto
+*Status: Concluído*
 
 ## 1. Personas
 
@@ -144,14 +137,12 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 > **"A tecnologia deve ser uma lente de aumento para a intuição clínica."**
 
 #### 1. Identidade
-
-* **Nome:** Helena Souza.
-* **Idade:** 42 anos.
+* **Nome:** Helena Souza
+* **Idade:** 42 anos
 * **Bio:** Possui doutorado em Psicologia Clínica com foco em TEA. Trabalha em clínica particular e Hospital Universitário há 15 anos. É extremamente técnica, mas sente o peso da rotina manual.
- <img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/b1bd22c1-2191-46a3-b289-9d6685ae45d2" />
 
 #### 2. Status
-* **Papel:** Neuropsicóloga Infantil e Pesquisadora./ Persona Primária
+* **Papel:** Neuropsicóloga Infantil e Pesquisadora / Persona Primária
 * **Nível de Influência:** Decisora (ela escolhe as ferramentas que usa).
 * **Perfil Tecnológico:** Usuária Intermediária. Domina prontuários eletrônicos e Office, mas não sabe programar.
 
@@ -182,6 +173,8 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 * Espera que o GAIA funcione como um "assistente residente" que faz o trabalho braçal.
 * Espera que o sistema confirme sua intuição com dados concretos.
 
+> **Nota metodológica:** O projeto optou por trabalhar com uma única persona primária em razão do escopo do produto, que atende a um perfil de usuário bem delimitado — especialistas clínicos com experiência em TEA, atuando de forma assíncrona em ambiente controlado. A ausência de persona secundária foi uma decisão fundamentada no perfil homogêneo do público-alvo identificado na Entrega 1 e confirmado pelo levantamento de requisitos da Entrega 7. Conforme Barbosa e Silva (2010), personas secundárias podem ser omitidas quando o sistema foi projetado para um grupo de usuários suficientemente coeso.
+
 ---
 
 ## 2. Mapa de Empatia (Dra. Helena)
@@ -210,22 +203,20 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 
 ## 4. Jornada do Usuário (Atual vs. Dor)
 
-0. **Motivação**: Helena enxerga indícios para um diagnóstico de TEA em uma das crianças OU existe a requisição de um pai/mãe que está preocupado com o filho/a.
-1.  **Sessão:** Helena grava a interação com a criança, tentando anotar pontos chave na prancheta (atenção dividida).
-2.  **Extração:** Transfere o arquivo da câmera para o PC.
-3.  **Análise Manual (Gargalo):** Abre o vídeo, assiste, pausa, anota o tempo, volta o vídeo. Repete isso por horas.
-4.  **Impacto Pessoal:** Chega em casa tarde, cansada, e ainda precisa somar os tempos para o laudo. Perde o jantar com a família.
-5.  **Laudo:** Entrega um relatório subjetivo, sentindo que poderia ser mais precisa.
-6. **Pós-Laudo**: Tem a possibilidade de rodar novamente a solução e tirar suas conclusões novamente ou ir diretamente para um aprofundamento no diagnóstico.
----
-
-### ⚠️ Entrega 4: Cenários de Análise (Problema)
-
-**Status:** [Concluído]
+0. **Motivação:** Helena enxerga indícios para um diagnóstico de TEA em uma das crianças OU existe a requisição de um pai/mãe que está preocupado com o filho/a.
+1. **Sessão:** Helena grava a interação com a criança, tentando anotar pontos chave na prancheta (atenção dividida).
+2. **Extração:** Transfere o arquivo da câmera para o PC.
+3. **Análise Manual (Gargalo):** Abre o vídeo, assiste, pausa, anota o tempo, volta o vídeo. Repete isso por horas.
+4. **Impacto Pessoal:** Chega em casa tarde, cansada, e ainda precisa somar os tempos para o laudo. Perde o jantar com a família.
+5. **Laudo:** Entrega um relatório subjetivo, sentindo que poderia ser mais precisa.
+6. **Pós-Laudo:** Tem a possibilidade de rodar novamente a solução e tirar suas conclusões novamente ou ir diretamente para um aprofundamento no diagnóstico.
 
 ---
 
-#### Passo 1: Elementos Característicos do Cenário
+## ⚠️ Entrega 4: Cenários de Análise (Problema)
+*Status: Concluído*
+
+### Passo 1: Elementos Característicos do Cenário
 * **Ambiente/Contexto:** Em casa, à noite, após uma semana intensa de atendimentos clínicos.
 * **Atores:** Dra. Helena (neuropsicóloga infantil, exausta e sobrecarregada).
 * **Objetivos:** Identificar traços de TEA em vídeos de sessões infantis para fundamentar prognósticos.
@@ -234,12 +225,11 @@ O sistema é destinado a **profissionais de saúde mental e pesquisadores** (Psi
 * **Eventos:** O vídeo rola, o vídeo é pausado, o vídeo acaba, e parte para o próximo.
 * **Avaliação:** Insegurança sobre a precisão da própria análise, frustração pela perda de tempo pessoal e preocupação com o atraso no retorno aos pais.
 
----
+### Passo 2: Narrativa Base
 
-#### Passo 2: Narrativa Base
 A Dra. Helena, neuropsicóloga infantil com quinze anos de experiência em desenvolvimento infantil e diagnóstico de TEA, encontra-se em sua casa, tarde da noite, após finalizar uma semana intensa de atendimentos clínicos. Tendo apenas o seu notebook e um player de vídeo comum à disposição, ela precisa analisar as gravações das sessões de três pacientes diferentes para fundamentar o seu prognóstico. Para isso, ela necessita identificar possíveis traços do Transtorno do Espectro Autista (TEA), como microexpressões sutis, padrões de atenção e movimentos atípicos das crianças. Embora sua vasta experiência clínica a capacite para reconhecer esses indicadores, o cansaço acumulado e a monotonia do trabalho repetitivo comprometem justamente essa habilidade perceptiva.
 
-Durante a análises dos vídeos, Helena pausa os vídeos a partir de algum momento interessante, que julga ser digno de alguma anotação. Caso Helena não esteja satisfeita com sua própria análise, retoma o vídeo para uma revisão, e, caso tenha já concluído a análise, encerra e parte para o próximo vídeo.
+Durante a análise dos vídeos, Helena pausa os vídeos a partir de algum momento interessante, que julga ser digno de alguma anotação. Caso Helena não esteja satisfeita com sua própria análise, retoma o vídeo para uma revisão, e, caso tenha já concluído a análise, encerra e parte para o próximo vídeo.
 
 Helena alcança esse objetivo executando o processo de forma totalmente manual, sem conhecer ou ter acesso a ferramentas alternativas de análise assistida por computador que poderiam auxiliá-la. As principais ações consistem em assistir, pausar e retroceder as mídias repetidas vezes, utilizando o mouse e teclado intensamente, enquanto anota cada detalhe observado e consolida essas informações em planilhas convencionais. Uma decisão equivocada nesse processo, como classificar incorretamente um comportamento como típico quando na verdade é um indicador de TEA, pode resultar em um prognóstico impreciso e atrasar a intervenção terapêutica precoce.
 
@@ -247,9 +237,7 @@ Como não há automação, a quantidade massiva de horas de vídeo exige um foco
 
 Além da insegurança profissional, a consequência direta dessa rotina é a frustração, pois o processo rouba o tempo valioso que ela gostaria de passar com sua família. Esse gargalo não afeta apenas a profissional, mas também atrasa o direcionamento diagnóstico para os pais dos pacientes, que dependem desse resultado e aguardam ansiosamente por respostas.
 
----
-
-#### Passo 3: Questões de Refinamento (Extraídas de Barbosa e Silva, 2010)
+### Passo 3: Questões de Refinamento (Extraídas de Barbosa e Silva, 2010)
 
 **Ator(es)**
 1. Quem pode alcançar o objetivo descrito no cenário?
@@ -257,23 +245,19 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 3. Quem depende do resultado do objetivo?
 
 **Ambiente**
-
 4. Em que situações o cenário ocorre (quando, onde e por quê)?
 5. Que dispositivos e outros recursos (inclusive tempo) estão disponíveis para o alcance do objetivo?
 
 **Objetivo**
-
 6. Por que os atores querem ou precisam alcançar esse objetivo?
 7. De que informações ou conhecimento os atores precisam para realizar esse objetivo?
 
 **Planejamento**
-
 8. Como os atores alcançam o objetivo atualmente?
 9. Quais são as estratégias alternativas para realizar o objetivo? Os atores as conhecem?
 10. Que decisões os atores precisam tomar a cada momento? Quais as consequências de uma decisão errada?
 
 **Ação**
-
 11. Que ações realizam? Como essas ações estão relacionadas?
 12. Como os atores as realizam fisicamente?
 13. Quais informações são (ou deveriam ser) criadas, consumidas, manipuladas ou destruídas pela realização da ação?
@@ -281,23 +265,19 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 15. Quais erros podem ser cometidos ao realizá-la? Como podem ser desfeitos? Quais suas consequências?
 
 **Evento**
-
 16. Quais eventos disparam a necessidade de alcançar o objetivo?
 17. Quais eventos são (ou deveriam ser) disparados pela conclusão desse objetivo?
 
 **Avaliação**
-
 18. Como os atores conseguem saber se o objetivo foi concluído e alcançado com sucesso?
 19. Qual é o resultado do alcance do objetivo?
 20. Quais consequências da atividade existem na rotina dos atores?
 
----
-
-#### Passo 4: Cenário Final Referenciando as Perguntas (Mapeamento)
+### Passo 4: Cenário Final Referenciando as Perguntas (Mapeamento)
 
 A Dra. Helena, neuropsicóloga infantil **[1]** com quinze anos de experiência em desenvolvimento infantil e diagnóstico de TEA, encontra-se em sua casa, tarde da noite, após finalizar uma semana intensa de atendimentos clínicos **[4]**. Tendo apenas o seu notebook e um player de vídeo comum à disposição **[5]**, ela precisa analisar as gravações das sessões de três pacientes diferentes para fundamentar o seu prognóstico **[6]**. Para isso, ela necessita identificar possíveis traços do Transtorno do Espectro Autista (TEA), como microexpressões sutis, padrões de atenção e movimentos atípicos das crianças **[7]**. Embora sua vasta experiência clínica a capacite para reconhecer esses indicadores, o cansaço acumulado e a monotonia do trabalho repetitivo comprometem justamente essa habilidade perceptiva **[2]**.
 
-Durante a análises dos vídeos, Helena pausa os vídeos a partir de algum momento interessante, que julga ser digno de alguma anotação. **[16]** Caso Helena não esteja satisfeita com sua própria análise, retoma o vídeo para uma revisão, e, caso tenha já concluído a análise, encerra e parte para o próximo vídeo **[17]**
+Durante a análise dos vídeos, Helena pausa os vídeos a partir de algum momento interessante, que julga ser digno de alguma anotação. **[16]** Caso Helena não esteja satisfeita com sua própria análise, retoma o vídeo para uma revisão, e, caso tenha já concluído a análise, encerra e parte para o próximo vídeo **[17]**.
 
 Helena alcança esse objetivo executando o processo de forma totalmente manual **[8]**, sem conhecer ou ter acesso a ferramentas alternativas de análise assistida por computador que poderiam auxiliá-la **[9]**. As principais ações consistem em assistir, pausar e retroceder as mídias repetidas vezes **[11]**, utilizando o mouse e teclado intensamente **[12]**, enquanto anota cada detalhe observado e consolida essas informações em planilhas convencionais **[13]**. Uma decisão equivocada nesse processo, como classificar incorretamente um comportamento como típico quando na verdade é um indicador de TEA, pode resultar em um prognóstico impreciso e atrasar a intervenção terapêutica precoce **[10]**.
 
@@ -308,12 +288,11 @@ Além da insegurança profissional, a consequência direta dessa rotina é a fru
 ---
 
 ## 🛠️ Entrega 5: Análise de Tarefas
-*Status: [Em andamento]*
+*Status: Concluído*
 
 ### HTA (Hierarchical Task Analysis)
-*Status: [Concluído]*
 
-A seguir são apresentadas as Análises Hierárquicas de Tarefas das três tarefas mais importantes do sistema GAIA, modeladas conforme Barbosa e Silva (2010). Cada HTA é composto pelo diagrama hierárquico e pela tabela detalhada contendo Input, Feedback, Plano, Ação, Problemas e Recomendações.
+A seguir são apresentadas as Análises Hierárquicas de Tarefas das três tarefas mais importantes do sistema GAIA, modeladas conforme Barbosa e Silva (2010). **Input e Feedback estão presentes apenas na operação zero (raiz) de cada HTA**, conforme a notação formal da técnica. Cada HTA é composto pelo diagrama hierárquico e pela tabela detalhada contendo Plano, Ação, Problemas e Recomendações.
 
 ---
 
@@ -326,12 +305,12 @@ A seguir são apresentadas as Análises Hierárquicas de Tarefas das três taref
 | **0. Submeter vídeo ao dataset de treinamento** `1 > 2 > 3` | **Input:** Arquivo de vídeo de sessão infantil a ser incluído no dataset de treinamento da IA. **Feedback:** Vídeo aparece na lista do dashboard com status "Processado" e rótulo atribuído (Neurotípico ou TEA). **Plano:** Autenticar no sistema, depois cadastrar o novo vídeo, depois verificar o resultado do processamento. **Recomendação:** Permitir upload em lote para otimizar a curadoria de grandes volumes de vídeo. |
 | **1. Autenticar no sistema** `1 > 2` | **Plano:** Inserir credenciais e depois confirmar login. |
 | **1.1. Inserir credenciais** *(operação)* | **Ação:** Admin digita usuário e senha nos campos do formulário de login. |
-| **1.2. Confirmar login** *(operação)* | **Ação:** Sistema valida as credenciais e redireciona para o dashboard. **Feedback:** Dashboard de vídeos do dataset é exibido. **Problema:** Credenciais inválidas não informam se o erro foi no usuário ou na senha. **Recomendação:** Exibir mensagem genérica de erro para segurança, mas com feedback visual claro de que a tentativa falhou. |
+| **1.2. Confirmar login** *(operação)* | **Ação:** Sistema valida as credenciais e redireciona para o dashboard. **Problema:** Credenciais inválidas não informam se o erro foi no usuário ou na senha. **Recomendação:** Exibir mensagem genérica de erro para segurança, mas com feedback visual claro de que a tentativa falhou. |
 | **2. Cadastrar novo vídeo** `1 > 2 > 3` | **Plano:** Selecionar o arquivo de vídeo, depois classificar o rótulo, depois confirmar o upload. |
 | **2.1. Selecionar arquivo de vídeo** *(operação)* | **Ação:** Admin clica no botão "+" e seleciona o arquivo de vídeo no explorador de arquivos. **Problema:** O sistema pode aceitar formatos de vídeo incompatíveis com o pipeline de processamento. **Recomendação:** Restringir formatos aceitos (.mp4, .avi) e exibir validação antes do upload. |
 | **2.2. Classificar rótulo (Neurotípico / TEA)** *(operação)* | **Ação:** Admin seleciona a classificação do vídeo entre "Neurotípico" ou "TEA" antes de confirmar o envio. **Problema:** Erro de classificação compromete o treinamento do modelo (rótulo errado polui o dataset). **Recomendação:** Permitir edição posterior do rótulo e exigir confirmação explícita da classificação atribuída. |
-| **2.3. Confirmar upload** *(operação)* | **Ação:** Admin clica em "Realizar Upload". O sistema inicia o envio e processamento do vídeo. **Feedback:** Barra de progresso durante o upload e mensagem de sucesso ao concluir. **Problema:** Em conexões lentas, o upload pode falhar sem feedback claro. **Recomendação:** Implementar retomada de upload interrompido e indicador de progresso com estimativa de tempo. |
-| **3. Verificar resultado do processamento** *(operação)* | **Ação:** Admin visualiza o novo vídeo na lista do dashboard com seu rótulo e status de processamento. **Feedback:** Vídeo listado com status "Processado com sucesso" ou "Erro no processamento". **Problema:** Se o processamento falhar, o admin não sabe se deve tentar novamente ou se o vídeo é incompatível. **Recomendação:** Exibir mensagem de erro detalhada com orientação sobre a causa e próximos passos. |
+| **2.3. Confirmar upload** *(operação)* | **Ação:** Admin clica em "Realizar Upload". O sistema inicia o envio e processamento do vídeo. **Problema:** Em conexões lentas, o upload pode falhar sem feedback claro. **Recomendação:** Implementar retomada de upload interrompido e indicador de progresso com estimativa de tempo. |
+| **3. Verificar resultado do processamento** *(operação)* | **Ação:** Admin visualiza o novo vídeo na lista do dashboard com seu rótulo e status de processamento. **Problema:** Se o processamento falhar, o admin não sabe se deve tentar novamente ou se o vídeo é incompatível. **Recomendação:** Exibir mensagem de erro detalhada com orientação sobre a causa e próximos passos. |
 
 ---
 
@@ -344,13 +323,13 @@ A seguir são apresentadas as Análises Hierárquicas de Tarefas das três taref
 | **0. Submeter vídeo para prognóstico clínico** `1 > 2 > 3` | **Input:** Arquivo de vídeo de sessão gravada com paciente infantil. **Feedback:** Dashboard exibe o vídeo processado com indicador de risco TEA e insights comportamentais detalhados. **Plano:** Autenticar no sistema, depois enviar o vídeo para análise, depois analisar o resultado do prognóstico. **Recomendação:** Notificar o especialista (e-mail ou push) quando o processamento assíncrono for concluído. |
 | **1. Autenticar no sistema** `1 > 2` | **Plano:** Inserir credenciais e depois confirmar login. |
 | **1.1. Inserir credenciais** *(operação)* | **Ação:** Especialista digita usuário e senha nos campos do formulário de login. |
-| **1.2. Confirmar login** *(operação)* | **Ação:** Sistema valida as credenciais e redireciona para o dashboard clínico. **Feedback:** Dashboard de vídeos do especialista é exibido. |
-| **2. Enviar vídeo para análise** `1 > 2` | **Plano:** Selecionar o arquivo de vídeo e depois confirmar upload. |
+| **1.2. Confirmar login** *(operação)* | **Ação:** Sistema valida as credenciais e redireciona para o dashboard clínico. **Problema:** Seletor de perfil (Admin/Especialista) tem baixo destaque visual — login com perfil errado restringe o acesso sem mensagem clara da causa. **Recomendação:** Aumentar destaque visual do seletor de perfil e exibir mensagem específica em caso de perfil incompatível. |
+| **2. Enviar vídeo para análise** `1 > 2` | **Plano:** Selecionar o arquivo de vídeo e depois confirmar o envio. |
 | **2.1. Selecionar arquivo de vídeo** *(operação)* | **Ação:** Especialista clica no botão "+" e seleciona o arquivo de vídeo da sessão no explorador de arquivos. **Problema:** Vídeos de sessões longas podem ser muito pesados, tornando o upload demorado. **Recomendação:** Exibir limite de tamanho antes da seleção e sugerir compressão quando aplicável. |
-| **2.2. Confirmar upload** *(operação)* | **Ação:** Especialista clica em "Realizar Upload". O sistema inicia o envio e enfileira o vídeo para processamento pela IA. **Feedback:** Barra de progresso e mensagem informando que o processamento está em andamento. **Problema:** O tempo de processamento da IA pode ser longo e o especialista não sabe quanto tempo falta. **Recomendação:** Exibir estimativa de tempo de processamento e permitir que o especialista continue navegando enquanto aguarda. |
+| **2.2. Confirmar upload** *(operação)* | **Ação:** Especialista confirma o envio. O sistema enfileira o vídeo para processamento pela IA. **Problema:** O tempo de processamento da IA pode ser longo e o especialista não sabe quanto tempo falta. **Recomendação:** Exibir estimativa de tempo de processamento e permitir que o especialista continue navegando enquanto aguarda. |
 | **3. Analisar resultado do prognóstico** `1 + 2` | **Plano:** Visualizar o indicador de risco TEA e, simultaneamente, visualizar os insights comportamentais. |
-| **3.1. Visualizar indicador de risco TEA** *(operação)* | **Ação:** Especialista lê o percentual de probabilidade de risco de TEA gerado pela IA. **Feedback:** Indicador numérico e visual (ex.: gauge ou barra colorida) exibido na tela de resultado. **Problema:** O especialista pode interpretar o indicador como diagnóstico definitivo e não como apoio à decisão. **Recomendação:** Exibir disclaimer explícito de que o indicador é um suporte ao prognóstico, não um diagnóstico. |
-| **3.2. Visualizar insights comportamentais** *(operação)* | **Ação:** Especialista analisa gráficos e métricas detalhadas: porcentagem de tempo de olhar mútuo ("Warm"), análise postural, padrões de atenção e outros indicadores. **Feedback:** Dashboard com gráficos interativos, timeline comportamental e destaques visuais sobre o vídeo. **Problema:** Excesso de dados pode sobrecarregar o especialista, dificultando a interpretação. **Recomendação:** Apresentar um resumo executivo com os achados mais relevantes e permitir drill-down nos detalhes sob demanda. |
+| **3.1. Visualizar indicador de risco TEA** *(operação)* | **Ação:** Especialista lê o percentual de probabilidade de risco de TEA gerado pela IA. **Problema:** O especialista pode interpretar o indicador como diagnóstico definitivo e não como apoio à decisão. **Recomendação:** Exibir disclaimer explícito de que o indicador é um suporte ao prognóstico, não um diagnóstico. |
+| **3.2. Visualizar insights comportamentais** *(operação)* | **Ação:** Especialista analisa gráficos e métricas detalhadas: porcentagem de tempo de olhar mútuo ("Warm"), análise postural, padrões de atenção e outros indicadores. **Problema:** Excesso de dados pode sobrecarregar o especialista, dificultando a interpretação. **Recomendação:** Apresentar um resumo executivo com os achados mais relevantes e permitir drill-down nos detalhes sob demanda. |
 
 ---
 
@@ -363,11 +342,11 @@ A seguir são apresentadas as Análises Hierárquicas de Tarefas das três taref
 | **0. Consultar análise de vídeo já processado** `1 > 2 > 3` | **Input:** Intenção de revisar dados de um vídeo previamente analisado pela IA. **Feedback:** Dados completos do vídeo selecionado são exibidos na interface. **Plano:** Autenticar no sistema, depois selecionar o vídeo no dashboard, depois analisar os dados do vídeo. |
 | **1. Autenticar no sistema** `1 > 2` | **Plano:** Inserir credenciais e depois confirmar login. |
 | **1.1. Inserir credenciais** *(operação)* | **Ação:** Especialista digita usuário e senha nos campos do formulário de login. |
-| **1.2. Confirmar login** *(operação)* | **Ação:** Sistema valida as credenciais e redireciona para o dashboard clínico. **Feedback:** Dashboard de vídeos do especialista é exibido com a lista de vídeos já processados. |
+| **1.2. Confirmar login** *(operação)* | **Ação:** Sistema valida as credenciais e redireciona para o dashboard clínico. |
 | **2. Selecionar vídeo no dashboard** *(operação)* | **Ação:** Especialista localiza o vídeo desejado na lista do dashboard e clica sobre ele. **Problema:** Com muitos vídeos cadastrados, localizar um vídeo específico pode ser difícil. **Recomendação:** Implementar busca por nome do paciente, data da sessão ou filtros por status/resultado. |
 | **3. Analisar dados do vídeo** `1 / 2` | **Plano:** Visualizar métricas e insights OU reproduzir o vídeo com anotações da IA (dependendo da necessidade do momento). |
-| **3.1. Visualizar métricas e insights** *(operação)* | **Ação:** Especialista visualiza o dashboard de dados do vídeo: indicador de risco, gráficos de olhar mútuo, postura, padrões de atenção e demais insights. **Feedback:** Dashboard completo com todas as métricas computadas pela IA. **Problema:** Se o especialista quiser comparar este vídeo com sessões anteriores do mesmo paciente, não há mecanismo de comparação. **Recomendação:** Oferecer funcionalidade de comparação longitudinal entre sessões do mesmo paciente para acompanhar evolução. |
-| **3.2. Reproduzir vídeo com anotações da IA** *(operação)* | **Ação:** Especialista reproduz o vídeo processado com sobreposições visuais (bounding boxes, marcações de atenção, face mesh). **Feedback:** Player de vídeo exibe as anotações da IA sincronizadas com a reprodução. **Problema:** Vídeos com muitas anotações podem ficar visualmente poluídos, dificultando a observação do comportamento natural da criança. **Recomendação:** Permitir que o especialista ative/desative camadas de anotação individualmente (ex.: mostrar apenas face mesh, ou apenas marcações de atenção). |
+| **3.1. Visualizar métricas e insights** *(operação)* | **Ação:** Especialista visualiza o dashboard de dados do vídeo: indicador de risco, gráficos de olhar mútuo, postura, padrões de atenção e demais insights. **Problema:** Se o especialista quiser comparar este vídeo com sessões anteriores do mesmo paciente, não há mecanismo de comparação. **Recomendação:** Oferecer funcionalidade de comparação longitudinal entre sessões do mesmo paciente para acompanhar evolução. |
+| **3.2. Reproduzir vídeo com anotações da IA** *(operação)* | **Ação:** Especialista reproduz o vídeo processado com sobreposições visuais (bounding boxes, marcações de atenção, face mesh). **Problema:** Vídeos com muitas anotações podem ficar visualmente poluídos, dificultando a observação do comportamento natural da criança. **Recomendação:** Permitir que o especialista ative/desative camadas de anotação individualmente e exibir timestamp dinâmico durante a navegação. |
 
 ---
 
@@ -618,6 +597,7 @@ A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a nota�
 ---
 
 ## 📝 Entrega 6: Prototipação de Baixa Fidelidade
+*Status: Concluído*
 
 ### Tela 01 — Login
 ![Tela Login](./assets/tela01_login.png)
@@ -648,21 +628,17 @@ A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a nota�
 ## 📋 Entrega 7: Requisitos e Ética
 *Status: Concluído*
 
----
-
 ### 1) Que Dados Coletar?
 
 Seguindo Barbosa e Silva (2010), os dados a serem coletados sobre os usuários do sistema GAIA se organizam em cinco eixos:
 
 #### 1.1 Dados sobre o próprio usuário
-Buscamos entender o perfil demográfico e de formação do especialista que utilizará o sistema:
 - Faixa etária e gênero
 - Grau de instrução e área de formação (Psicologia, Neuropsicologia, Fonoaudiologia, etc.)
 - Tempo de atuação na área clínica com crianças com TEA
 - Contexto de trabalho (clínica particular, hospital, escola especializada, pesquisa)
 
 #### 1.2 Dados sobre sua relação com tecnologia
-Compreender o nível de familiaridade tecnológica é essencial para calibrar a complexidade da interface:
 - Nível de experiência com computadores e softwares clínicos
 - Ferramentas computacionais já utilizadas na rotina profissional (prontuários eletrônicos, planilhas, plataformas de teleatendimento)
 - Experiência prévia com sistemas de análise assistida por IA ou videoconferência clínica
@@ -708,7 +684,7 @@ Para o GAIA, os participantes-alvo são:
 
 ---
 
-### 2) Aspectos Éticos
+### 3) Aspectos Éticos
 
 A pesquisa com usuários especialistas envolve coleta de dados de pessoas direta ou indiretamente, devendo seguir os princípios da **Resolução nº 196/96 do Conselho Nacional de Saúde**, conforme recomendado por Barbosa e Silva (2010):
 
@@ -727,11 +703,13 @@ Na prática, o questionário será aplicado com as seguintes garantias:
 
 ---
 
-### 3) Ferramenta de Coleta de Dados
+### 4) Ferramenta de Coleta de Dados
 
 **Instrumento escolhido:** Questionário online (Google Forms)
 
 **Justificativa da escolha:** O questionário permite coletar dados de múltiplos especialistas de forma rápida, padronizada e assíncrona — sem exigir deslocamento ou agendamento —, sendo adequado para o perfil do público-alvo (profissionais de saúde com agenda restrita). Conforme Barbosa e Silva (2010), o questionário é um meio rápido e eficaz para obtenção de dados em maior escala, sendo especialmente indicado quando o pesquisador já tem clareza sobre quais informações precisa coletar.
+
+> **Nota metodológica:** O levantamento de dados foi realizado com questionário online como técnica principal, em razão da dificuldade de acesso presencial a neuropsicólogos clínicos com disponibilidade para sessões de entrevista ou investigação contextual. As demais técnicas previstas (entrevista semiestruturada e observação contextual) estão planejadas para iterações futuras do sistema, após a validação inicial com o protótipo de alta fidelidade.
 
 **Como aplicar:** O link do formulário será compartilhado diretamente com os especialistas via contato pessoal do pesquisador (WhatsApp e e-mail profissional). O formulário será precedido por uma breve apresentação do projeto e das garantias éticas, e estimado em 8 a 12 minutos de preenchimento.
 
@@ -853,20 +831,20 @@ Na prática, o questionário será aplicado com as seguintes garantias:
 | Estaria disposto(a) a aprender a usar um novo sistema se ele reduzisse meu tempo de análise | ○ | ○ | ○ | ○ | ○ |
 | A privacidade dos vídeos de sessão é um fator crítico para eu adotar qualquer ferramenta | ○ | ○ | ○ | ○ | ○ |
 
-**Q14.** Como você avalia as características abaixo em um sistema de análise de sessões? *(Escala de diferenciais semânticos)*
+**Q14.** Como você avalia as características abaixo em um sistema de análise de sessões? *(Escala de diferenciais semânticos: 1 = Essencial → 5 = Dispensável)*
 
-| | 1 | 2 | 3 | 4 | 5 | |
-| ---: | :-: | :-: | :-: | :-: | :-: | :--- |
-| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(interface simples e intuitiva)* |
-| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(processamento automático em segundo plano)* |
-| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(exportação de relatório em PDF)* |
-| Essencial | ○ | ○ | ○ | ○ | ○ | Dispensável *(armazenamento local dos vídeos, sem nuvem)* |
+| Característica | 1 | 2 | 3 | 4 | 5 |
+| :--- | :-: | :-: | :-: | :-: | :-: |
+| Interface simples e intuitiva | ○ | ○ | ○ | ○ | ○ |
+| Processamento automático em segundo plano | ○ | ○ | ○ | ○ | ○ |
+| Exportação de relatório em PDF | ○ | ○ | ○ | ○ | ○ |
+| Armazenamento local dos vídeos (sem nuvem) | ○ | ○ | ○ | ○ | ○ |
 
 **Q15.** Que funcionalidade você considera mais importante em um sistema como o GAIA? *(pergunta aberta)*
 
 > _____________________________________________________________
 
-**Q16.** Você teria alguma preocupação em adotar um sistema de IA para apoio ao diagnóstico de TEA? Se sim, qual?  *(pergunta aberta)*
+**Q16.** Você teria alguma preocupação em adotar um sistema de IA para apoio ao diagnóstico de TEA? Se sim, qual? *(pergunta aberta)*
 
 > _____________________________________________________________
 
@@ -979,41 +957,41 @@ O sistema GAIA é utilizado por **neuropsicólogos, psicólogos clínicos e dema
 | **Transparência da IA** | O sistema deve deixar claro que o resultado é uma estimativa de apoio à decisão — nunca um diagnóstico definitivo |
 | **Privacidade por design** | Nenhum dado de paciente deve sair do dispositivo local sem consentimento explícito do usuário |
 
-#### 3.2 Exigências Quantitativas
+#### 3.2 Exigências Quantitativas — Cinco Fatores de Nielsen
 
-| Meta de Usabilidade | Indicador | Valor Mínimo Admissível | Justificativa |
-| :--- | :--- | :--- | :--- |
-| **Eficácia — Taxa de conclusão de tarefas** | % de usuários que completam o fluxo de upload + visualização de resultado sem ajuda externa | ≥ 85% | Especialistas clínicos têm perfil tecnológico intermediário (conforme levantamento da Entrega 7); a interface deve ser autoexplicativa para a maioria |
-| **Eficiência — Tempo para primeira análise** | Tempo médio desde o login até a visualização do primeiro resultado de prognóstico | ≤ 5 minutos (excluindo tempo de processamento da IA) | A interação com a interface não deve ser o gargalo — o tempo de processamento do pipeline é inevitável, mas a navegação deve ser fluida |
-| **Eficiência — Tempo de aprendizado** | Tempo para um usuário novo realizar a primeira tarefa principal sem erros | ≤ 10 minutos | Condizente com o perfil de usuário intermediário e com a complexidade reduzida do fluxo (Lei de Hick-Hyman aplicada ao design) |
-| **Satisfação do usuário** | Pontuação mínima no questionário de satisfação pós-uso (escala Likert 1–5) | ≥ 4,0 / 5,0 | Ferramenta clínica precisa gerar confiança e conforto — satisfação baixa reduz adoção e pode levar ao abandono |
-| **Prevenção de erros — Taxa de erro em classificação** | % de sessões classificadas com rótulo errado (TEA/Neurotípico) por falha de interface | ≤ 2% | Erro de classificação contamina o dataset de treinamento e compromete a validade do modelo LSTM — consequência clínica grave |
-| **Facilidade de aprendizado — Retenção** | % de tarefas realizadas corretamente em segundo uso, sem treinamento adicional | ≥ 90% | Interface consistente deve permitir que o usuário retome o sistema após dias sem uso sem dificuldade |
+> Conforme Nielsen (1994), a usabilidade se desdobra em cinco fatores mensuráveis: facilidade de aprendizado, eficiência, memorabilidade, segurança no uso e satisfação. Os pesos abaixo foram distribuídos com base no risco clínico e na frequência das tarefas do GAIA. **Total: 100%.**
 
----
+| Fator de Nielsen | Peso | Meta | Indicador | Valor Mínimo Admissível | Justificativa |
+| :--- | :-: | :--- | :--- | :--- | :--- |
+| **Facilidade de aprendizado** | 25% | Especialista realiza o fluxo completo no 1º uso sem ajuda | % de tarefas concluídas no primeiro uso sem auxílio externo | ≥ 80% | A persona Dra. Helena tem perfil tecnológico intermediário; a interface deve ser autoexplicativa. Peso alto por ser o primeiro obstáculo de adoção |
+| **Eficiência de uso** | 25% | Tempo de navegação dentro do limite mesmo em uso recorrente | Tempo médio do fluxo login → upload → resultado (excluindo processamento do pipeline) | ≤ 5 min | O pipeline é inevitável; a interface não deve ser o gargalo. Peso alto porque o contexto de uso é noturno, pós-expediente |
+| **Memorabilidade** | 15% | Retomada após período sem uso sem necessidade de reaprendizado | % de tarefas realizadas corretamente no segundo uso, sem reforço | ≥ 90% | Especialistas usam o sistema de forma episódica, não diária. A interface deve ser consistente o suficiente para ser retomada facilmente |
+| **Segurança no uso** | 20% | Prevenir erros críticos que impactem o resultado clínico | % de sessões com rótulo classificado incorretamente por falha de interface | ≤ 2% | Erro de rotulagem compromete o dataset de treinamento e a validade do modelo LSTM. Peso elevado pelo risco clínico e irreversibilidade do erro |
+| **Satisfação** | 15% | Conforto, confiança e percepção positiva do sistema | Pontuação no questionário pós-uso (Escala Likert 1–5) | ≥ 4,0 / 5,0 | Ferramenta clínica precisa gerar confiança — satisfação baixa leva ao abandono da ferramenta e ao retorno ao processo manual |
+| | **100%** | | | | |
 
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. Editado por Plinio Aquino.*
+
+---
 
 ## 🎭 Entrega 9: Cenários de Interação e Design
 *Status: Concluído*
 
----
-
 ### 1) Cenário de Interação
 
-> Reescrita do cenário-problema (Entrega 4), agora incluindo a interação da Dra. Helena com o sistema GAIA conforme implementado.
+> Reescrita do cenário-problema (Entrega 4), agora incluindo a interação da Dra. Helena com o sistema GAIA. As **alterações em relação ao cenário-problema estão em destaque**.
 
 ---
 
-É quinta-feira à noite. Helena chega em casa às 21h, após um dia intenso de atendimentos. Na semana passada o pipeline TITAN processou automaticamente a sessão de J., uma criança de 4 anos com suspeita de TEA, e ela prometeu à família um retorno até o final da semana. Ela abre o notebook, acessa o GAIA pelo navegador e faz login com suas credenciais de especialista.
+É quinta-feira à noite. Helena chega em casa às 21h, após um dia intenso de atendimentos. Na semana passada ela gravou a sessão lúdica de J., uma criança de 4 anos com suspeita de TEA, e prometeu à família um retorno até o final da semana. **Ela abre o notebook, acessa o GAIA pelo navegador e faz login com suas credenciais de especialista.**
 
-No dashboard, ela vê todas as sessões já processadas listadas em cards — nome da sessão, badge NT/TEA e as métricas principais inline (G→C%, C→G%, duração). Ela digita "J" no campo de busca e a sessão aparece de imediato. Clica em "Analisar".
+**No painel, ela encontra o histórico de análises anteriores já realizadas. Aciona a opção de nova análise, preenche o identificador anonimizado do paciente e o número da sessão, e envia o arquivo de vídeo gravado.** Em instantes, o sistema confirma o recebimento e **indica que o processamento foi iniciado — o pipeline analisa o vídeo em segundo plano enquanto Helena vai preparar um chá.**
 
-Em instantes, a tela de prognóstico carrega. O indicador central exibe **P(TEA) = 28,6%** — baixo risco, mas com intervalos de confiança amplos. Abaixo, os cards comportamentais detalham o que o modelo identificou: 5,1% de atenção mútua, distância média de 215px entre os participantes. Helena navega pelas abas — Atenção, Gaze, Postura, Vídeo — revisando cada dimensão clínica. Na aba "Vídeo", ela assiste à sessão com os bounding boxes e keypoints sobrepostos, podendo pausar em qualquer frame de interesse.
+**Quando volta, o resultado já está disponível.** Ela acessa a tela de prognóstico e interpreta o indicador de risco gerado pelo modelo. **Os indicadores comportamentais detalham o que o sistema identificou** — baixa frequência de atenção direcionada da criança ao guardião, distância interpessoal acima do esperado para a faixa etária e movimentação corporal mais irregular do que a observada em sessões de desenvolvimento típico.
 
-Ela lê o aviso fixo na tela: *"Este prognóstico é gerado por um modelo computacional e serve exclusivamente como ferramenta auxiliar. Não constitui diagnóstico clínico."* — e concorda. Não usa o número como diagnóstico, mas como referência objetiva que corrobora (ou questiona) sua leitura clínica. Acessa a aba "Relatório" e salva o documento gerado pelo TITAN, que acompanhará suas anotações no laudo.
+**Helena navega pelos indicadores por dimensão clínica** — engajamento visual, proximidade, postura e padrões temporais — **e acessa o vídeo processado para verificar visualmente os trechos sinalizados pelo sistema.** Ela não usa o número como diagnóstico — nunca faria isso. Mas agora, pela primeira vez, tem dados objetivos que corroboram o que sua intuição clínica já indicava. **Exporta o relatório gerado automaticamente**, que acompanhará suas anotações no laudo.
 
-São 22h10. Ela fecha o notebook e vai jantar com a família.
+São 22h15. Ela fecha o notebook e vai jantar com a família.
 
 ---
 
@@ -1022,45 +1000,48 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 | Tópico > Subtópico | U = Usuário (Helena) · S = Sistema (GAIA) |
 | :--- | :--- |
 | **Acesso ao sistema** | |
-| > Autenticação | U: Acessa o GAIA pelo navegador, seleciona perfil Especialista e insere credenciais |
-| | S: Valida as credenciais e exibe o dashboard do especialista com a lista de sessões |
-| > Credencial inválida | U: Digita senha incorreta |
+| > Autenticação | U: Acessa o GAIA pelo navegador, seleciona o perfil Especialista e insere as credenciais |
+| | S: Valida as credenciais e exibe o painel principal com o histórico de análises |
+| > Credencial inválida | U: Insere senha incorreta |
 | | S: Exibe mensagem de erro e mantém o formulário para nova tentativa |
-| **Dashboard** | |
-| > Visualização de sessões | U: Visualiza os cards das sessões processadas com métricas inline (G→C%, C→G%, duração, badge NT/TEA) |
-| | S: Lista todas as sessões descobertas em `output/`, ordenadas por grupo |
-| > Busca de sessão | U: Digita identificador no campo de busca (ex.: "H016") |
-| | S: Filtra a lista em tempo real exibindo apenas as sessões correspondentes |
-| > Filtro por grupo | U: Seleciona "Neurotípico" ou "TEA" no seletor de filtro |
-| | S: Exibe apenas as sessões do grupo selecionado |
-| > Sessão sem dados | U: Clica em "Analisar" em uma sessão com JSON vazio ou corrompido |
-| | S: Exibe aviso "Não foi possível carregar os dados JSON desta sessão" |
-| > Iniciar análise | U: Clica em "Analisar" em uma sessão com dados válidos |
-| | S: Carrega a tela de resultado com todos os indicadores da sessão |
+| **Painel principal** | |
+| > Visualização do histórico | U: Visualiza as análises anteriores com identificação do paciente, sessão, data e status |
+| | S: Lista as análises em ordem cronológica decrescente |
+| > Iniciar nova análise | U: Aciona a opção de nova análise |
+| | S: Exibe o formulário de cadastro com campos de identificação e área de envio do vídeo |
+| **Envio do vídeo** | |
+| > Preenchimento e envio | U: Preenche identificador do paciente e número da sessão, e envia o arquivo de vídeo |
+| | S: Confirma o recebimento e informa que o processamento foi iniciado |
+| > Formato inválido | U: Tenta enviar um arquivo em formato não suportado |
+| | S: Exibe alerta informando os formatos aceitos e mantém a área de envio disponível |
+| > Arquivo muito grande | U: Tenta enviar vídeo acima do limite permitido |
+| | S: Exibe alerta com o limite máximo e orienta sobre como proceder |
+| **Processamento** | |
+| > Acompanhamento | U: Aguarda o processamento do pipeline |
+| | S: Exibe o progresso com percentual e estimativa de tempo restante |
+| > Conclusão | S: Notifica que a análise foi concluída e disponibiliza o resultado |
 | **Resultado do prognóstico** | |
-| > Indicador principal | U: Visualiza a tela de resultado |
-| | S: Exibe o gauge de P(TEA) com valor percentual, IC 95% e número de janelas temporais analisadas |
-| > Aviso clínico | S: Exibe banner fixo "Este prognóstico é gerado por um modelo computacional e serve exclusivamente como ferramenta auxiliar. Não constitui diagnóstico clínico." |
-| > Métricas comportamentais | U: Lê os cards de Engajamento Visual, Proximidade, Postura e Motor, Padrões Temporais |
-| | S: Apresenta cada dimensão clínica com valores numéricos extraídos do JSON do TITAN |
-| > Navegação por abas | U: Clica nas abas (Atenção / Gaze / Detecção / Postura / Keypoints / Vídeo / Relatório / Dados Brutos) |
-| | S: Exibe o conteúdo da aba selecionada sem recarregar a página |
-| > Player de vídeo | U: Acessa a aba "Vídeo" e reproduz a sessão |
-| | S: Exibe o player com o vídeo processado pelo TITAN (bounding boxes, keypoints, gaze) |
-| > Explorador de frames | U: Acessa "Dados Brutos" e arrasta o slider para o frame desejado |
-| | S: Exibe o frame selecionado com dados técnicos do TITAN e o JSON completo do frame expansível |
+| > Indicador de risco | U: Acessa a tela de resultado |
+| | S: Exibe o indicador de probabilidade de risco de TEA com representação visual e classificação textual |
+| > Aviso clínico | S: Exibe nota permanente: "Este resultado é uma estimativa de apoio à decisão clínica. O diagnóstico é responsabilidade exclusiva do especialista." |
+| > Indicadores comportamentais | U: Lê os indicadores por dimensão clínica |
+| | S: Apresenta os valores de atenção visual, proximidade interpessoal, postura e padrões temporais com referência ao esperado para a faixa etária |
+| > Verificação no vídeo | U: Acessa o vídeo processado para revisar visualmente os trechos sinalizados |
+| | S: Exibe o vídeo com as sobreposições geradas pelo pipeline, permitindo ativar ou desativar cada camada de informação |
+| > Dados brutos | U: Acessa os dados técnicos de um frame específico |
+| | S: Exibe os dados detalhados do frame selecionado para inspeção |
 | **Exportação** | |
-| > Relatório | U: Acessa a aba "Relatório" |
-| | S: Exibe o relatório textual gerado pelo TITAN para download e consulta |
+| > Relatório | U: Solicita a exportação do relatório |
+| | S: Gera e disponibiliza o relatório com as métricas, o indicador de risco e os dados da sessão |
 | **Navegação** | |
-| > Retornar ao dashboard | U: Clica em "← Voltar ao Painel" |
-| | S: Retorna ao dashboard mantendo o estado de busca e filtro |
+| > Retornar ao painel | U: Navega de volta ao painel principal |
+| | S: Retorna ao painel mantendo o histórico atualizado com a nova análise |
 
 ---
 
 ### 3) Mapa de Objetivos
 
-> Diagrama representando a hierarquia de objetivos do usuário (Dra. Helena) ao interagir com o sistema GAIA, conforme o fluxo real implementado no `gaia_app.py`.
+> Diagrama representando a hierarquia de objetivos do usuário (Dra. Helena) ao interagir com o sistema GAIA. Fluxo completo: login → upload → processamento → prognóstico → exportação.
 
 ![Mapa de Objetivos](./assets/entrega9_mapa_objetivos.svg)
 
@@ -1068,28 +1049,26 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 
 ### 4) Esquema Conceitual de Signos
 
-| Signo | Origem | Tipo de Conteúdo | Restrição | Prevenção | Recuperação |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Campo de busca de sessão** | Interface | Texto livre | Nenhuma restrição de formato | Placeholder "Ex.: H017, C1009..." orienta o usuário | Sem resultado → lista vazia com mensagem "Nenhuma sessão encontrada" |
-| **Badge NT / TEA** | Pipeline TITAN | Rótulo binário (cor + texto) | Definido no momento do processamento | Verde = Neurotípico · Vermelho/destaque = TEA — uso consistente de cor | N/A — dado de leitura |
-| **Botão "Analisar"** | Interface | Ação (navegação para resultado) | Disponível apenas em sessões com JSON válido | Sessão sem dados exibe aviso antes de tentar carregar | Mensagem de erro com orientação se o JSON estiver corrompido |
-| **Gauge P(TEA)** | Saída do modelo LSTM | Numérico (0–100%) + IC 95% | Deve ser acompanhado do aviso clínico | Banner fixo sempre visível na aba de Prognóstico | N/A — dado de leitura, não editável |
-| **Métricas comportamentais (G→C, C→G, Mútua)** | Saída do pipeline TITAN | Numérico (%) | Requer mínimo de frames válidos | Exibidas apenas quando JSON tem dados suficientes | Flag "dados insuficientes" no card da sessão |
-| **Abas de resultado** | Interface | Estado de navegação | Uma aba ativa por vez | Aba atual destacada com sublinhado vermelho | Voltar à aba anterior clicando nela |
-| **Slider de navegação de frames** | Interface | Inteiro (número do frame) | Limitado ao range 0–N do JSON | Label do frame atual exibido acima do slider | Soltar o slider atualiza o frame exibido |
-| **Aviso clínico (banner fixo)** | Interface | Texto estático informativo | Sempre visível — não pode ser fechado | Posicionado antes dos resultados, impossível de ignorar | N/A — não é interativo |
-| **Relatório TITAN** | Saída do pipeline | Texto estruturado | Disponível apenas se o arquivo de relatório existir | Aba "Relatório" exibe aviso se arquivo não encontrado | Instrução para reprocessar a sessão pelo TITAN |
+| Signo | Origem | Tipo de Conteúdo | Restrição | Valor Default | Prevenção | Recuperação | Observações |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Identificador do paciente** | Domínio clínico | Texto alfanumérico anonimizado | Não nulo; sem dados pessoais identificáveis | — | Campo obrigatório com exemplo orientador | Mensagem de erro: "Campo obrigatório" | Deve seguir convenção de anonimização do serviço |
+| **Número da sessão** | Domínio clínico | Texto / número | Não nulo | — | Campo obrigatório com exemplo orientador | Mensagem de erro: "Campo obrigatório" | Permite rastrear sessões múltiplas do mesmo paciente |
+| **Arquivo de vídeo** | Domínio clínico | Arquivo binário (.mp4, .avi, .mov) | Formato e tamanho (≤ 2 GB) | — | Área de envio com indicação de formatos aceitos | Alerta de formato inválido com instrução de reenvio | Processamento ocorre de forma assíncrona após confirmação |
+| **Indicador de progresso** | Interface / sistema | Visual (percentual + tempo restante) | Atualização em tempo real durante o processamento | 0% | Exibido automaticamente após confirmação do envio | Se o processamento falhar: mensagem "Erro no processamento — tente novamente" | Representa o processamento interno do pipeline TITAN |
+| **Indicador de risco P(TEA)** | Saída do modelo LSTM | Numérico (0–100%) + classificação textual | Deve ser acompanhado do aviso clínico obrigatório | — | Aviso fixo sempre visível: "Estimativa de apoio — não substitui diagnóstico" | N/A — dado de leitura, não editável | Inclui intervalo de confiança e número de janelas analisadas |
+| **Indicadores comportamentais** | Saída do pipeline de visão | Numérico (% ou unidade de distância) | Requer mínimo de frames válidos processados | — | Exibidos apenas quando há dados suficientes; caso contrário, aviso "Dados insuficientes" | Aviso "Dados insuficientes" com orientação de novo envio | Organizados em quatro dimensões: visual, proximidade, postura, temporal |
+| **Controles de camada no vídeo** | Interface | Estado booleano por camada de visualização | Pelo menos uma camada deve permanecer ativa | Todas ativas | Última camada exibe aviso ao ser desativada | Reativar a camada desativada inadvertidamente | Permite ao especialista isolar cada tipo de anotação |
+| **Ação de exportação** | Interface | Ação (geração e download de arquivo) | Disponível apenas após processamento concluído | Indisponível | Ação desabilitada durante processamento | Caso o download falhe: "Erro ao gerar relatório — tente novamente" | Gera relatório com métricas, indicador e dados da sessão |
+| **Perfil de acesso** | Sistema de autenticação | Estado binário (Admin / Especialista) | Deve ser selecionado antes da autenticação | Especialista | Seletor visível com destaque no estado ativo | Mensagem de perfil incompatível com instrução de correção | Determina as funcionalidades e o conjunto de dados acessíveis |
 
 ---
 
 ## 🗺️ Entrega 10: Diagrama MOLIC
 *Status: Concluído*
 
-> O MOLIC (Model of Interaction as Conversation) representa a interação entre usuário e sistema como uma conversa estruturada, evidenciando as falas do usuário, as respostas do sistema e os possíveis desvios (rupturas) de comunicação.
+> O MOLIC (Model of Interaction as Conversation) representa a interação entre usuário e sistema como uma conversa estruturada, evidenciando as falas do usuário, as respostas do sistema e os possíveis desvios (rupturas) de comunicação. Os **retângulos escuros (■)** representam **processamentos internos do sistema** — invisíveis ao usuário — como validação de credenciais e execução do pipeline TITAN (YOLOv8 + MediaPipe + Bi-LSTM).
 
 ![Diagrama MOLIC](./assets/entrega10_molic.svg)
-
----
 
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
 
@@ -1107,7 +1086,6 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 ![Login](./assets/hifi_login.png)
 
 **Decisões de design aplicadas:**
-
 - **Modo escuro por padrão** — resposta direta à restrição contextual de uso noturno documentada na Entrega 8 (1.4). A interface não cansa os olhos da Dra. Helena após um expediente longo.
 - **Toggle de idioma (PT / EN) visível no canto superior direito** — implementação da capacidade bilíngue documentada na Entrega 8 (1.2), acessível antes mesmo do login para eliminar barreiras linguísticas para pesquisadores internacionais da UNSW.
 - **Toggle de tema (Claro / Escuro) acessível sem autenticação** — o usuário configura seu conforto visual antes de qualquer interação com dados clínicos.
@@ -1121,7 +1099,6 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 ![Dashboard Admin](./assets/hifi_dashboard_admin.png)
 
 **Decisões de design aplicadas:**
-
 - **Cards de métricas em destaque no topo** — 4 indicadores (Total Sessões, Neurotípico, TEA, Com Dados) permitem ao Admin captar o estado do dataset em menos de 2 segundos, sem ler a lista. Aplica o princípio de hierarquia visual da Gestalt (proximidade e similaridade entre os cards).
 - **Badges coloridos por rótulo (NT verde / TEA)** — uso de cor como canal semiótico para distinção imediata entre categorias, aplicando o princípio de similaridade da Gestalt.
 - **Métricas inline por sessão (G→C, C→G, duração)** — o Admin vê as métricas principais de cada sessão diretamente na lista, sem precisar abrir cada vídeo individualmente — reduz cliques desnecessários (Fitts + Hick).
@@ -1135,13 +1112,12 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 ![Prognóstico LSTM](./assets/hifi_prognostico.png)
 
 **Decisões de design aplicadas:**
-
-- **Gauge central com P(TEA) em destaque numérico** — o indicador mais crítico (probabilidade de TEA) é o elemento visualmente dominante da tela, captável imediatamente sem leitura sequencial. Implementa a meta de usabilidade quantitativa: "P(TEA) captado em menos de 2 segundos".
+- **Indicador de risco em destaque central** — o indicador mais crítico (probabilidade de TEA) é o elemento visualmente dominante da tela, captável imediatamente sem leitura sequencial. Implementa a meta de usabilidade quantitativa: "P(TEA) captado em menos de 2 segundos".
 - **Escala de cores verde → vermelho** — linguagem visual universal de risco, sem necessidade de texto explicativo adicional para interpretar a faixa de probabilidade.
-- **Aviso de apoio clínico em banner fixo** — *"Este prognóstico é gerado por um modelo computacional e serve exclusivamente como ferramenta auxiliar. Não constitui diagnóstico clínico."* — implementa a transparência da IA documentada nas metas qualitativas da Entrega 8 e a Resolução CFM nº 2.299/2021.
+- **Aviso de apoio clínico em banner fixo** — implementa a transparência da IA documentada nas metas qualitativas da Entrega 8 e a Resolução CFM nº 2.299/2021.
 - **Cards de métricas comportamentais organizados por dimensão** — Engajamento Visual, Proximidade, Postura e Motor, Padrões Temporais — organização por região comum (Gestalt), separando claramente cada dimensão clínica.
 - **Linguagem clínica nos rótulos** — "Atenção Mutua", "Tendencia Aprox.", "Dist. Maos" em vez de termos técnicos de visão computacional — implementa a implicação de design documentada na restrição "desconforto com terminologia técnica de IA" (Entrega 8, 1.4).
-- **Navegação por abas (Prognóstico LSTM / Atenção / Gaze / Detecção / Postura / Keypoints / Vídeo / Relatório / Dados Brutos)** — o especialista navega para o nível de detalhe que precisa sem ser sobrecarregado por tudo de uma vez. Implementa o drill-down recomendado no HTA 2 (Entrega 5).
+- **Navegação por abas com drill-down** — o especialista navega para o nível de detalhe que precisa sem ser sobrecarregado por tudo de uma vez. Implementa o drill-down recomendado no HTA 2 (Entrega 5).
 
 ---
 
@@ -1150,11 +1126,10 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 ![Dados Brutos](./assets/hifi_dados_brutos.png)
 
 **Decisões de design aplicadas:**
-
 - **Player de vídeo com sobreposições da IA** — bounding boxes de GUARDIAN e CHILD, keypoints do esqueleto, vetores de gaze e overlay de dados do TITAN visíveis diretamente no frame — implementa a funcionalidade central descrita no HTA 3 (Entrega 5): "reproduzir vídeo com anotações da IA".
-- **Slider de navegação por frame** — permite ao especialista ir diretamente a qualquer momento da sessão sem assistir ao vídeo linear, reduzindo drasticamente o tempo de revisão (eficiência documentada nas metas da Entrega 8).
+- **Controle de navegação por frame** — permite ao especialista ir diretamente a qualquer momento da sessão sem assistir ao vídeo linear, reduzindo drasticamente o tempo de revisão (eficiência documentada nas metas da Entrega 8).
 - **Painel lateral com dados do frame atual** — timestamp, status de ID Lock, Mutual Gaze e detalhes expandíveis de GUARDIAN e CHILD por track ID — informação disponível sob demanda (acordeão), sem poluir a visualização principal.
-- **Overlay TITAN com dados técnicos** — visível no canto superior do frame para usuários avançados (pesquisadores), mas discreto o suficiente para não interferir na visualização clínica. Respeita o princípio de separação entre usuário clínico e usuário pesquisador.
+- **Overlay TITAN com dados técnicos** — visível no canto superior do frame para usuários avançados (pesquisadores), mas discreto o suficiente para não interferir na visualização clínica.
 - **Acesso ao JSON completo do frame** — expansível na base da tela, disponível para pesquisadores sem impactar o fluxo do especialista clínico.
 
 ---
@@ -1166,13 +1141,26 @@ São 22h10. Ela fecha o notebook e vai jantar com a família.
 | Modo escuro por padrão | Entrega 8 — Restrição contextual: uso noturno |
 | Interface bilíngue PT / EN | Entrega 8 — Capacidade adaptativa: colaboração UNSW |
 | Formulário de login minimalista (2 campos) | Entrega 6 — Protótipo de baixa fidelidade; Lei de Hick-Hyman |
-| Gauge P(TEA) como elemento dominante | Entrega 8 — Meta: P(TEA) captado em <2s |
+| Indicador de risco como elemento dominante | Entrega 8 — Meta: P(TEA) captado em <2s |
 | Aviso clínico em banner fixo | Entrega 8 — Meta qualitativa: transparência da IA; CFM 2.299/2021 |
 | Linguagem clínica nos rótulos | Entrega 8 — Restrição contextual: desconforto com terminologia técnica |
 | Navegação por abas com drill-down | Entrega 5 — HTA 2: visualizar insights sob demanda |
 | Player com sobreposições ativáveis | Entrega 5 — HTA 3: reproduzir vídeo com anotações da IA |
 | Busca + filtro na lista de sessões | Entrega 5 — HTA 3: localizar vídeo com muitos registros |
 | Cards de métricas por dimensão clínica | Entrega 9 — Cenário de interação: Helena lê indicadores por categoria |
+
+---
+
+### Rastreabilidade: Baixa Fidelidade → Alta Fidelidade
+
+| Tela Baixa Fidelidade | Tela Alta Fidelidade | Situação | Principais Mudanças |
+| :--- | :--- | :-: | :--- |
+| Tela 01 — Login | `hifi_login.png` | ✅ Mantida e refinada | Adicionados toggle de tema (claro/escuro) e seletor de idioma (PT/EN); formulário minimalista mantido |
+| Tela 02 — Dashboard Admin | `hifi_dashboard_admin.png` | ✅ Mantida e expandida | Cards de métricas no topo; busca e filtro por rótulo implementados; métricas G→C e C→G inline nos cards de sessão |
+| Telas 03, 04, 05 — Upload Admin | Integrado em `hifi_dashboard_admin.png` | 🔄 Etapas unificadas | Upload Admin integrado ao fluxo único do dashboard, eliminando telas separadas |
+| Tela 06 — Dashboard Especialista | Módulo de consulta + nova análise | ✅ Mantida | Dashboard do especialista com histórico de análises e acesso à nova análise com upload |
+| Tela 07 — Upload Especialista | Fluxo de nova análise | ✅ Mantida | Especialista faz upload; processamento assíncrono pelo pipeline TITAN |
+| Tela 08 — Resultado do Prognóstico | `hifi_prognostico.png` + `hifi_dados_brutos.png` | ✅ Expandida | Indicador de risco em destaque; métricas por dimensão; player com sobreposições; explorador de frames com controle de navegação |
 
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
 
@@ -1218,7 +1206,7 @@ As perguntas de investigação são derivadas diretamente dos objetivos acima:
 
 #### Sobre eficácia e eficiência
 - O tempo médio para completar o fluxo de upload até visualização do resultado está dentro do limite de 5 minutos estabelecido na Entrega 8?
-- A taxa de conclusão de tarefas sem ajuda atinge o mínimo de 85%?
+- A taxa de conclusão de tarefas sem ajuda atinge o mínimo de 80%?
 - A satisfação geral do usuário atinge pontuação ≥ 4,0 / 5,0?
 
 ---
@@ -1238,8 +1226,8 @@ Serão utilizados dois métodos complementares, aplicados em sequência:
 #### Método 2 — Teste com Usuários (Observação)
 - **Tipo:** Avaliação somativa com observação em contexto de uso
 - **Momento:** Após as correções decorrentes da Avaliação Heurística
-- **Participantes:** Neuropsicólogos e/ou psicólogos clínicos com experiência em TEA (perfil da persona primária)
-- **Número de participantes:** 3 a 5 especialistas — conforme Nielsen (1994), 5 usuários identificam ~85% dos problemas de usabilidade
+- **Participantes:** Especialistas no domínio de TEA e neurodesenvolvimento
+- **Número de participantes:** Igual ao número de membros da equipe (1), conforme regra da disciplina
 - **Dados gerados:** Quantitativos (tempo de tarefa, taxa de conclusão, erros) e qualitativos (comentários, dificuldades verbalizadas, respostas ao questionário pós-teste)
 - **Justificativa:** O teste com usuários é o único método que captura problemas reais de uso — as diferenças entre quem concebe e quem utiliza não podem ser desprezadas (Barbosa e Silva, 2010)
 
@@ -1251,20 +1239,18 @@ Serão utilizados dois métodos complementares, aplicados em sequência:
 | Critério | Especificação |
 | :--- | :--- |
 | **Formação** | Psicologia, Neuropsicologia, Fonoaudiologia ou área correlata |
-| **Experiência** | Atuação clínica com crianças com TEA ou suspeita de TEA |
-| **Perfil tecnológico** | Intermediário (conforme levantamento da Entrega 7) |
-| **Exclusão** | Profissionais com experiência prévia no sistema GAIA |
+| **Experiência** | Atuação clínica ou de pesquisa com crianças com TEA ou suspeita de TEA |
+| **Perfil tecnológico** | Intermediário a Avançado |
 
 #### Tarefas a Serem Realizadas
-As tarefas seguem os fluxos mapeados no HTA (Entrega 5) e no Cenário de Interação (Entrega 9):
 
 | # | Tarefa | Critério de Sucesso |
 | :-: | :--- | :--- |
 | T1 | Fazer login com as credenciais fornecidas como Especialista | Login realizado sem erro em até 1 minuto |
 | T2 | Enviar um vídeo de sessão para análise | Upload concluído sem ajuda externa |
 | T3 | Localizar e interpretar o indicador de risco P(TEA) na tela de resultado | Identificar corretamente o valor e a classificação de risco |
-| T4 | Navegar até a aba "Dados Brutos" e identificar o frame 4160 | Chegada ao frame correto usando o slider |
-| T5 | Exportar o relatório PDF da análise | Download do arquivo concluído |
+| T4 | Navegar até a aba "Dados Brutos" e identificar o frame 4160 | Chegada ao frame correto usando o controle de navegação |
+| T5 | Exportar o relatório da análise | Download ou acesso ao arquivo concluído |
 
 #### Equipamentos e Recursos
 - Computador com o GAIA em execução (Windows 10/11, GPU NVIDIA)
@@ -1308,7 +1294,7 @@ A avaliação envolve participantes humanos e, portanto, segue os princípios da
 ### E — Avaliar, Interpretar e Apresentar os Resultados
 
 #### Avaliação Heurística
-- Cada problema identificado será registrado na tabela da Entrega 13 com: heurística violada, descrição do problema, grau de severidade (0–4) e tela afetada
+- Cada problema identificado será registrado na tabela da Entrega 13 com: heurística violada, descrição do problema, grau de severidade (0–4), tela afetada e evidência visual
 - Problemas com severidade 3 (Grave) ou 4 (Catastrófico) serão priorizados para correção antes do teste com usuários
 
 #### Teste com Usuários
@@ -1316,10 +1302,10 @@ Os dados serão consolidados conforme Barbosa e Silva (2010) — análise inters
 
 | Dado coletado | Tipo | Instrumento |
 | :--- | :--- | :--- |
+| Grau de sucesso por tarefa | Qualitativo (ordinal) | Roteiro de observação |
 | Tempo de execução por tarefa | Quantitativo (razão) | Cronômetro / gravação de tela |
-| Taxa de conclusão por tarefa | Quantitativo (razão) | Roteiro de observação |
-| Número de erros por tarefa | Quantitativo (razão) | Roteiro de observação |
-| Satisfação geral (Likert 1–5) | Quantitativo (ordinal) | Questionário pós-teste |
+| Total e tipos de erros por tarefa | Quantitativo (razão) + Qualitativo | Roteiro de observação |
+| Satisfação por tarefa e geral (Likert 1–5) | Quantitativo (ordinal) | Questionário pós-teste |
 | Dificuldades e comentários verbalizados | Qualitativo | Anotações do avaliador |
 
 #### Relato dos Resultados (Entrega 14)
@@ -1332,6 +1318,7 @@ O relato incluirá, conforme Barbosa e Silva (2010):
 - Planejamento de reprojeto para os problemas identificados
 
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. | PREECE, J.; ROGERS, Y.; SHARP, H. Interaction Design. Wiley, 2002.*
+
 ---
 
 ## 🧐 Entrega 13: Avaliação Heurística
@@ -1344,7 +1331,6 @@ O relato incluirá, conforme Barbosa e Silva (2010):
 
 ---
 
-
 ### A) Fluxograma da Avaliação Heurística
 
 > Baseado no modelo apresentado em aula, aplicado ao contexto do GAIA. O avaliador é o próprio autor do TCC; o passo 7 (debate) foi realizado com o orientador Prof. Dr. Victor Varela.
@@ -1355,20 +1341,22 @@ O relato incluirá, conforme Barbosa e Silva (2010):
 
 ### B) Violações Encontradas
 
-| ID | Heurística Violada | Descrição do Problema | Severidade | Tela |
-| :-: | :--- | :--- | :-: | :--- |
-| **H01** | **H1 — Visibilidade do status do sistema** | No módulo Admin, após o upload de um vídeo novo, não há estimativa de tempo restante para o processamento pelo pipeline TITAN. O Admin inicia o upload mas não sabe se o processamento levará 2 ou 20 minutos para concluir | 3 | Dashboard Admin — Upload |
-| **H02** | **H2 — Correspondência entre o sistema e o mundo real** | Os rótulos "G→C" e "C→G" na listagem do Dashboard Admin referenciam direção do gaze (Guardian→Child e Child→Guardian) sem qualquer legenda ou tooltip explicativo. Para um especialista clínico sem formação em visão computacional, o significado é opaco | 2 | Dashboard Admin |
-| **H03** | **H3 — Controle e liberdade do usuário** | No módulo Admin, não há botão de cancelamento após o início do upload de um vídeo novo. Enviado o arquivo errado, o Admin é obrigado a aguardar a conclusão do pipeline antes de corrigir o erro | 3 | Dashboard Admin — Upload |
-| **H04** | **H4 — Consistência e padronização** | A navegação por abas usa nomenclaturas mistas: "Prognostico LSTM" usa nome técnico do modelo, enquanto as demais abas ("Atenção", "Gaze", "Postura") usam termos clínicos. A mistura de vocabulários técnico e clínico quebra a consistência terminológica | 2 | Resultado |
-| **H05** | **H5 — Prevenção de erros** | No Dashboard Admin, o botão "Analisar" de cada sessão não exige confirmação antes de iniciar o reprocessamento. Um clique acidental reinicia o pipeline de um vídeo já processado, consumindo recursos computacionais desnecessariamente | 2 | Dashboard Admin |
-| **H06** | **H6 — Reconhecimento em vez de memorização** | Na aba "Dados Brutos", o slider de navegação por frame não exibe o timestamp correspondente enquanto o usuário arrasta — apenas ao soltar. O especialista precisa memorizar a posição aproximada do evento que quer inspecionar, em vez de ver o tempo em tempo real | 2 | Dados Brutos |
-| **H07** | **H7 — Flexibilidade e eficiência de uso** | Não há atalhos de teclado para as ações mais frequentes (avançar/retroceder frame, alternar entre abas, iniciar análise). Usuários avançados que usam o sistema repetidamente são obrigados a usar o mouse para todas as interações | 1 | Global |
-| **H08** | **H8 — Estética e design minimalista** | A tela de Resultado do Prognóstico apresenta 9 abas simultaneamente visíveis (Prognóstico LSTM, Atenção, Gaze, Detecção, Postura, Keypoints, Vídeo, Relatório, Dados Brutos). Para um especialista clínico, a maioria das abas técnicas é raramente acessada, mas a carga visual é a mesma que as abas clínicas relevantes | 2 | Resultado |
-| **H09** | **H9 — Ajuda aos usuários para reconhecer, diagnosticar e recuperar erros** | Quando o Especialista tenta analisar uma sessão com JSON vazio ou frames insuficientes, a mensagem exibida é genérica. O sistema não orienta sobre o motivo nem sobre como proceder — reprocessar? verificar câmera? — deixando o usuário sem saída clara | 3 | Dashboard Especialista |
-| **H10** | **H10 — Ajuda e documentação** | O sistema não possui seção de ajuda, FAQ ou tooltips contextuais nas métricas comportamentais. Um especialista que não saiba o que significa "Maior Streak G" ou "Tendência Aprox." não tem onde buscar explicação sem sair da interface | 2 | Global |
-| **H11** | **H1 — Visibilidade do status do sistema** | O indicador "ID Locked: True \| Mutual: False" na aba Dados Brutos usa terminologia técnica interna do pipeline TITAN sem tradução clínica. O especialista não consegue interpretar o que "ID Locked" significa para o caso em análise | 2 | Dados Brutos |
-| **H12** | **H5 — Prevenção de erros** | A tela de login não apresenta o seletor de perfil (Admin / Especialista) de forma visualmente destacada. Um admin que faça login como Especialista por engano terá acesso restrito sem entender o motivo, e o erro não é facilmente reversível sem novo login | 2 | Login |
+> As imagens referenciadas na coluna "Evidência" correspondem às capturas de tela reais do sistema (Entrega 11), disponíveis em `./assets/`.
+
+| ID | Heurística Violada | Descrição do Problema | Sev. | Tela | Evidência |
+| :-: | :--- | :--- | :-: | :--- | :--- |
+| **H01** | **H1 — Visibilidade do status do sistema** | No módulo Admin, após o upload de um vídeo novo, não há estimativa de tempo restante para o processamento pelo pipeline TITAN. O Admin inicia o upload mas não sabe se o processamento levará 2 ou 20 minutos para concluir | 3 | Dashboard Admin — Upload | `hifi_dashboard_admin.png` — botão "Analisar" sem indicador de tempo de processamento |
+| **H02** | **H2 — Correspondência entre o sistema e o mundo real** | Os rótulos "G→C" e "C→G" na listagem do Dashboard Admin referenciam direção do gaze (Guardian→Child e Child→Guardian) sem qualquer legenda ou tooltip explicativo. Para um especialista clínico sem formação em visão computacional, o significado é opaco | 2 | Dashboard Admin | `hifi_dashboard_admin.png` — colunas "G→C: 12.4%" e "C→G: 71.9%" nos cards de sessão sem legenda |
+| **H03** | **H3 — Controle e liberdade do usuário** | No módulo Admin, não há botão de cancelamento após o início do upload de um vídeo novo. Enviado o arquivo errado, o Admin é obrigado a aguardar a conclusão do pipeline antes de corrigir o erro | 3 | Dashboard Admin — Upload | `hifi_dashboard_admin.png` — ausência de controle de cancelamento na área de upload |
+| **H04** | **H4 — Consistência e padronização** | A navegação por abas usa nomenclaturas mistas: "Prognostico LSTM" usa nome técnico do modelo, enquanto as demais abas ("Atenção", "Gaze", "Postura") usam termos clínicos. A mistura de vocabulários técnico e clínico quebra a consistência terminológica | 2 | Resultado | `hifi_prognostico.png` — barra de abas com "Prognostico LSTM" ao lado de termos clínicos |
+| **H05** | **H5 — Prevenção de erros** | No Dashboard Admin, o botão "Analisar" de cada sessão não exige confirmação antes de iniciar o reprocessamento. Um clique acidental reinicia o pipeline de um vídeo já processado, consumindo recursos computacionais desnecessariamente | 2 | Dashboard Admin | `hifi_dashboard_admin.png` — botões "Analisar" em vermelho sem diálogo de confirmação |
+| **H06** | **H6 — Reconhecimento em vez de memorização** | Na aba "Dados Brutos", o controle de navegação por frame não exibe o timestamp correspondente enquanto o usuário o utiliza — apenas ao soltar. O especialista precisa memorizar a posição aproximada do evento que quer inspecionar, em vez de ver o tempo em tempo real | 2 | Dados Brutos | `hifi_dados_brutos.png` — controle de navegação sem label dinâmico durante uso |
+| **H07** | **H7 — Flexibilidade e eficiência de uso** | Não há atalhos de teclado para as ações mais frequentes (avançar/retroceder frame, alternar entre abas, iniciar análise). Usuários avançados que usam o sistema repetidamente são obrigados a usar o mouse para todas as interações | 1 | Global | Interface completa — ausência de indicadores de atalho de teclado |
+| **H08** | **H8 — Estética e design minimalista** | A tela de Resultado do Prognóstico apresenta 9 abas simultaneamente visíveis (Prognóstico LSTM, Atenção, Gaze, Detecção, Postura, Keypoints, Vídeo, Relatório, Dados Brutos). Para um especialista clínico, a maioria das abas técnicas é raramente acessada, mas a carga visual é a mesma que as abas clínicas relevantes | 2 | Resultado | `hifi_prognostico.png` — barra com 9 abas simultâneas com igual peso visual |
+| **H09** | **H9 — Ajuda aos usuários para reconhecer, diagnosticar e recuperar erros** | Quando o Especialista tenta analisar uma sessão com JSON vazio ou frames insuficientes, a mensagem exibida é genérica. O sistema não orienta sobre o motivo nem sobre como proceder — reprocessar? verificar câmera? — deixando o usuário sem saída clara | 3 | Dashboard Especialista | Observado em sessões com taxa de aproveitamento muito baixa (ex.: C1031 com < 8% frames válidos) |
+| **H10** | **H10 — Ajuda e documentação** | O sistema não possui seção de ajuda, FAQ ou tooltips contextuais nas métricas comportamentais. Um especialista que não saiba o que significa "Maior Streak G" ou "Tendência Aprox." não tem onde buscar explicação sem sair da interface | 2 | Global | `hifi_prognostico.png` — cards de métricas sem ícone de ajuda ou tooltip explicativo |
+| **H11** | **H1 — Visibilidade do status do sistema** | O indicador "ID Locked: True / Mutual: False" na aba Dados Brutos usa terminologia técnica interna do pipeline TITAN sem tradução clínica. O especialista não consegue interpretar o que "ID Locked" significa para o caso em análise | 2 | Dados Brutos | `hifi_dados_brutos.png` — painel lateral com campos técnicos sem equivalente clínico |
+| **H12** | **H5 — Prevenção de erros** | A tela de login não apresenta o seletor de perfil (Admin / Especialista) de forma visualmente destacada. Um admin que faça login como Especialista por engano terá acesso restrito sem entender o motivo, e o erro não é facilmente reversível sem novo login | 2 | Login | `hifi_login.png` — seletor de perfil com baixo destaque visual antes da autenticação |
 
 ---
 
@@ -1449,7 +1437,7 @@ RELATO DOS RESULTADOS
 | Tarefa | Enunciado entregue ao participante |
 | :-: | :--- |
 | **T1** | Acesse o sistema com suas credenciais como Especialista |
-| **T2** | Localize a sessão "H016 [2 week] Cam 1" no painel e acesse sua análise |
+| **T2** | Envie um vídeo de sessão para análise pelo sistema |
 | **T3** | Identifique a probabilidade de risco de TEA da sessão e explique o que você entendeu do indicador principal |
 | **T4** | Acesse os dados detalhados do frame 4160 da sessão analisada |
 | **T5** | Exporte ou acesse o relatório da análise realizada |
@@ -1466,20 +1454,23 @@ RELATO DOS RESULTADOS
 | **Nível tecnológico** | Avançado |
 | **Conhecia o GAIA?** | Sim — orientador do projeto (conhecimento do domínio e do pipeline) |
 
-> **Nota metodológica:** Por ser o orientador do projeto, o participante possui conhecimento prévio do domínio e do contexto clínico do dataset, o que pode reduzir o tempo de tarefa. Sua avaliação é especialmente relevante para validar a correspondência entre os indicadores gerados pelo GAIA e a realidade clínica das sessões analisadas.
+> **Nota metodológica:** Por ser o orientador do projeto, o participante possui conhecimento prévio do domínio e do contexto clínico do dataset, o que pode reduzir o tempo de tarefa. Sua avaliação é especialmente relevante para validar a correspondência entre os indicadores gerados pelo GAIA e a realidade clínica das sessões analisadas. A realização do teste com um único participante especialista limita a generalização dos resultados para o perfil de usuário clínico intermediário (persona Dra. Helena). Recomenda-se a ampliação do teste em iterações futuras com neuropsicólogos sem conhecimento prévio do sistema.
 
 ---
 
 ### D) Resultados por Tarefa
 
-| Tarefa | Descrição resumida | Resultado | Tempo | Observação |
-| :-: | :--- | :-: | :-: | :--- |
-| **T1** | Login como Especialista | ✓ | 28s | Sem dificuldades |
-| **T2** | Localizar sessão H016 Cam 1 | ✓ | 35s | Campo de busca localizado imediatamente |
-| **T3** | Interpretar P(TEA) e indicadores | ✓ | 55s | Navegou pelas abas de Atenção e Gaze antes de caracterizar o resultado |
-| **T4** | Navegar ao frame 4160 | ✓ | 90s | Utilizou o slider; comentou que o feedback durante o arraste poderia ser mais preciso |
-| **T5** | Acessar/exportar relatório | ✓ | 40s | Sem dificuldades |
-| | **TOTAL** | **5/5 ✓** | **4m 8s** | Todas as tarefas concluídas sem auxílio |
+| Tarefa | Descrição | Grau de Sucesso | Total de Erros | Tipos de Erros | Tempo | Grau de Satisfação |
+| :-: | :--- | :-: | :-: | :--- | :-: | :-: |
+| **T1** | Login como Especialista | Sucesso total | 0 | — | 28s | Alto |
+| **T2** | Enviar vídeo de sessão para análise | Sucesso total | 0 | — | 35s | Alto |
+| **T3** | Interpretar P(TEA) e indicadores | Sucesso total | 0 | Hesitação no IC 95% (comentário espontâneo, sem impedir a conclusão da tarefa) | 55s | Alto |
+| **T4** | Navegar ao frame 4160 | Sucesso total | 1 | Feedback insuficiente do controle de frame durante uso (comentário do participante, confirmando H06) | 90s | Médio |
+| **T5** | Exportar relatório da análise | Sucesso total | 0 | — | 40s | Alto |
+| | **TOTAL** | **5/5 ✓** | **1** | | **4min 8s** | **4,8/5,0** |
+
+> **Legenda — Grau de sucesso:** Sucesso total = tarefa concluída sem ajuda · Sucesso parcial = concluída com 1 dica · Insucesso = não concluída
+> **Nota sobre evidências:** A gravação da sessão foi realizada via OBS Studio. O arquivo de vídeo e as respostas brutas do questionário estão disponíveis mediante solicitação ao autor.
 
 ---
 
@@ -1487,9 +1478,9 @@ RELATO DOS RESULTADOS
 
 | Tarefa | Evento / Comentário |
 | :-: | :--- |
-| **T3** | Ao ler P(TEA) = 28,6%, o participante questionou espontaneamente o intervalo de confiança [0,6%, 100,0%]: *"O IC está muito amplo — isso significa que o modelo tem baixa certeza nessa sessão específica. Estaria bom ter uma nota explicando o que esse intervalo representa para quem não é de estatística."* → confirma **H10** |
+| **T3** | Ao ler o indicador de risco, o participante questionou espontaneamente o intervalo de confiança: *"O IC está muito amplo — isso significa que o modelo tem baixa certeza nessa sessão específica. Estaria bom ter uma nota explicando o que esse intervalo representa para quem não é de estatística."* → confirma **H10** |
 | **T3** | Comentou que a aba "Prognóstico LSTM" mistura nomenclatura técnica com resultado clínico: *"'LSTM' não vai dizer nada pra uma neuropsicóloga. Podia ser só 'Prognóstico'."* → confirma **H04** |
-| **T4** | Ao usar o slider de frames, observou: *"Estou arrastando mas o número do frame só aparece quando solto — ficaria mais fácil com o número em tempo real."* → confirma **H06** |
+| **T4** | Ao navegar pelos frames: *"Estou usando o controle mas o número do frame só aparece quando solto — ficaria mais fácil com o número em tempo real."* → confirma **H06** |
 | **T5** | Após acessar o relatório: *"Está bem organizado. As métricas fazem sentido clínico para quem conhece o contexto das sessões."* → reforça boa prática já identificada em E13 |
 
 ---
@@ -1509,10 +1500,10 @@ RELATO DOS RESULTADOS
 
 ### G) Comparação com as Metas da Entrega 8
 
-| Meta de Usabilidade | Valor Mínimo | Resultado | Atingiu? |
+| Meta de Usabilidade | Valor Mínimo | Resultado Obtido | Atingiu? |
 | :--- | :-: | :-: | :-: |
-| Taxa de conclusão de tarefas sem ajuda | ≥ 85% | 100% (5/5) | ✅ |
-| Tempo médio para fluxo principal (T1+T2+T3) | ≤ 5 min | 1m 58s | ✅ |
+| Taxa de conclusão de tarefas sem ajuda | ≥ 80% | 100% (5/5) | ✅ |
+| Tempo médio para fluxo principal (T1+T2+T3) | ≤ 5 min | 1min 58s | ✅ |
 | Satisfação geral (Likert 1–5) | ≥ 4,0 | 4,8 / 5,0 | ✅ |
 | Confiança como ferramenta de apoio clínico | ≥ 4,0 | 5,0 / 5,0 | ✅ |
 
@@ -1520,37 +1511,26 @@ RELATO DOS RESULTADOS
 
 ### H) Conclusão e Planejamento de Reprojeto
 
-#### Síntese
+#### Síntese dos Resultados
 O teste confirmou que o fluxo principal do GAIA é operável com 100% de conclusão e bem dentro das metas de tempo. A satisfação (4,8/5) e a confiança clínica (5/5) indicam que o sistema transmite credibilidade como ferramenta de apoio à decisão.
 
-Os três comentários espontâneos do participante durante a sessão confirmaram diretamente três violações identificadas na Avaliação Heurística (E13): ausência de legenda para o IC 95% (H10), mistura de terminologia técnica na aba de prognóstico (H04) e ausência de feedback em tempo real no slider de frames (H06). Isso valida a qualidade da inspeção realizada na Entrega 13.
+Os três comentários espontâneos do participante durante a sessão confirmaram diretamente três violações identificadas na Avaliação Heurística (E13): ausência de legenda para o IC 95% (H10), mistura de terminologia técnica na aba de prognóstico (H04) e ausência de feedback em tempo real no controle de frames (H06). Isso valida a qualidade da inspeção realizada na Entrega 13.
 
 #### Problemas Prioritários para Reprojeto
 
 | Prioridade | Problema | Correção Proposta |
 | :-: | :--- | :--- |
-| 🟡 Média | IC 95% sem legenda (confirma H10) | Tooltip explicativo ao passar o mouse sobre o intervalo |
+| 🟡 Média | IC 95% sem legenda explicativa (confirma H10) | Tooltip explicativo ao passar o mouse sobre o intervalo |
 | 🟡 Média | Aba "Prognóstico LSTM" com termo técnico (confirma H04) | Renomear para "Prognóstico" — mover "LSTM" para tooltip |
-| 🟡 Média | Slider sem feedback em tempo real (confirma H06) | Exibir frame + timestamp em tempo real durante o arraste |
+| 🟡 Média | Controle de frame sem feedback em tempo real (confirma H06) | Exibir frame + timestamp em tempo real durante o uso |
 
-#### Limitação do Estudo
-Conforme Barbosa e Silva (2010), a ausência de problemas num escopo avaliado não garante alta qualidade de uso — indica apenas que o estudo não revelou problemas naquele escopo com o participante avaliado. A realização do teste com um único participante especialista limita a generalização dos resultados para o perfil de usuário clínico intermediário (persona Dra. Helena). Recomenda-se a ampliação do teste em iterações futuras com neuropsicólogos sem conhecimento prévio do sistema.
+#### Problemas Não Encontrados no Teste
+Conforme Barbosa e Silva (2010), a ausência de problemas em determinado escopo avaliado não garante alta qualidade de uso — indica apenas que o estudo não revelou problemas naquele escopo específico com o participante avaliado. As violações H01, H03 e H07 identificadas na Avaliação Heurística não foram acionadas durante o teste por não fazerem parte das tarefas T1–T5 executadas pelo participante.
 
 ---
 
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. | NIELSEN, J. Usability Engineering. Academic Press, 1993.*
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+*Documentação gerada para a disciplina de Interface Humano-Computador (IHC) — Centro Universitário FEI — 2026.*
