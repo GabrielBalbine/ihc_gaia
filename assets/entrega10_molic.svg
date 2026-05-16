@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 680" width="1500" height="680">
+  <defs>
+    <style>
+      text { font-family: Consolas, 'Courier New', monospace; }
+      .title { font-size:15px; fill:#1a1a2e; font-weight:700; text-anchor:middle; }
+      .sub   { font-size:10px; fill:#999; text-anchor:middle; }
+      .cn    { font-size:10.5px; fill:#1a1a2e; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+      .cu    { font-size:9.5px; fill:#1a3a8f; text-anchor:middle; dominant-baseline:central; }
+      .cs    { font-size:9.5px; fill:#1a6b2a; text-anchor:middle; dominant-baseline:central; }
+      .cb    { font-size:9px; fill:#fff; text-anchor:middle; dominant-baseline:central; font-style:italic; }
+      .cr    { font-size:9.5px; fill:#b36000; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+      .el    { font-size:8.5px; fill:#555; text-anchor:middle; }
+      .rl    { font-size:8.5px; fill:#b36000; text-anchor:middle; }
+      .leg   { font-size:10px; fill:#444; dominant-baseline:central; }
+      .e     { stroke:#1a1a2e; stroke-width:1.8; fill:none; }
+      .er    { stroke:#d4820a; stroke-width:1.5; fill:none; stroke-dasharray:6,3; }
+    </style>
+    <marker id="arr"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a1a2e"/>
+    </marker>
+    <marker id="arrr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#d4820a"/>
+    </marker>
+  </defs>
+
+  <rect width="1500" height="680" fill="#f7f4ef" rx="10"/>
+  <text x="750" y="28" class="title">Diagrama MOLIC — GAIA · Fluxo do Especialista</text>
+  <text x="750" y="46" class="sub">Model of Interaction as Conversation — Barbosa e Silva (2010) · ■ = Processamento interno (caixa preta)</text>
+
+  <!-- ══════════════════════════
+       LINHA 1 (Y=100): INÍCIO → C1 → C2 → C3
+  ══════════════════════════ -->
+
+  <ellipse cx="70" cy="100" rx="52" ry="24" fill="#1a1a2e"/>
+  <text x="70" y="100" class="cn" fill="#fff">INÍCIO</text>
+
+  <!-- C1: Login -->
+  <rect x="146" y="72" width="240" height="56" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="266" y="90" class="cn">C1: Tela de Login</text>
+  <text x="266" y="106" class="cu">U: Seleciona perfil + credenciais</text>
+  <text x="266" y="120" class="cs">S: Valida credenciais</text>
+
+  <!-- ■ Validação (caixa preta) -->
+  <rect x="420" y="82" width="140" height="36" rx="4" fill="#1a1a2e"/>
+  <text x="490" y="100" class="cb">■ Validação de</text>
+  <text x="490" y="113" class="cb">credenciais</text>
+
+  <!-- C2: Dashboard -->
+  <rect x="590" y="72" width="240" height="56" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="710" y="90" class="cn">C2: Dashboard</text>
+  <text x="710" y="106" class="cu">U: Visualiza sessões e histórico</text>
+  <text x="710" y="120" class="cs">S: Lista cards com métricas</text>
+
+  <!-- C3: Upload -->
+  <rect x="862" y="72" width="250" height="56" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="987" y="90" class="cn">C3: Upload de Vídeo</text>
+  <text x="987" y="106" class="cu">U: Preenche ID e envia vídeo</text>
+  <text x="987" y="120" class="cs">S: Confirma recebimento</text>
+
+  <!-- ══════════════════════════
+       COLUNA C3→Pipeline→C4
+  ══════════════════════════ -->
+
+  <!-- ■ Pipeline TITAN (caixa preta grande) -->
+  <rect x="862" y="195" width="250" height="54" rx="4" fill="#1a1a2e"/>
+  <text x="987" y="211" class="cb">■ Pipeline TITAN</text>
+  <text x="987" y="224" class="cb">YOLOv8 + MediaPipe + Bi-LSTM</text>
+  <text x="987" y="237" class="cb">(processamento assíncrono)</text>
+
+  <!-- ══════════════════════════
+       LINHA 2 (Y=330): C4 ← FIM ← C5 ← C4_pos
+  ══════════════════════════ -->
+
+  <!-- C4: Resultado -->
+  <rect x="690" y="305" width="290" height="80" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="835" y="323" class="cn">C4: Resultado / Prognóstico</text>
+  <text x="835" y="339" class="cs">S: Exibe P(TEA) + métricas</text>
+  <text x="835" y="353" class="cu">U: Lê indicadores comportamentais</text>
+  <text x="835" y="367" class="cs">S: Aviso "não substitui diagnóstico"</text>
+  <text x="835" y="379" class="cs">S: Player c/ sobreposições da IA</text>
+
+  <!-- C5: Exportar -->
+  <rect x="370" y="318" width="230" height="54" rx="6" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="485" y="336" class="cn">C5: Exportar Relatório</text>
+  <text x="485" y="352" class="cu">U: Solicita relatório</text>
+  <text x="485" y="366" class="cs">S: Gera e disponibiliza PDF</text>
+
+  <!-- FIM -->
+  <ellipse cx="180" cy="345" rx="70" ry="28" fill="#1a6b2a"/>
+  <text x="180" y="345" class="cn" fill="#fff">FIM / Home</text>
+
+  <!-- ══════════════════════════
+       ARESTAS NORMAIS
+  ══════════════════════════ -->
+  <line x1="122" y1="100" x2="144" y2="100" class="e" marker-end="url(#arr)"/>
+  <line x1="386" y1="100" x2="418" y2="100" class="e" marker-end="url(#arr)"/>
+  <text x="402" y="93" class="el">login</text>
+  <line x1="560" y1="100" x2="588" y2="100" class="e" marker-end="url(#arr)"/>
+  <text x="574" y="93" class="el">OK</text>
+  <line x1="830" y1="100" x2="860" y2="100" class="e" marker-end="url(#arr)"/>
+  <text x="845" y="93" class="el">clica ＋</text>
+  <!-- C3 ↓ Pipeline -->
+  <line x1="987" y1="128" x2="987" y2="193" class="e" marker-end="url(#arr)"/>
+  <text x="1010" y="162" class="el">upload OK</text>
+  <!-- Pipeline ↓ C4 -->
+  <line x1="987" y1="249" x2="987" y2="280" class="e"/>
+  <line x1="987" y1="280" x2="835" y2="305" class="e" marker-end="url(#arr)"/>
+  <text x="940" y="293" class="el">concluído</text>
+  <!-- C4 → C5 -->
+  <line x1="690" y1="345" x2="602" y2="345" class="e" marker-end="url(#arr)"/>
+  <text x="646" y="337" class="el">exportar</text>
+  <!-- C5 → FIM -->
+  <line x1="370" y1="345" x2="252" y2="345" class="e" marker-end="url(#arr)"/>
+  <text x="311" y="337" class="el">PDF gerado</text>
+  <!-- C4 → FIM direto (Home) -->
+  <path d="M710,385 Q710,430 460,430 Q280,430 252,358" class="e" marker-end="url(#arr)"/>
+  <text x="480" y="445" class="el">← Home</text>
+  <!-- C2 → FIM (logout/home) -->
+  <path d="M710,128 Q710,160 500,190 Q300,220 250,318" class="e" marker-end="url(#arr)"/>
+  <text x="430" y="195" class="el">← Home</text>
+
+  <!-- ══════════════════════════
+       RUPTURAS
+  ══════════════════════════ -->
+
+  <!-- R1: abaixo de C1 -->
+  <polygon points="266,170 302,192 266,214 230,192" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="266" y="188" class="cr">R1</text>
+  <text x="266" y="200" class="cr" style="font-size:8px;">Credencial inválida</text>
+  <line x1="266" y1="128" x2="266" y2="168" class="er" marker-end="url(#arrr)"/>
+  <path d="M230,192 Q185,192 185,128 Q185,100 146,100" class="er" marker-end="url(#arrr)"/>
+  <text x="162" y="168" class="rl">retry</text>
+
+  <!-- R2: abaixo de C3 -->
+  <polygon points="1200,100 1240,120 1200,140 1160,120" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="1200" y="116" class="cr">R2</text>
+  <text x="1200" y="128" class="cr" style="font-size:8px;">Formato inválido</text>
+  <line x1="1112" y1="100" x2="1158" y2="100" class="er" marker-end="url(#arrr)"/>
+  <path d="M1240,120 Q1290,120 1290,80 Q1290,60 1112,60 Q987,60 862,64" class="er" marker-end="url(#arrr)"/>
+  <text x="1095" y="52" class="rl">retry upload</text>
+
+  <!-- R3: abaixo de caixa preta pipeline -->
+  <polygon points="1200,222 1240,244 1200,266 1160,244" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="1200" y="240" class="cr">R3</text>
+  <text x="1200" y="252" class="cr" style="font-size:8px;">Falha processamento</text>
+  <line x1="1112" y1="222" x2="1158" y2="222" class="er" marker-end="url(#arrr)"/>
+  <path d="M1240,244 Q1300,244 1300,128 Q1300,100 1114,100" class="er" marker-end="url(#arrr)"/>
+  <text x="1308" y="185" class="rl">retry</text>
+
+  <!-- R4: abaixo de C4 -->
+  <polygon points="835,415 875,438 835,461 795,438" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="835" y="434" class="cr">R4</text>
+  <text x="835" y="446" class="cr" style="font-size:8px;">Frames insuficientes</text>
+  <line x1="835" y1="385" x2="835" y2="413" class="er" marker-end="url(#arrr)"/>
+  <text x="858" y="402" class="rl">aviso na tela</text>
+
+  <!-- ══════════════════════════
+       LEGENDA
+  ══════════════════════════ -->
+  <rect x="60" y="496" width="1380" height="110" rx="5" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <text x="80" y="516" style="font-size:11px;fill:#1a1a2e;font-weight:700;dominant-baseline:central;">Legenda</text>
+
+  <rect x="80" y="528" width="52" height="20" rx="3" fill="#fff" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="106" y="538" class="cn">Cena</text>
+  <text x="142" y="538" class="leg">= estado da interface onde ocorre interação (falas U e S)</text>
+
+  <rect x="80" y="558" width="90" height="20" rx="3" fill="#1a1a2e"/>
+  <text x="125" y="568" class="cb" style="font-size:9px;">■ Proc. interno</text>
+  <text x="180" y="568" class="leg">= caixa preta: processamento backend invisível ao usuário</text>
+
+  <polygon points="640,558 664,570 640,582 616,570" fill="#fff8f0" stroke="#d4820a" stroke-width="2"/>
+  <text x="640" y="570" class="cr" style="font-size:8.5px;">R</text>
+  <text x="676" y="570" class="leg">= Ruptura de comunicação (erro / desvio)</text>
+
+  <line x1="80"  y1="596" x2="128" y2="596" class="e" marker-end="url(#arr)"/>
+  <text x="138" y="596" class="leg">= Fluxo normal</text>
+  <line x1="310" y1="596" x2="358" y2="596" class="er" marker-end="url(#arrr)"/>
+  <text x="368" y="596" class="leg">= Fluxo de ruptura / retry</text>
+  <text x="600" y="596" style="font-size:9.5px;fill:#1a3a8f;font-weight:700;dominant-baseline:central;">U:</text>
+  <text x="616" y="596" class="leg">fala do usuário</text>
+  <text x="750" y="596" style="font-size:9.5px;fill:#1a6b2a;font-weight:700;dominant-baseline:central;">S:</text>
+  <text x="766" y="596" class="leg">fala do sistema · Elipses = estados terminais</text>
+</svg>

@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 820" width="1300" height="820">
+  <defs>
+    <style>
+      text { font-family: Consolas, 'Courier New', monospace; }
+      .title  { font-size:17px; fill:#2d1b69; font-weight:700; text-anchor:middle; }
+      .sub    { font-size:11px; fill:#888; text-anchor:middle; }
+      .box-n  { font-size:11px; fill:#2d1b69; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+      .box-t  { font-size:10px; fill:#333; text-anchor:start; dominant-baseline:central; }
+      .dec-t  { font-size:10px; fill:#2d1b69; font-weight:600; text-anchor:middle; dominant-baseline:central; }
+      .edge   { stroke:#999; stroke-width:1.8; fill:none; }
+      .edge-b { stroke:#2d1b69; stroke-width:2; fill:none; }
+      .note   { font-size:9.5px; fill:#666; text-anchor:middle; dominant-baseline:central; }
+      .foot   { font-size:10px; fill:#555; dominant-baseline:central; }
+    </style>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#999"/>
+    </marker>
+    <marker id="arrb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2d1b69"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1300" height="820" fill="#faf8ff" rx="10"/>
+  <text x="650" y="32" class="title">Fluxograma da Avaliação Heurística — GAIA</text>
+  <text x="650" y="52" class="sub">Da preparação ao relato dos achados · Baseado em Nielsen (1994) e Barbosa e Silva (2010)</text>
+
+  <!-- ══ PASSO 1 ══ -->
+  <rect x="140" y="72" width="620" height="100" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <!-- ícone -->
+  <rect x="152" y="84" width="58" height="58" rx="8" fill="#7c5cbf"/>
+  <text x="181" y="110" style="font-size:22px;text-anchor:middle;dominant-baseline:central;fill:#fff;">✓</text>
+  <text x="225" y="100" class="box-n" style="text-anchor:start;fill:#2d1b69;">1. Preparação da avaliação heurística</text>
+  <text x="225" y="118" class="box-t">• Definir objetivo: identificar problemas de usabilidade no GAIA</text>
+  <text x="225" y="133" class="box-t">• Selecionar as 10 Heurísticas de Nielsen (1994) como referência</text>
+  <text x="225" y="148" class="box-t">• Definir escopo: Login, Dashboard Admin, Dashboard Especialista, Resultado, Dados Brutos</text>
+
+  <!-- ↓ -->
+  <line x1="450" y1="172" x2="450" y2="196" class="edge" marker-end="url(#arr)"/>
+
+  <!-- ══ PASSO 2 ══ -->
+  <rect x="140" y="196" width="460" height="100" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="152" y="208" width="58" height="58" rx="8" fill="#b8a9e0"/>
+  <text x="181" y="234" style="font-size:20px;text-anchor:middle;dominant-baseline:central;fill:#fff;">📋</text>
+  <text x="225" y="224" class="box-n" style="text-anchor:start;fill:#2d1b69;">2. Planejamento da execução</text>
+  <text x="225" y="242" class="box-t">• Definir escala de severidade (0–4, Nielsen)</text>
+  <text x="225" y="257" class="box-t">• Avaliador único: autor do TCC (conhecimento do domínio)</text>
+  <text x="225" y="272" class="box-t">• Percorrer cada tela seguindo os fluxos do MOLIC</text>
+
+  <!-- ↓ -->
+  <line x1="370" y1="296" x2="370" y2="320" class="edge" marker-end="url(#arr)"/>
+
+  <!-- ══ PASSO 3 ══ -->
+  <rect x="140" y="320" width="460" height="100" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="152" y="332" width="58" height="58" rx="8" fill="#b8a9e0"/>
+  <text x="181" y="358" style="font-size:20px;text-anchor:middle;dominant-baseline:central;fill:#fff;">🖥</text>
+  <text x="225" y="348" class="box-n" style="text-anchor:start;fill:#2d1b69;">3. Avaliação individual da interface</text>
+  <text x="225" y="366" class="box-t">• Percorrer todas as telas e fluxos definidos no escopo</text>
+  <text x="225" y="381" class="box-t">• Executar as tarefas T1–T5 do Teste com Usuários</text>
+  <text x="225" y="396" class="box-t">• Comparar cada elemento da interface às 10 heurísticas</text>
+
+  <!-- → decisão -->
+  <line x1="600" y1="370" x2="670" y2="370" class="edge" marker-end="url(#arr)"/>
+
+  <!-- DECISÃO -->
+  <polygon points="750,330 870,370 750,410 630,370" fill="#fff" stroke="#7c5cbf" stroke-width="2.5"/>
+  <text x="750" y="360" class="dec-t">Foi identificada</text>
+  <text x="750" y="375" class="dec-t">uma possível</text>
+  <text x="750" y="390" class="dec-t">violação?</text>
+
+  <!-- Não → continuar -->
+  <line x1="870" y1="370" x2="1000" y2="370" class="edge" marker-end="url(#arr)"/>
+  <text x="935" y="360" class="note">Não</text>
+  <rect x="1000" y="348" width="240" height="44" rx="8" fill="#f0f0f0" stroke="#bbb" stroke-width="1.5"/>
+  <text x="1120" y="370" class="dec-t" style="fill:#666;">Continuar a inspeção</text>
+  <!-- volta ao passo 3 -->
+  <path d="M1120,392 Q1120,430 750,430 Q600,430 600,420" style="stroke:#bbb;stroke-width:1.5;fill:none;stroke-dasharray:5,3;" marker-end="url(#arr)"/>
+
+  <!-- Sim ↓ -->
+  <line x1="750" y1="410" x2="750" y2="450" class="edge" marker-end="url(#arr)"/>
+  <text x="760" y="435" class="note">Sim</text>
+
+  <!-- ══ PASSOS 4–8 (linha horizontal) ══ -->
+  <!-- Linha conectora -->
+  <line x1="100" y1="530" x2="1240" y2="530" style="stroke:#ddd;stroke-width:1;"/>
+
+  <!-- ══ PASSO 4 ══ -->
+  <rect x="60" y="450" width="210" height="160" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="72" y="462" width="46" height="46" rx="8" fill="#7c5cbf"/>
+  <text x="95" y="482" style="font-size:18px;text-anchor:middle;dominant-baseline:central;fill:#fff;">📝</text>
+  <text x="165" y="476" class="box-n" style="text-anchor:middle;fill:#2d1b69;">4. Registrar</text>
+  <text x="165" y="490" class="box-n" style="text-anchor:middle;fill:#2d1b69;">a violação</text>
+  <text x="72" y="516" class="box-t">• Descrever o problema</text>
+  <text x="72" y="531" class="box-t">• Indicar tela / fluxo</text>
+  <text x="72" y="546" class="box-t">• Registrar evidência</text>
+  <text x="72" y="561" class="box-t">  (print / descrição)</text>
+  <text x="72" y="576" class="box-t">• Vincular à heurística</text>
+  <text x="72" y="591" class="box-t">  violada (H1–H10)</text>
+
+  <!-- → -->
+  <line x1="270" y1="530" x2="298" y2="530" class="edge" marker-end="url(#arr)"/>
+
+  <!-- ══ PASSO 5 ══ -->
+  <rect x="298" y="450" width="200" height="160" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="310" y="462" width="46" height="46" rx="8" fill="#b8a9e0"/>
+  <text x="333" y="482" style="font-size:18px;text-anchor:middle;dominant-baseline:central;fill:#fff;">📊</text>
+  <text x="398" y="476" class="box-n" style="text-anchor:middle;fill:#2d1b69;">5. Classificar</text>
+  <text x="398" y="490" class="box-n" style="text-anchor:middle;fill:#2d1b69;">a violação</text>
+  <text x="310" y="516" class="box-t">• Severidade (0–4)</text>
+  <text x="310" y="531" class="box-t">  0=nenhum, 1=cosm.</text>
+  <text x="310" y="546" class="box-t">  2=simples, 3=grave</text>
+  <text x="310" y="561" class="box-t">  4=catastrófico</text>
+  <text x="310" y="576" class="box-t">• Impacto no usuário</text>
+  <text x="310" y="591" class="box-t">• Frequência esperada</text>
+
+  <!-- → -->
+  <line x1="498" y1="530" x2="526" y2="530" class="edge" marker-end="url(#arr)"/>
+
+  <!-- ══ PASSO 6 ══ -->
+  <rect x="526" y="450" width="210" height="160" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="538" y="462" width="46" height="46" rx="8" fill="#b8a9e0"/>
+  <text x="561" y="482" style="font-size:18px;text-anchor:middle;dominant-baseline:central;fill:#fff;">🗄</text>
+  <text x="631" y="476" class="box-n" style="text-anchor:middle;fill:#2d1b69;">6. Consolidar</text>
+  <text x="631" y="490" class="box-n" style="text-anchor:middle;fill:#2d1b69;">achados</text>
+  <text x="538" y="516" class="box-t">• Agrupar violações</text>
+  <text x="538" y="531" class="box-t">  por heurística</text>
+  <text x="538" y="546" class="box-t">• Eliminar sobreposições</text>
+  <text x="538" y="561" class="box-t">• Organizar lista final</text>
+  <text x="538" y="576" class="box-t">  (H01–H12)</text>
+  <text x="538" y="591" class="box-t">• Identificar recorrências</text>
+
+  <!-- → -->
+  <line x1="736" y1="530" x2="764" y2="530" class="edge" marker-end="url(#arr)"/>
+
+  <!-- ══ PASSO 7 ══ -->
+  <rect x="764" y="450" width="210" height="160" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="776" y="462" width="46" height="46" rx="8" fill="#b8a9e0"/>
+  <text x="799" y="482" style="font-size:18px;text-anchor:middle;dominant-baseline:central;fill:#fff;">💬</text>
+  <text x="869" y="476" class="box-n" style="text-anchor:middle;fill:#2d1b69;">7. Debate com</text>
+  <text x="869" y="490" class="box-n" style="text-anchor:middle;fill:#2d1b69;">orientador</text>
+  <text x="776" y="516" class="box-t">• Apresentar achados</text>
+  <text x="776" y="531" class="box-t">  ao Prof. Victor Varela</text>
+  <text x="776" y="546" class="box-t">• Validar classificações</text>
+  <text x="776" y="561" class="box-t">  de severidade</text>
+  <text x="776" y="576" class="box-t">• Refinar descrições</text>
+  <text x="776" y="591" class="box-t">• Priorizar problemas</text>
+
+  <!-- → -->
+  <line x1="974" y1="530" x2="1002" y2="530" class="edge" marker-end="url(#arr)"/>
+
+  <!-- ══ PASSO 8 ══ -->
+  <rect x="1002" y="450" width="258" height="160" rx="10" fill="#ede9fa" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="1014" y="462" width="46" height="46" rx="8" fill="#7c5cbf"/>
+  <text x="1037" y="482" style="font-size:18px;text-anchor:middle;dominant-baseline:central;fill:#fff;">📄</text>
+  <text x="1131" y="476" class="box-n" style="text-anchor:middle;fill:#2d1b69;">8. Produzir resultados</text>
+  <text x="1014" y="500" class="box-t">• Relatório final (tabela H01–H12)</text>
+  <text x="1014" y="516" class="box-t">• Lista priorizada por severidade</text>
+  <text x="1014" y="531" class="box-t">  (🔴 Alta / 🟡 Média / 🟢 Baixa)</text>
+  <text x="1014" y="546" class="box-t">• Boas práticas identificadas</text>
+  <text x="1014" y="561" class="box-t">• Recomendações de melhoria</text>
+  <text x="1014" y="576" class="box-t">• Devolutiva para o Teste com</text>
+  <text x="1014" y="591" class="box-t">  Usuários (Entrega 14)</text>
+
+  <!-- Arco Passo 3 → Passo 4 -->
+  <path d="M750,450 Q750,530 272,530" style="stroke:#999;stroke-width:1.8;fill:none;" marker-end="url(#arr)"/>
+
+  <!-- ══ RODAPÉ ══ -->
+  <rect x="60" y="650" width="1180" height="38" rx="6" fill="#f0ecfa" stroke="#c5b8e8" stroke-width="1.2"/>
+  <text x="80" y="669" style="font-size:13px;fill:#7c5cbf;dominant-baseline:central;">ℹ</text>
+  <text x="102" y="669" class="foot">A avaliação heurística combina inspeção individual estruturada, registro sistemático e consolidação dos achados com validação do orientador.</text>
+
+  <!-- Legenda de cores -->
+  <rect x="60" y="700" width="560" height="80" rx="6" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <text x="80" y="718" style="font-size:10px;fill:#2d1b69;font-weight:700;dominant-baseline:central;">Legenda de Severidade (Nielsen, 1994):</text>
+  <text x="80" y="738" style="font-size:10px;fill:#444;dominant-baseline:central;">0 = Sem problema  ·  1 = Cosmético  ·  2 = Simples  ·  3 = Grave  ·  4 = Catastrófico</text>
+  <text x="80" y="758" style="font-size:10px;fill:#444;dominant-baseline:central;">🔴 Alta (sev. 3–4): corrigir imediatamente  ·  🟡 Média (sev. 2): próximo ciclo  ·  🟢 Baixa (sev. 1): melhorias futuras</text>
+</svg>
