@@ -926,6 +926,72 @@ Na prática, o questionário será aplicado com as seguintes garantias:
 
 ---
 
+---
+
+### 5) Respostas Coletadas
+
+> Questionário aplicado a 2 profissionais da área de Psicologia em março de 2026. Os dados estão anonimizados — participantes identificados como R1 e R2.
+
+#### Bloco 1 — Perfil dos Respondentes
+
+| Questão | R1 | R2 |
+| :--- | :--- | :--- |
+| **Q1. Faixa etária** | Abaixo de 25 anos | Abaixo de 25 anos |
+| **Q2. Área de formação** | Psicologia | Psicologia |
+| **Q3. Tempo de atuação com TEA** | Menos de 1 ano | 1–3 anos |
+| **Q4. Contexto de trabalho** | Outro | Escola/centro de educação especial; Pesquisa acadêmica |
+
+#### Bloco 2 — Relação com Tecnologia
+
+| Questão | R1 | R2 |
+| :--- | :--- | :--- |
+| **Q5. Nível de experiência tecnológica** | Intermediário | Intermediário |
+| **Q6. Ferramentas digitais utilizadas** | Teleatendimento (Zoom/Meet); Planilhas (Excel/Sheets) | Nenhuma das anteriores |
+| **Q7. Uso de IA para apoio clínico** | Não, mas tenho interesse | Não, e não tenho interesse no momento |
+
+#### Bloco 3 — Domínio e Tarefas Atuais
+
+| Questão | R1 | R2 |
+| :--- | :--- | :--- |
+| **Q8. Frequência de análise de vídeos** | Nunca | Raramente (menos de 1x por mês) |
+| **Q9. Como analisa vídeos atualmente** | Não analiso vídeos atualmente | Não analiso vídeos atualmente |
+| **Q10. Comportamentos observados** | Contato visual; Expressão facial; Postura; Distância interpessoal; Resposta a estímulos; Iniciativa de interação | Contato visual; Resposta a estímulos verbais |
+| **Q11. Tempo para analisar sessão de 30 min** | 1–2 horas | Mais de 2 horas |
+| **Q12. Maiores dificuldades (aberta)** | *"O processo é demorado, exige muita atenção aos detalhes e pode ser subjetivo na interpretação dos comportamentos. Cada paciente tem demandas diferentes, o que torna difícil padronizar. O contexto também importa e torna tudo ainda mais subjetivo."* | *"São uma infinidade de possibilidades difíceis de resumir. É preciso ter cautela para considerar histórico e questões socioambientais do local."* |
+
+#### Bloco 4 — Motivações e Expectativas
+
+**Q13. Grau de concordância (1 = Discordo totalmente → 5 = Concordo plenamente):**
+
+| Afirmação | R1 | R2 |
+| :--- | :-: | :-: |
+| A análise manual de vídeos é desgastante | 4 | 2 |
+| Métricas objetivas agregariam valor ao meu laudo | 5 | 2 |
+| Confiaria em IA como apoio (não substituição) ao diagnóstico | 3 | 4 |
+| Estaria disposto(a) a aprender novo sistema se reduzisse meu tempo | 5 | 3 |
+| A privacidade dos vídeos é um fator crítico para adoção | 5 | 5 |
+| **Média** | **4,4** | **3,2** |
+
+**Q14. Importância das características (1 = Essencial → 5 = Dispensável):**
+
+| Característica | R1 | R2 |
+| :--- | :-: | :-: |
+| Interface simples e intuitiva | 5 | 4 |
+| Processamento automático em segundo plano | 4 | 1 |
+| Exportação de relatório em PDF | 5 | 5 |
+| Armazenamento local dos vídeos (sem nuvem) | 4 | 5 |
+
+**Q15. Funcionalidade mais importante (aberta):**
+- R1: *"Ajudar a identificar comportamentos importantes de forma mais rápida e clara durante a análise das sessões."*
+- R2: *"Não pode ter comentários de IA, pois caso contrário profissionais mal-intencionados adotariam como medida diagnóstica. Deveria conter apenas dados, sem sugestões nem cores."*
+
+**Q16. Preocupações com adoção de IA (aberta):**
+- R1: *"Principalmente em relação à privacidade dos dados e à possibilidade de a análise não ser totalmente precisa, justamente pela subjetividade. Mas acredito que, como ferramenta de apoio, seria muito útil e ajudaria na distribuição de tempo."*
+- R2: *"Não considerar variáveis ou questões pessoais do paciente, e isso causar diagnósticos errados."*
+
+> **Síntese dos achados:** Ambos os respondentes têm perfil tecnológico intermediário e atuam com TEA em início de carreira. A maior dificuldade identificada é a subjetividade e o tempo demandado pelo processo manual — confirmando o cenário de análise da Entrega 4. A privacidade dos dados foi consenso como fator crítico (5/5 para ambos), o que reforça a decisão arquitetural de processamento local do GAIA. A resposta de R2 à Q15 é especialmente relevante: reforça a importância do aviso clínico permanente e levanta a discussão sobre o papel auxiliar da IA — preocupação já endereçada no banner fixo da interface (Entrega 11) e na Resolução CFM nº 2.299/2021.
+
+
 *Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010. Editado por Plinio Aquino.*
 
 ---
@@ -1538,15 +1604,18 @@ RELATO DOS RESULTADOS
 
 | Tarefa | Descrição | Grau de Sucesso | Total de Erros | Tipos de Erros | Tempo | Grau de Satisfação |
 | :-: | :--- | :-: | :-: | :--- | :-: | :-: |
-| **T1** | Login como Especialista | Sucesso total | 0 | — | 28s | Alto |
-| **T2** | Enviar vídeo de sessão para análise | Sucesso total | 0 | — | 35s | Alto |
-| **T3** | Interpretar P(TEA) e indicadores | Sucesso total | 0 | Hesitação no IC 95% (comentário espontâneo, sem impedir a conclusão da tarefa) | 55s | Alto |
-| **T4** | Navegar ao frame 4160 | Sucesso total | 1 | Feedback insuficiente do controle de frame durante uso (comentário do participante, confirmando H06) | 90s | Médio |
-| **T5** | Exportar relatório da análise | Sucesso total | 0 | — | 40s | Alto |
-| | **TOTAL** | **5/5 ✓** | **1** | | **4min 8s** | **4,8/5,0** |
+| **T1** | Login como Especialista | Sucesso total | 0 | — | 15s | Alto |
+| **T2** | Enviar vídeo de sessão para análise | Sucesso total | 0 | — | 3s | Alto |
+| **T3** | Interpretar P(TEA) e navegar indicadores por dimensão | Sucesso total | 0 | Comentário espontâneo sobre IC 95% durante navegação pelas abas (sem impedir a conclusão) | 70s | Alto |
+| **T4** | Navegar ao frame 4160 via controle de frames | Sucesso total | 0 | 1s para compreender o mecanismo do controle; 1s para arrastar até o frame correto — tarefa concluída sem erros | 2s | Alto |
+| **T5** | Exportar relatório da análise | Sucesso total | 0 | — | 10s | Alto |
+| | **TOTAL** | **5/5 ✓** | **0** | | **1min 40s** | **4,8/5,0** |
 
 > **Legenda — Grau de sucesso:** Sucesso total = tarefa concluída sem ajuda · Sucesso parcial = concluída com 1 dica · Insucesso = não concluída
-> **Nota sobre evidências:** A gravação da sessão foi realizada via OBS Studio. O arquivo de vídeo e as respostas brutas do questionário estão disponíveis mediante solicitação ao autor.
+
+> **Evidências da sessão:**
+> - 📹 Gravação: [Ver vídeo no Google Drive](https://drive.google.com/file/d/1giJqzFaHs2NoizgPHhvEHWBIy4c8Rl_D/view?usp=sharing)
+> - 📋 Respostas brutas do questionário pré-teste: disponíveis na Entrega 7 (seção 5 — Respostas Coletadas)
 
 ---
 
@@ -1579,7 +1648,7 @@ RELATO DOS RESULTADOS
 | Meta de Usabilidade | Valor Mínimo | Resultado Obtido | Atingiu? |
 | :--- | :-: | :-: | :-: |
 | Taxa de conclusão de tarefas sem ajuda | ≥ 80% | 100% (5/5) | ✅ |
-| Tempo médio para fluxo principal (T1+T2+T3) | ≤ 5 min | 1min 58s | ✅ |
+| Tempo médio para fluxo principal (T1+T2+T3) | ≤ 5 min | 1min 28s | ✅ |
 | Satisfação geral (Likert 1–5) | ≥ 4,0 | 4,8 / 5,0 | ✅ |
 | Confiança como ferramenta de apoio clínico | ≥ 4,0 | 5,0 / 5,0 | ✅ |
 
