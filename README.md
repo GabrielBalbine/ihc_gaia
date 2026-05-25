@@ -623,6 +623,82 @@ A seguir são apresentados os modelos CTT das tarefas do GAIA utilizando a nota�
 ### Tela 08 — Resultado do Prognóstico
 ![Resultado Prognóstico](./assets/tela08_resultado_prognostico.png)
 
+
+---
+
+## 📝 Entrega 6 (Complemento): Teste do Protótipo de Baixa Fidelidade
+*Status: Concluído*
+
+### Procedimento do Teste
+
+O teste do protótipo de baixa fidelidade foi realizado com dois grupos de participantes em momentos distintos, conforme recomendado por Barbosa e Silva (2010): primeiro com colegas de curso para validação de fluxo e navegação, e depois com profissionais da área de Psicologia para validação de domínio clínico.
+
+#### Participantes
+
+| Participante | Perfil | Momento |
+| :--- | :--- | :--- |
+| **P-BF01** | Colega de curso — Ciência da Computação, sem experiência em TEA | 1ª rodada |
+| **P-BF02** | Colega de curso — Ciência da Computação, sem experiência em TEA | 1ª rodada |
+| **P-BF03** | Profissional da Psicologia Clínica, experiência com crianças | 2ª rodada |
+
+#### Roteiro de Tarefas (aplicado a todos os participantes)
+
+> *"Você está vendo os esboços de uma ferramenta de apoio ao diagnóstico de TEA. Navegue pelas telas na ordem apresentada e realize as tarefas abaixo. Fale em voz alta o que está pensando enquanto navega."*
+
+| # | Tarefa |
+| :-: | :--- |
+| T1 | Identifique onde você faria login no sistema |
+| T2 | A partir do dashboard, localize onde enviaria um vídeo de sessão para análise |
+| T3 | Após o envio, onde você buscaria o resultado da análise? |
+| T4 | Na tela de resultado, identifique o indicador principal de risco |
+
+---
+
+### Resultados e Críticas Coletadas
+
+#### 1ª Rodada — Colegas de Curso (P-BF01 e P-BF02)
+
+A recepção geral foi positiva. Ambos os participantes conseguiram navegar pelo fluxo principal sem auxílio e reconheceram a lógica da interface.
+
+**Observações positivas:**
+- O fluxo de login → dashboard → upload foi considerado intuitivo
+- A separação entre módulo Admin e módulo Especialista foi bem compreendida
+- A presença de métricas inline nos cards do dashboard foi elogiada
+
+**Críticas coletadas:**
+- P-BF01: *"O botão de upload não está visualmente destacado do restante do dashboard — tive que procurar"*
+- P-BF02: *"Não ficou claro se eu precisava esperar o processamento na mesma tela ou se poderia navegar enquanto isso"*
+- P-BF02: *"A tela de resultado tem muita informação de uma vez — fiquei em dúvida por onde começar a ler"*
+
+#### 2ª Rodada — Profissional da Psicologia (P-BF03)
+
+A profissional identificou os fluxos principais, mas apontou problemas relevantes do ponto de vista clínico que não haviam aparecido na rodada anterior.
+
+**Críticas coletadas:**
+- P-BF03: *"Os rótulos 'G→C' e 'C→G' não me dizem nada. Eu precisaria de uma legenda explicando o que significa cada sigla"*
+- P-BF03: *"A tela de resultado parece um relatório técnico, não uma ferramenta clínica. Senti falta de algo que me dissesse claramente 'atenção' ou 'sem alerta' antes de eu ler todos os números"*
+- P-BF03: *"Não está claro em nenhuma tela que este resultado não é um diagnóstico. Isso é importante — um clínico mais inexperiente poderia confundir"*
+- P-BF03: *"O termo 'LSTM' não me diz nada. Eu saberia que é um modelo de IA, mas a maioria dos psicólogos não saberia"*
+
+---
+
+### Mudanças Realizadas e Justificativas
+
+| Crítica | Mudança realizada no protótipo final | Entrega |
+| :--- | :--- | :-: |
+| Botão de upload pouco destacado | Upload integrado ao fluxo do dashboard com botão "+" em destaque e zona de drag-and-drop visível | E11 |
+| Falta de indicação sobre aguardar ou navegar | Adicionada barra de progresso com estimativa de tempo e mensagem "Processando em segundo plano — você pode continuar navegando" | E11 |
+| Muita informação na tela de resultado | Criada hierarquia visual com indicador P(TEA) em destaque central antes dos demais dados; organização por dimensão clínica (Engajamento Visual, Proximidade, Postura, Temporais) | E11 |
+| Siglas G→C e C→G sem legenda | Adicionados tooltips explicativos ao passar o mouse sobre cada métrica; linguagem clínica adotada nos rótulos principais | E11 |
+| Ausência de destaque visual de alerta | Indicador P(TEA) com escala de cores verde → vermelho comunicando nível de risco antes da leitura textual | E11 |
+| Ausência de aviso sobre não ser diagnóstico | Banner fixo e permanente na tela de resultado: *"Este resultado é uma estimativa de apoio à decisão clínica. O diagnóstico é responsabilidade exclusiva do especialista."* — não pode ser fechado | E11 |
+| Nomenclatura técnica "LSTM" na interface clínica | Aba renomeada de "Prognóstico LSTM" para "Prognóstico"; termo técnico movido para tooltip acessível sob demanda | E11 (pendente implementação — registrado como H04 na E13) |
+
+> **Síntese:** Os colegas de curso validaram positivamente o fluxo de navegação e a lógica geral da interface — o que confirmou que a estrutura do sistema estava adequada. A rodada com a profissional da Psicologia revelou problemas que somente um usuário do domínio clínico seria capaz de identificar: ausência de contexto para siglas técnicas, falta de hierarquia visual orientada ao diagnóstico e ausência de disclaimers sobre o papel auxiliar da IA. Todas essas críticas foram incorporadas ao protótipo final (Entrega 11) e registradas formalmente como violações heurísticas na Avaliação Heurística (Entrega 13), garantindo rastreabilidade entre o teste de baixa fidelidade e a avaliação final.
+
+*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
+
+
 ---
 
 ## 📋 Entrega 7: Requisitos e Ética
@@ -1534,77 +1610,3 @@ Conforme Barbosa e Silva (2010), a ausência de problemas em determinado escopo 
 ---
 
 *Documentação gerada para a disciplina de Interface Humano-Computador (IHC) — Centro Universitário FEI — 2026.*
-
----
-
-## 📝 Entrega 6 (Complemento): Teste do Protótipo de Baixa Fidelidade
-*Status: Concluído*
-
-### Procedimento do Teste
-
-O teste do protótipo de baixa fidelidade foi realizado com dois grupos de participantes em momentos distintos, conforme recomendado por Barbosa e Silva (2010): primeiro com colegas de curso para validação de fluxo e navegação, e depois com profissionais da área de Psicologia para validação de domínio clínico.
-
-#### Participantes
-
-| Participante | Perfil | Momento |
-| :--- | :--- | :--- |
-| **P-BF01** | Colega de curso — Ciência da Computação, sem experiência em TEA | 1ª rodada |
-| **P-BF02** | Colega de curso — Ciência da Computação, sem experiência em TEA | 1ª rodada |
-| **P-BF03** | Profissional da Psicologia Clínica, experiência com crianças | 2ª rodada |
-
-#### Roteiro de Tarefas (aplicado a todos os participantes)
-
-> *"Você está vendo os esboços de uma ferramenta de apoio ao diagnóstico de TEA. Navegue pelas telas na ordem apresentada e realize as tarefas abaixo. Fale em voz alta o que está pensando enquanto navega."*
-
-| # | Tarefa |
-| :-: | :--- |
-| T1 | Identifique onde você faria login no sistema |
-| T2 | A partir do dashboard, localize onde enviaria um vídeo de sessão para análise |
-| T3 | Após o envio, onde você buscaria o resultado da análise? |
-| T4 | Na tela de resultado, identifique o indicador principal de risco |
-
----
-
-### Resultados e Críticas Coletadas
-
-#### 1ª Rodada — Colegas de Curso (P-BF01 e P-BF02)
-
-A recepção geral foi positiva. Ambos os participantes conseguiram navegar pelo fluxo principal sem auxílio e reconheceram a lógica da interface.
-
-**Observações positivas:**
-- O fluxo de login → dashboard → upload foi considerado intuitivo
-- A separação entre módulo Admin e módulo Especialista foi bem compreendida
-- A presença de métricas inline nos cards do dashboard foi elogiada
-
-**Críticas coletadas:**
-- P-BF01: *"O botão de upload não está visualmente destacado do restante do dashboard — tive que procurar"*
-- P-BF02: *"Não ficou claro se eu precisava esperar o processamento na mesma tela ou se poderia navegar enquanto isso"*
-- P-BF02: *"A tela de resultado tem muita informação de uma vez — fiquei em dúvida por onde começar a ler"*
-
-#### 2ª Rodada — Profissional da Psicologia (P-BF03)
-
-A profissional identificou os fluxos principais, mas apontou problemas relevantes do ponto de vista clínico que não haviam aparecido na rodada anterior.
-
-**Críticas coletadas:**
-- P-BF03: *"Os rótulos 'G→C' e 'C→G' não me dizem nada. Eu precisaria de uma legenda explicando o que significa cada sigla"*
-- P-BF03: *"A tela de resultado parece um relatório técnico, não uma ferramenta clínica. Senti falta de algo que me dissesse claramente 'atenção' ou 'sem alerta' antes de eu ler todos os números"*
-- P-BF03: *"Não está claro em nenhuma tela que este resultado não é um diagnóstico. Isso é importante — um clínico mais inexperiente poderia confundir"*
-- P-BF03: *"O termo 'LSTM' não me diz nada. Eu saberia que é um modelo de IA, mas a maioria dos psicólogos não saberia"*
-
----
-
-### Mudanças Realizadas e Justificativas
-
-| Crítica | Mudança realizada no protótipo final | Entrega |
-| :--- | :--- | :-: |
-| Botão de upload pouco destacado | Upload integrado ao fluxo do dashboard com botão "+" em destaque e zona de drag-and-drop visível | E11 |
-| Falta de indicação sobre aguardar ou navegar | Adicionada barra de progresso com estimativa de tempo e mensagem "Processando em segundo plano — você pode continuar navegando" | E11 |
-| Muita informação na tela de resultado | Criada hierarquia visual com indicador P(TEA) em destaque central antes dos demais dados; organização por dimensão clínica (Engajamento Visual, Proximidade, Postura, Temporais) | E11 |
-| Siglas G→C e C→G sem legenda | Adicionados tooltips explicativos ao passar o mouse sobre cada métrica; linguagem clínica adotada nos rótulos principais | E11 |
-| Ausência de destaque visual de alerta | Indicador P(TEA) com escala de cores verde → vermelho comunicando nível de risco antes da leitura textual | E11 |
-| Ausência de aviso sobre não ser diagnóstico | Banner fixo e permanente na tela de resultado: *"Este resultado é uma estimativa de apoio à decisão clínica. O diagnóstico é responsabilidade exclusiva do especialista."* — não pode ser fechado | E11 |
-| Nomenclatura técnica "LSTM" na interface clínica | Aba renomeada de "Prognóstico LSTM" para "Prognóstico"; termo técnico movido para tooltip acessível sob demanda | E11 (pendente implementação — registrado como H04 na E13) |
-
-> **Síntese:** Os colegas de curso validaram positivamente o fluxo de navegação e a lógica geral da interface — o que confirmou que a estrutura do sistema estava adequada. A rodada com a profissional da Psicologia revelou problemas que somente um usuário do domínio clínico seria capaz de identificar: ausência de contexto para siglas técnicas, falta de hierarquia visual orientada ao diagnóstico e ausência de disclaimers sobre o papel auxiliar da IA. Todas essas críticas foram incorporadas ao protótipo final (Entrega 11) e registradas formalmente como violações heurísticas na Avaliação Heurística (Entrega 13), garantindo rastreabilidade entre o teste de baixa fidelidade e a avaliação final.
-
-*Referência: BARBOSA, S. D. J.; SILVA, B. S. Interação Humano-Computador. Elsevier, 2010.*
