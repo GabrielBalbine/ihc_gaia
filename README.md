@@ -23,7 +23,7 @@
 | [11](#-entrega-11-protótipo-de-alta-fidelidade) | Protótipo de Alta Fidelidade | ✅ |
 | [12](#-entrega-12-planejamento-da-avaliação-de-ihc-decide) | Planejamento de Usabilidade (DECIDE) | ✅ |
 | [13](#-entrega-13-avaliação-heurística) | Avaliação Heurística | ✅ |
-| [14](#-entrega-14-avaliação-por-observação) | Avaliação por Observação | ✅ |
+| [14](#-entrega-14-avaliação-por-observação-teste-com-usuários) | Avaliação por Observação | ✅ |
 
 ---
 
